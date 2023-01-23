@@ -1,6 +1,6 @@
 <div align="center">
 
-# Assignment 1
+# Assignment 1 Report
 
 #### Monday 13th February 2023
 
