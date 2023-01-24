@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <link href="/assets/brand.07f36738.png" rel="icon" type="image/svg+xml"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Aidan Traboulay | Portfolio
+  </title>
+  <script crossorigin="" src="/assets/index.a25e655a.js" type="module">
+  </script>
+  <link href="/assets/index.614b5a7d.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div id="root">
+  </div>
+ </body>
+</html>
