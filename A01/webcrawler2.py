@@ -6,6 +6,18 @@ from bs4 import BeautifulSoup
 
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'}
 
+def session_handler():
+     """
+     Description:
+          Returns a session object and sets the user agent.
+
+     Parameters:
+          None
+     """
+     session = requests.session()
+     session.headers.update(HEADERS)
+     return session
+
 def get_page(url):
      """
      Description:
@@ -35,7 +47,7 @@ def get_content(url):
      page = get_page(url)
      if page:
           soup = BeautifulSoup(page.content, 'html.parser')
-          return soup.prettify()
+          return soup
 
 def get_parsed_content(url):
      """
@@ -46,10 +58,14 @@ def get_parsed_content(url):
           url (str): The URL of the page to retrieve.
      """
      soup = get_content(url)
-     researcher_name = soup.find('div', id='gsc_prf_in')
-     print(researcher_name)
+     
+     researcher_name = soup.find("div", id="gsc_prf_in").contents[0]
+     researcher_caption = soup.find("div", class_="gsc_prf_il").contents[0]
+     researcher_institution = soup.find("a", class_="gsc_prf_ila").contents[0]
+     researcher_keywords = [keywords.get_text() for keywords in soup.find_all("a", class_="gsc_prf_inta gs_ibl")]
+     researcher_imgURL = soup.find("img", id="gsc_prf_pup-img")["src"]
 
-     return researcher_name
+     return researcher_name, researcher_caption, researcher_institution, researcher_keywords, researcher_imgURL
 
 def write_raw_data(content, url):
      """
@@ -98,12 +114,15 @@ def main():
      except:
           print("Error. No URL argument provided.")
 
-     content = get_content(url)
+     content = get_content(url).prettify()
      if content:
           write_raw_data(content, url)
-          write_json_data(content, url)
+          # write_json_data(content, url)
      else:
           print("Error. Unable to retrieve this flaming heap of garbage.")
+
+     print(get_parsed_content(url))
+
 
 if __name__ == "__main__":
      main()
