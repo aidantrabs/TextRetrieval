@@ -58,14 +58,21 @@ def get_parsed_content(url):
           url (str): The URL of the page to retrieve.
      """
      soup = get_content(url)
-     
+
      researcher_name = soup.find("div", id="gsc_prf_in").contents[0]
      researcher_caption = soup.find("div", class_="gsc_prf_il").contents[0]
      researcher_institution = soup.find("a", class_="gsc_prf_ila").contents[0]
      researcher_keywords = [keywords.get_text() for keywords in soup.find_all("a", class_="gsc_prf_inta gs_ibl")]
      researcher_imgURL = soup.find("img", id="gsc_prf_pup-img")["src"]
+     researcher_citations = [citations.get_text() for citations in soup.find_all("td", class_="gsc_rsb_std")[0:2]]
+     researcher_hindex = [hindex.get_text() for hindex in soup.find_all("td", class_="gsc_rsb_std")[2:4]]
+     researcher_i10index = [i10index.get_text() for i10index in soup.find_all("td", class_="gsc_rsb_std")[4:6]]
+     researcher_coauthors = [coauthor.find("a").get_text() for coauthor in soup.find_all("span", class_="gsc_rsb_a_desc")]
+     # researcher_papers
 
-     return researcher_name, researcher_caption, researcher_institution, researcher_keywords, researcher_imgURL
+     return researcher_name, researcher_caption, researcher_institution, \
+               researcher_keywords, researcher_imgURL, researcher_citations, \
+                researcher_hindex, researcher_i10index, researcher_coauthors
 
 def write_raw_data(content, url):
      """
