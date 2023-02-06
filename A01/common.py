@@ -23,6 +23,21 @@ def session_handler():
      return session
 
 
+def get_content(url):
+     """
+     Description:
+          Returns the text content of the page at the given URL.
+
+     Parameters:
+          url (str): The URL of the page to retrieve.
+     """
+     baseUrl, params = parse_url(url)
+     page = get_page(baseUrl, params)
+     if page:
+          soup = BeautifulSoup(page.content, 'html.parser')
+          return soup
+
+
 def parse_url(url):
      """
      Description:
@@ -60,20 +75,6 @@ def get_page(baseUrl, params):
                return None
      except:
           return None
-
-
-def get_content(url):
-     """
-     Description:
-          Returns the text content of the page at the given URL.
-
-     Parameters:
-          url (str): The URL of the page to retrieve.
-     """
-     page = get_page(url)
-     if page:
-          soup = BeautifulSoup(page.content, 'html.parser')
-          return soup
 
 
 def write_raw_data(content, url):
