@@ -100,7 +100,7 @@ def main():
 
      print_giraffe()
      print_loading()
-     content = get_content(url).prettify()
+     content = get_content(parse_url(url)).prettify()
 
      if content:
           write_raw_data(content, url)

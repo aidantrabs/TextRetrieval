@@ -22,7 +22,28 @@ def session_handler():
      session.headers.update(HEADERS)
      return session
 
-def get_page(url):
+
+def parse_url(url):
+     """
+     Description:
+          Returns the base URL and parameters of the given URL.
+
+     Parameters:
+          url (str): The URL to parse.
+     """
+     tokens = url.split("?")
+     baseUrl = tokens[0]
+     params = {}
+
+     tokens = tokens[1].split("&")
+     for token in tokens:
+          key, value = token.split("=")
+          params[key] = value
+
+     return baseUrl, params
+
+
+def get_page(baseUrl, params):
      """
      Description:
           Returns the HTML of the page at the given URL.
@@ -31,7 +52,7 @@ def get_page(url):
           url (str): The URL of the page to retrieve.
      """
      try:
-          response = requests.get(url, headers=HEADERS)
+          response = requests.get(baseUrl, headers=HEADERS, params=params)
           if response.status_code == 200:
                return response
           else:
@@ -81,6 +102,13 @@ def hash_url(url):
 
 
 def print_giraffe():
+     """
+     Description:
+          Prints a giraffe to the command line.
+
+     Parameters:
+          None
+     """
      print(r"""
 
                                         ._ o o
@@ -95,6 +123,13 @@ def print_giraffe():
 
 
 def print_loading():
+     """
+     Description:
+          Prints a fully-animated loading bar to the command line.
+
+     Parameters:
+          None
+     """
      items = list(range(0, 50))
      l = len(items)
 
@@ -107,7 +142,7 @@ def print_loading():
 def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>'):
      """
      Description:
-          A loading bar for the command line. Yes, I have time on my hands.
+          A frame of a loading bar for the command line. Yes, I have time on my hands.
 
      Parameters:
           iter (int): The current iteration.

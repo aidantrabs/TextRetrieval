@@ -173,45 +173,26 @@ def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>')
 
 
 def main():
-    """
-    Description:
-         Main function.
+     """
+     Description:
+          Main function.
 
-    Usage:
-         python webcrawler2.py <url>
-    """
-    try:
-        url = sys.argv[1]
-    except:
-        print("Error. No URL argument provided.")
+     Usage:
+          python webcrawler2.py <url>
+     """
+     try:
+          url = sys.argv[1]
+     except:
+          print("Error. No URL argument provided.")
 
-    items = list(range(0, 50))
-    l = len(items)
+     print_giraffe()
+     print_loading()
+     content = get_content(parse_url(url)).prettify()
 
-    print(r"""
-
-                                   ._ o o
-                                   \_`-)|_
-                                ,""       \
-                              ,"  ## |   ಠ ಠ.
-                            ," ##   ,-\__    `.
-                          ,"       /     `--._;)
-                        ,"     ## /
-                      ,"   ##    /
-     """)
-
-    loading(0, l, prefix='Progress:', suffix='Complete', length=l)
-    for i, item in enumerate(items):
-        sleep(0.09)
-        loading(i + 1, l, prefix='Progress:', suffix='Complete', length=l)
-
-    content = get_content(url).prettify()
-
-    if content:
-        write_raw_data(content, url)
-        write_json_data(content, url)
-    else:
-        print("Error. Unable to retrieve this flaming heap of garbage.")
+     if content:
+          write_raw_data(content, url)
+     else:
+          print("Error. Unable to retrieve this flaming heap of garbage.")
 
 
 if __name__ == "__main__":
