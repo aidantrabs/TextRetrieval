@@ -38,7 +38,18 @@ def get_page(url):
          url (str): The URL of the page to retrieve.
     """
     try:
-        response = requests.get(url, headers=HEADERS)
+        tokens = url.split("?")
+        baseUrl = tokens[0]
+        params = {}
+
+        tokens = tokens[1].split("&")
+        for token in tokens:
+            key, value = token.split("=")
+            params[key] = value
+
+        print(params)
+        response = requests.get(baseUrl, headers=HEADERS, params=params)
+        print(toString(response))
         if response.status_code == 200:
             return response
         else:
@@ -109,6 +120,32 @@ def graph(text):
     plt.ylabel('Tag count')
     plt.show()
 
+"""
+x
+"""
+def generate_heatmap(bits):
+    max_tags = 0
+    heatmap = np.zeros((len(bits), len(bits)))
+    for i in range(len(bits)):
+        for j in range(i, len(bits)):
+            tags_before = sum(bits[:i])
+            tags_after = sum(bits[j:])
+            # non_tags_between = j - i - sum(bits[i:j])
+
+            # middle part of the summation in the slides
+            f = 0
+            for b in bits[i:j]:
+                f += (1 - b)
+
+            total_tags = tags_before + f + tags_after
+            heatmap[i, j] = total_tags
+
+            # X.append(i)
+            # Y.append(j)
+            # Z.append(total_tags)
+
+    plt.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
+    plt.show()
 
 def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>'):
     """
