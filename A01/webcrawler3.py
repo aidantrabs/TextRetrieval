@@ -66,26 +66,27 @@ def generate_heatmap(bits):
 
 
 def main():
-     """
-     Description:
-          Main function.
+    """
+    Description:
+        Main function.
 
-     Usage:
-          python webcrawler2.py <url>
-     """
-     try:
-          url = sys.argv[1]
-     except:
-          print("Error. No URL argument provided.")
+    Usage:
+        python webcrawler2.py <url>
+    """
+    try:
+        url = sys.argv[1]
+    except:
+        print("Error. No URL argument provided.")
 
-     print_giraffe()
-     print_loading()
-     content = get_content(url).prettify()
+    session_handler()
+    print_giraffe()
+    print_loading()
+    content = get_content(url).prettify()
 
-     if content:
-          write_raw_data(content, url)
-     else:
-          print("Error. Unable to retrieve this flaming heap of garbage.")
+    if content:
+        write_raw_data(content, url)
+    else:
+        print("Error. Unable to retrieve this flaming heap of garbage.")
 
 
 if __name__ == "__main__":
