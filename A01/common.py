@@ -1,4 +1,5 @@
 import sys
+import os
 import requests
 import hashlib
 import json
@@ -86,8 +87,9 @@ def write_raw_data(content, url):
           content (str): The content to write to the file.
           url (str): The URL of the page to retrieve.
      """
-     filename = 'data/' + hash_url(url) + '.txt'
-     with open(filename, 'w') as f:
+     os.mkdir("data") if not os.path.exists("data") else None
+     filename = os.path.join("data", hash_url(url) + ".txt")
+     with open(filename, 'w+') as f:
           f.write(content)
 
 
