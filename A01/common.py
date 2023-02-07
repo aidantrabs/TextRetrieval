@@ -32,8 +32,8 @@ def get_content(url):
      Parameters:
           url (str): The URL of the page to retrieve.
      """
-     baseUrl, params = parse_url(url)
-     page = get_page(baseUrl, params)
+     base_url, params = parse_url(url)
+     page = get_page(base_url, params)
      if page:
           soup = BeautifulSoup(page.content, 'html.parser')
           return soup
@@ -48,7 +48,7 @@ def parse_url(url):
           url (str): The URL to parse.
      """
      tokens = url.split("?")
-     baseUrl = tokens[0]
+     base_url = tokens[0]
      params = {}
 
      tokens = tokens[1].split("&") if len(tokens) > 1 else []
@@ -56,10 +56,10 @@ def parse_url(url):
           key, value = token.split("=")
           params[key] = value
 
-     return baseUrl, params
+     return base_url, params
 
 
-def get_page(baseUrl, params):
+def get_page(base_url, params):
      """
      Description:
           Returns the HTML of the page at the given URL.
@@ -68,7 +68,7 @@ def get_page(baseUrl, params):
           url (str): The URL of the page to retrieve.
      """
      try:
-          response = requests.get(baseUrl, headers=HEADERS, params=params)
+          response = requests.get(base_url, headers=HEADERS, params=params)
           if response.status_code == 200:
                return response
           else:
