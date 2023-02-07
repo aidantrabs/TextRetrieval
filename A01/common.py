@@ -50,7 +50,7 @@ def parse_url(url):
      baseUrl = tokens[0]
      params = {}
 
-     tokens = tokens[1].split("&")
+     tokens = tokens[1].split("&") if len(tokens) > 1 else []
      for token in tokens:
           key, value = token.split("=")
           params[key] = value
