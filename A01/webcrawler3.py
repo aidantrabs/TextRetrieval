@@ -6,7 +6,7 @@ import re
 import matplotlib.pyplot as mpl
 from time import sleep
 from bs4 import BeautifulSoup
-from common import *
+from utils import *
 
 HTML_TAGS_REGEX = r"/<\/?[^>]+(>|$)/gm"
 HTML_CONTENT_REGEX = r"/<[^>]+>/gm"

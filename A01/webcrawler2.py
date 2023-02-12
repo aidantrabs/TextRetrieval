@@ -4,7 +4,7 @@ import hashlib
 import json
 from time import sleep
 from bs4 import BeautifulSoup
-from common import *
+from utils import *
 
 def get_parsed_content(url):
      """
@@ -24,34 +24,24 @@ def get_parsed_content(url):
      researcher_citations = [citations.get_text() for citations in soup.find_all("td", class_="gsc_rsb_std")[0:2]]
      researcher_hindex = [hindex.get_text() for hindex in soup.find_all("td", class_="gsc_rsb_std")[2:4]]
      researcher_i10index = [i10index.get_text() for i10index in soup.find_all("td", class_="gsc_rsb_std")[4:6]]
-
-     researcher_coauthor_name = [coauthor.find("a").get_text() for coauthor in soup.find_all("span", class_="gsc_rsb_a_desc")]
-     researcher_coauthor_title = [coauthor.get_text() for coauthor in soup.find_all("span", class_="gsc_rsb_a_ext")]
-     researcher_coauthor_link = [coauthor.find("a", href=True)["href"] for coauthor in soup.find_all("span", class_="gsc_rsb_a_desc")]
+     researcher_coauthor_content = soup.find_all("span", class_="gsc_rsb_a_desc")
+     
      researcher_coauthor_dict = []
-     for i in range(len(researcher_coauthor_name)):
+     for coauthor in researcher_coauthor_content:
           researcher_coauthor_dict.append({
-               "coauthor_name": researcher_coauthor_name[i],
-               "coauthor_title": researcher_coauthor_title[i],
-               "coauthor_link": researcher_coauthor_link[i]
+               "coauthor_name": coauthor.find("a").get_text(),
+               "coauthor_title": coauthor.find("span", class_="gsc_rsb_a_ext").get_text(),
+               "coauthor_link": coauthor.find("a", href=True)["href"]
           })
 
-    # TODO: Need to fix coauthor title - pulling extra data into list
-    # Add error handling for NoneType error
-
-     researcher_paper_title = [paper.get_text() for paper in soup.find_all("a", class_="gsc_a_at")]
-     researcher_paper_authors = [paper.find("div", class_="gs_gray").get_text() for paper in soup.find_all("td", class_="gsc_a_t")]
-     researcher_paper_journal = [paper.find("div", class_="gs_gray").get_text() for paper in soup.find_all("td", class_="gsc_a_t")]
-     researcher_paper_citedby = [paper.find("a", class_="gsc_a_ac gs_ibl").get_text() for paper in soup.find_all("td", class_="gsc_a_c")]
-     researcher_paper_year = [paper.find("span", class_="gsc_a_h gsc_a_hc gs_ibl").get_text() for paper in soup.find_all("td", class_="gsc_a_y")]
      researcher_paper_dict = []
-     for i in range(len(researcher_paper_title)):
+     for paper in soup.find_all("tr", class_="gsc_a_tr"):
           researcher_paper_dict.append({
-               "paper_title": researcher_paper_title[i],
-               "paper_authors": researcher_paper_authors[i],
-               "paper_journal": researcher_paper_journal[i],
-               "paper_citedby": researcher_paper_citedby[i],
-               "paper_year": researcher_paper_year[i]
+               "paper_title": paper.find("a", class_="gsc_a_at").get_text(),
+               "paper_authors": paper.find_all("div", {"class": "gs_gray"})[0].get_text(),
+               "paper_journal": paper.find_all("div", {"class": "gs_gray"})[1].get_text().split(",")[0].strip(""),
+               "paper_citedby": paper.find("a", class_="gsc_a_ac gs_ibl").get_text(),
+               "paper_year": paper.find("span", class_="gsc_a_h gsc_a_hc gs_ibl").get_text()
           })
 
      return researcher_name, researcher_caption, researcher_institution, \

@@ -97,7 +97,7 @@ Q("#gsc_md_cbym",["gs-md-ldin","gs-md-lded"],function(){var a=cd("gsc_md_cbym");
 Q("#gsc_x_all","gs-change",function(a){a=zc(a.currentTarget);for(var b=2==a?le:ie(),c=b.length;c--;)b[c].checked=0!=a;je()});Q(".gsc_a_acm","click",function(a){N(a);var b=a.currentTarget;a=b.href;var c=b.getAttribute("data-eid")||"";b=(b.getAttribute("data-eud")||"")+","+c;a=A("gsc_md_cbyd_f").action+"&update_op=merge_options&s="+b+pb({c:a});U("gsc_md_cbyd",a)});
 Q(".gsc_a_am","click",function(a){a=a.currentTarget.getAttribute("data-eid")||"";a=(A("gsc_md_cbym_l").getAttribute("data-act")||"")+"&update_op=merge_options&s="+a;U("gsc_md_cbym",a)});Q("#gs_sth","gs-sth-change",function(a){var b=A("gsc_a_tr0"),c=A("gsc_a_trh");b=b.querySelector(".gsc_a_t");c.querySelector(".gsc_a_t").style.width=u(a.currentTarget,"gs_sth_vis")?b.offsetWidth+"px":"auto"});
 Q("#gs_md_cita-b-save","click",function(){var a=A("gsc_ecd_form");Ea(a,"continue").value=window.location.pathname+window.location.search;P("submit",a)});Q(".gsc_ecd_form_tsel","click",function(a){var b=A("gsc_ecd_form"),c=A("gsc_ecd_table");b=Ea(b,"articletype");a=a.currentTarget;b.value=a.getAttribute("data-type")||"";c.className=a.getAttribute("data-class")||"";c=document.querySelectorAll("#gsc_ecd_citation_type button");for(b=c.length;b--;)v(c[b],"gs_sel",c[b]==a)});
-}({"customAC":2,"eventId":"maHoY5X9DtaUy9YPosakmAY"});
+}({"customAC":2,"eventId":"f7roY8X6DMHKmAG26IPADA"});
   </script>
  </head>
  <body>
@@ -300,7 +300,7 @@ Q("#gs_md_cita-b-save","click",function(){var a=A("gsc_ecd_form");Ea(a,"continue
      </div>
      <div class="gs_md_bdy" id="gsc_md_fol-bdy">
       <form action="/citations?hl=en&amp;user=RvyPyJ0AAAAJ&amp;view_op=list_works" id="gsc_fol_f" method="post">
-       <input name="xsrf" type="hidden" value="AMD79ooAAAAAY-nzGRr6LSswP2bvujapQORtDlZFIxzu"/>
+       <input name="xsrf" type="hidden" value="AMD79ooAAAAAY-oL_wRLUxw6Dj5su9cPJaxz0piT5w6F"/>
        <input name="user" type="hidden" value="RvyPyJ0AAAAJ"/>
        <div id="gsc_fol_inp">
        </div>
@@ -926,7 +926,7 @@ Q("#gs_md_cita-b-save","click",function(){var a=A("gsc_ecd_form");Ea(a,"continue
       </div>
       <div aria-labelledby="gsc_prf_t-art" class="gsc_lcl gsc_prf_pnl" id="gsc_art" role="region">
        <form action="/citations?hl=en&amp;user=RvyPyJ0AAAAJ&amp;view_op=list_works" method="post">
-        <input name="xsrf" type="hidden" value="AMD79ooAAAAAY-nzGRr6LSswP2bvujapQORtDlZFIxzu"/>
+        <input name="xsrf" type="hidden" value="AMD79ooAAAAAY-oL_wRLUxw6Dj5su9cPJaxz0piT5w6F"/>
         <div id="gsc_a_tw">
          <table id="gsc_a_t">
           <thead>
