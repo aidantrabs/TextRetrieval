@@ -17,7 +17,7 @@ def get_parsed_content(url):
      soup = get_content(url)
 
      researcher_name = soup.find("div", id="gsc_prf_in").contents[0]
-     researcher_caption = soup.find("div", class_="gsc_prf_il").contents[0]
+     researcher_caption = soup.find("div", class_="gsc_prf_il").contents[0].strip(", ")
      researcher_institution = soup.find("a", class_="gsc_prf_ila").contents[0]
      researcher_keywords = [keywords.get_text() for keywords in soup.find_all("a", class_="gsc_prf_inta gs_ibl")]
      researcher_imgURL = soup.find("img", id="gsc_prf_pup-img")["src"]
@@ -76,7 +76,7 @@ def write_json_data(content, url):
           "researcher_imgURL": parsed_content[4],
           "researcher_citations": {"all": parsed_content[5][0], "since2018": parsed_content[5][1]},
           "researcher_hindex": {"all": parsed_content[6][0], "since2018": parsed_content[6][1]},
-          "researcher_i10index": {"all": parsed_content[6][0], "since2018": parsed_content[6][1]},
+          "researcher_i10index": {"all": parsed_content[7][0], "since2018": parsed_content[7][1]},
           "researcher_coauthors": parsed_content[8],
           "researcher_papers": parsed_content[9]
      }

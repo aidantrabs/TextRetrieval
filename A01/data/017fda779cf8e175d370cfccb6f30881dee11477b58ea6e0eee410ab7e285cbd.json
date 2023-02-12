@@ -1,6 +1,6 @@
 {
     "researcher_name": "Amin Azmoodeh",
-    "researcher_caption": "PhD Candidate of Computational Science, ",
+    "researcher_caption": "PhD Candidate of Computational Science",
     "researcher_institution": "University of Guelph",
     "researcher_keywords": [
         "Adversarial Machine Learning",
@@ -9,16 +9,16 @@
     ],
     "researcher_imgURL": "https://scholar.googleusercontent.com/citations?view_op=view_photo&user=RvyPyJ0AAAAJ&citpid=2",
     "researcher_citations": {
-        "all": "1116",
-        "since2018": "1107"
+        "all": "1120",
+        "since2018": "1111"
     },
     "researcher_hindex": {
         "all": "11",
         "since2018": "11"
     },
     "researcher_i10index": {
-        "all": "11",
-        "since2018": "11"
+        "all": "12",
+        "since2018": "12"
     },
     "researcher_coauthors": [
         {
@@ -52,21 +52,21 @@
             "paper_title": "Robust Malware Detection for Internet Of (Battlefield) Things Devices Using Deep Eigenspace Learning",
             "paper_authors": "A Azmoodeh, A Dehghantanha, KKR Choo",
             "paper_journal": "A Azmoodeh, A Dehghantanha, KKR Choo",
-            "paper_citedby": "318",
+            "paper_citedby": "319",
             "paper_year": "2018"
         },
         {
             "paper_title": "Detecting crypto-ransomware in IoT networks based on energy consumption footprint",
             "paper_authors": "A Azmoodeh, A Dehghantanha, M Conti, KK Raymond Choo",
             "paper_journal": "A Azmoodeh, A Dehghantanha, M Conti, KK Raymond Choo",
-            "paper_citedby": "266",
+            "paper_citedby": "267",
             "paper_year": "2017"
         },
         {
             "paper_title": "Fuzzy pattern tree for edge malware detection and categorization in IoT",
             "paper_authors": "EM Dovom, A Azmoodeh, A Dehghantanha, DE Newton, RM Parizi, ...",
             "paper_journal": "EM Dovom, A Azmoodeh, A Dehghantanha, DE Newton, RM Parizi, ...",
-            "paper_citedby": "152",
+            "paper_citedby": "153",
             "paper_year": "2019"
         },
         {
@@ -80,7 +80,7 @@
             "paper_title": "An ensemble of deep recurrent neural networks for detecting IoT cyber attacks using network traffic",
             "paper_authors": "M Saharkhizan, A Azmoodeh, A Dehghantanha, KKR Choo, RM Parizi",
             "paper_journal": "M Saharkhizan, A Azmoodeh, A Dehghantanha, KKR Choo, RM Parizi",
-            "paper_citedby": "86",
+            "paper_citedby": "87",
             "paper_year": "2020"
         },
         {
