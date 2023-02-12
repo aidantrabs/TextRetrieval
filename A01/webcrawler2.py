@@ -87,7 +87,8 @@ def main():
           url = sys.argv[1]
      except:
           print("Error. No URL argument provided.")
-
+     
+     session_handler()
      print_giraffe()
      print_loading()
      content = get_content(url).prettify()
