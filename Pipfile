@@ -12,6 +12,7 @@ charset-normalizer = "==3.0.1"
 idna = "==3.4"
 soupsieve = "==2.3.2.post1"
 urllib3 = "==1.26.14"
+selenium = "*"
 
 [dev-packages]
 
