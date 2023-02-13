@@ -73,10 +73,11 @@ def get_page(base_url, params):
     try:
         response = requests.get(base_url, headers=HEADERS,
                                 params=params, proxies=PROXIES)
-        if (response.ok == 200):
+        if (response.ok):
             return response
         else:
-            print(response.status_code)
+            print("Page returned with a non-ok response code:",
+                  response.status_code)
 
     except:
         return None
