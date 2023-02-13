@@ -3,6 +3,7 @@ import requests
 import hashlib
 import json
 import re
+import numpy as np
 import matplotlib.pyplot as mpl
 from time import sleep
 from bs4 import BeautifulSoup
@@ -10,6 +11,7 @@ from utils import *
 
 HTML_TAGS_REGEX = r"/<\/?[^>]+(>|$)/gm"
 HTML_CONTENT_REGEX = r"/<[^>]+>/gm"
+
 
 def replace_html(text):
     """
@@ -30,11 +32,11 @@ def graph(text):
     tags = text.count("1")
     N = tokens + tags
 
-    plt.plot([token_count], [tag_count])
-    plt.title('Content Block')
-    plt.xlabel('Token count')
-    plt.ylabel('Tag count')
-    plt.show()
+    mpl.plot([tokens], [tags])
+    mpl.title('Content Block')
+    mpl.xlabel('Token count')
+    mpl.ylabel('Tag count')
+    mpl.show()
 
 
 def generate_heatmap(bits):
@@ -61,8 +63,8 @@ def generate_heatmap(bits):
             # Y.append(j)
             # Z.append(total_tags)
 
-    plt.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
-    plt.show()
+    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
+    mpl.show()
 
 
 def main():
@@ -78,9 +80,9 @@ def main():
     except:
         print("Error. No URL argument provided.")
 
-    session_handler()
-    print_giraffe()
-    print_loading()
+    # session_handler()
+    # print_giraffe()
+    # print_loading()
     content = get_content(url).prettify()
 
     if content:
