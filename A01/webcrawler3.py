@@ -1,27 +1,30 @@
 import sys
-import requests
-import hashlib
-import json
-import re
+import regex as re
 import numpy as np
 import matplotlib.pyplot as mpl
-from time import sleep
-from bs4 import BeautifulSoup
 from utils import *
 
-HTML_TAGS_REGEX = r"/<\/?[^>]+(>|$)/gm"
-HTML_CONTENT_REGEX = r"/<[^>]+>/gm"
+# Matches all content in an HTML doc that isn't an HTML tag.
+HTML_CONTENT_REGEX = r"\b\w+\b(?![^<]*>)"
+
+# Matches all HTML tags in a document.
+HTML_TAGS_REGEX = r"<[^<]+?>"
+
+# Matches all non-binary characters.
+ZERO_ONE_REGEX = r"[^01]+"
 
 
 def replace_html(text):
     """
-     Description:
-          Returns the text with HTML tags removed.
+    Description:
+        Returns the text with HTML tags removed.
 
-     Parameters:
-          text (str): The text to remove HTML tags from.
+    Parameters:
+        text (str): The text to remove HTML tags from.
      """
-    return re.sub(HTML_TAGS_REGEX, '', re.sub(HTML_CONTENT_REGEX, '', text))
+    return re.sub(ZERO_ONE_REGEX, "",
+                  re.sub(HTML_TAGS_REGEX, "1",
+                         re.sub(HTML_CONTENT_REGEX, "0", text)))
 
 
 def graph(text):
@@ -39,7 +42,7 @@ def graph(text):
     mpl.show()
 
 
-def generate_heatmap(bits):
+# def generate_heatmap(bits):
     """
     x
     """
@@ -67,6 +70,27 @@ def generate_heatmap(bits):
     mpl.show()
 
 
+def generate_heatmap(bits):
+    max_tags = 0
+    heatmap = np.zeros((len(bits), len(bits)))
+    for i in range(len(bits)):
+        for j in range(i, len(bits)):
+            tags_before = sum(bits[:i])
+            tags_after = sum(bits[j:])
+            # non_tags_between = j - i - sum(bits[i:j])
+
+            # middle part of the summation in the slides
+            f = 0
+            for b in bits[i:j]:
+                f += (1 - b)
+
+            total_tags = tags_before + f + tags_after
+            heatmap[i, j] = total_tags
+
+    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
+    mpl.show()
+
+
 def main():
     """
     Description:
@@ -83,8 +107,8 @@ def main():
     # session_handler()
     # print_giraffe()
     # print_loading()
-    content = get_content(url).prettify()
-
+    content = replace_html(get_content(url))
+    generate_heatmap([int(x) for x in content])
     if content:
         write_raw_data(content, url)
     else:
