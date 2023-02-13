@@ -39,7 +39,7 @@
  
  
 ####  **Mobina Tooranisama** 200296720 
-- 
+- In `webcrawler1.py`: I wrote the `crawl_urls(url, max_depth, rewrite, verbose)` function. I aso wrote the `get_dt()` function to retreive the current datetime.
 
 ####  **Nausher Rao** 190906250
 - 
@@ -51,9 +51,17 @@ The purpose of this file is to handle the session of the crawler using the `requ
 
 ### Depth & Logger Crawler (`webcrawler1.py`)
 
-x
+x The `crawl_urls` function is a web crawler that retrieves HTML pages, extracts all the URLs from the page, and recursively continues the process to a certain maximum depth.
 
-  
+It first calls the `get_page` function to retrieve the HTML content of the page at the specified URL. If the response is not None, it uses the BeautifulSoup library to parse the HTML content and extract all the hyperlinks on the page.
+
+It then creates a hashed version of the URL using the `hash_url` function and a datetime stamp using the `get_dt` function. It uses these two values to create a filename for the page content and writes the parsed HTML content to a file with that name. It also writes a log entry to the crawler1.log file, recording the hashed URL, the original URL, the datetime stamp, and the HTTP response.
+
+If the maximum depth of the crawl is not reached, the function then iterates over all the extracted links and calls itself recursively, with the link as the new URL and a decremented maximum depth. If the verbose flag is set to True, the function will print the URL and its depth as it is crawled.
+
+The `main` function is the entry point of the script, it first processes the command line arguments and retrieves the URL and the maximum depth of the crawl. If either of these values is not provided, an error message is displayed. It then starts a session and displays a giraffe and a loading animation, and finally calls the `crawl_urls` function with the specified parameters.
+
+In summary, the script is a simple implementation of a web crawler that retrieves pages, extracts all links from those pages, and writes the content of the pages to files. It also writes log entries for each page it crawls.
 
 ### Google Scholar Profile Crawler (`webcrawler2.py`)
 

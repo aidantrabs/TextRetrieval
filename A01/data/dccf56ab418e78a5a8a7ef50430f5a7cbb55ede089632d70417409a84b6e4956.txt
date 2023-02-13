@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,minimum-scale=1,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
+  <meta content="" name="application-name"/>
+  <meta content="index,follow" name="robots"/>
+  <meta content="1" name="rating"/>
+  <title>
+   Home | Wilfrid Laurier University
+  </title>
+  <!-- Vendor CSS -->
+  <link href="css/ato/vendor/nprogress.css" rel="stylesheet"/>
+  <link href="css/ato/vendor/slick.css" rel="stylesheet"/>
+  <link href="css/ato/vendor/lity.min.css" rel="stylesheet"/>
+  <link href="css/ato/vendor/datatables.min.css" rel="stylesheet"/>
+  <link href="css/ato/vendor/jquery-ui.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <!-- Custom CSS-->
+  <link href="css/builds/global-v2.css?refresh=1818" rel="stylesheet"/>
+  <link href="css/ato/style.css" rel="stylesheet"/>
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/92db6e3ea6.js" type="text/javascript">
+  </script>
+  <!--Vendor JS-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript">
+  </script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js" type="text/javascript">
+  </script>
+  <script crossorigin="anonymous" integrity="sha256-lCF+55kMUF+3fO/3BiXui4eiUKcQmtr7ecKSeLVDxIQ=" src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/slick.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/objectFitPolyfill.basic.min.js?refresh=2" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/iframeResizer.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/lity.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/datatables.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/datatables.fixedcolumns.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/datatables.fixedheader.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/datatables.buttons.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/jquery.csv.min.js" type="text/javascript">
+  </script>
+  <script src="js/ato/vendor/nprogress.js" type="text/javascript">
+  </script>
+  <!-- Custom JS -->
+  <script src="js/ato/iframe.js" type="text/javascript">
+  </script>
+  <!-- Instabot -->
+ </head>
+ <body>
+  <!-- Google Tag Manager -->
+  <script>
+   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T2KRMK');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+   <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-T2KRMK" style="display:none;visibility:hidden;" width="0">
+   </iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- Facebook Pixel Code -->
+  <script>
+   !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2905847419700295');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+   <img height="1" src="https://www.facebook.com/tr?id=2905847419700295&amp;ev=PageView&amp;noscript=1" style="display:none" width="1"/>
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+  <header class="site__header">
+   <div class="header-position-fixed">
+   </div>
+   <div class="look_into_laurier">
+    <div class="look_laurier">
+     <div class="row desktop">
+      <div class="large-4 columns">
+       <h1>
+        Join us at Laurier
+       </h1>
+       <p class="description">
+        Becoming a Golden Hawk means more than just cheering on our (really good) varsity teams – it means being a student who cares about your community, who works hard in the classroom, and who takes advantage of all the learning opportunities that can happen outside the classroom, too.
+       </p>
+      </div>
+     </div>
+     <div class="row">
+      <div class="large-4 columns">
+       <p class="toolkit-header">
+        Steps to Apply
+       </p>
+       <a class="btn white btn-block" href="future-students/undergraduate/admissions/index.html">
+        Undergraduate Admissions
+       </a>
+       <a class="btn white btn-block" href="academics/faculties/graduate-and-postdoctoral-studies/admissions/index.html">
+        Graduate Admissions
+       </a>
+      </div>
+      <div class="upcoming_deadlines desktop">
+       <ul class="toolkit-boxes">
+        <li>
+         <p>
+          Connect with Us
+         </p>
+         <p>
+          <a href="/future-students/undergraduate/index.html#form" target="_blank" title="Open new page to request more information ">
+           Undergraduate Studies
+          </a>
+         </p>
+         <p>
+          <a href="mailto:FGPS@wlu.ca" target="_blank" title="Email Facutly of Graduate and Postdoctoral Studies">
+           Graduate Studies
+          </a>
+         </p>
+        </li>
+        <li>
+         <p>
+          Show Me the Campus
+         </p>
+         <p>
+          <a href="/about/campuses-and-locations/visit-us.html">
+           Come Visit Us
+          </a>
+         </p>
+         <p>
+          <a href="https://www.wlu.ca/future-students/undergraduate/tours-and-events/assets/resources/virtual-tour-waterloo.html" target="_blank" title="Got to Waterloo Campus Virtual Tour">
+           Virtual Tour – Waterloo
+          </a>
+         </p>
+         <p>
+          <a href="https://www.wlu.ca/future-students/undergraduate/tours-and-events/assets/resources/virtual-tour-brantford.html" target="_blank" title="Go to Brantord Campus Virtual Tour">
+           Virtual Tour – Brantford
+          </a>
+         </p>
+        </li>
+        <li>
+         <p>
+          Explore Our Programs
+         </p>
+         <p>
+          <a href="/programs/?filter=undergrad">
+           Undergraduate Programs
+          </a>
+         </p>
+         <p>
+          <a href="/programs/?filter=graduate">
+           Graduate Programs
+          </a>
+         </p>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="accordion_header">
+     <nav aria-label="Utility Menu" class="row" id="utilityMenu" role="navigation">
+      <div class="utility_bar">
+       <a class="slide_button btn white" href="#" title="Admissions">
+        Admissions
+       </a>
+       <div class="utility_menu">
+        <ul id="theMenu" role="menubar">
+         <li>
+          <a href="coronavirus/index.html" target="">
+           COVID-19
+          </a>
+         </li>
+         <li>
+          <a href="future-students/index.html" target="">
+           Future Students
+          </a>
+         </li>
+         <li>
+          <a href="https://students.wlu.ca/" target="_blank">
+           Current Students
+          </a>
+         </li>
+         <li>
+          <a href="https://lauriercloud.sharepoint.com/" target="_blank">
+           Faculty &amp; Staff
+          </a>
+         </li>
+         <li>
+          <a href="http://www.laurieralumni.ca/s/1681/15/start.aspx" target="_blank">
+           Alumni
+          </a>
+         </li>
+         <li>
+          <a href="https://give.wlu.ca" target="_blank">
+           Donors
+          </a>
+         </li>
+        </ul>
+       </div>
+      </div>
+      <a id="menuExpand">
+       <div class="menuIcon">
+        <i class="far fa-angle-down">
+        </i>
+       </div>
+      </a>
+     </nav>
+    </div>
+   </div>
+   <div class="rowBody">
+    <div class="header">
+     <div class="large-12 column">
+      <div class="logo">
+       <a href="/">
+        <img alt="Laurier" class="header_logo" src="images/general/desktop_logo.png"/>
+        <img alt="Laurier" class="mobile_logo" src="images/general/mobile_logo.png"/>
+       </a>
+      </div>
+      <div class="searchbar" style="display: none;">
+       <div class="search_overlay_buttons">
+        <div class="overlay_show" style="display: none;">
+         <button class="style_one" type="button">
+          SEARCH
+         </button>
+         <button class="style_two" type="button">
+          <i aria-hidden="true" class="far fa-search">
+          </i>
+         </button>
+        </div>
+        <div class="overlay_close" style="display: none;">
+         <button class="style_one" type="button">
+          CLOSE
+         </button>
+         <button class="style_two" type="button">
+          <i class="far fa-times">
+          </i>
+         </button>
+        </div>
+       </div>
+      </div>
+      <div class="menu_button">
+       <div class="title">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="menu_wrapper">
+    <div>
+     <div class="menu top">
+      <div class="rowBody">
+       <div class="row">
+        <nav class="large-12 column">
+         <ul class="flexnav flexnav-show">
+          <li>
+           <a data-location="menu" href="about/index.html">
+            About
+           </a>
+           <ul>
+            <li>
+             <a data-location="menu" href="about/discover-laurier/index.html" title="Discover Laurier">
+              Discover Laurier
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="about/campuses-and-locations/index.html" title="Campuses &amp; Locations">
+              Campuses &amp; Locations
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="about/working-at-laurier/index.html" title="Working at Laurier">
+              Working at Laurier
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="about/governance/index.html" title="Governance &amp; Leadership">
+              Governance &amp; Leadership
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="about/public-accountability/index.html" title="Public Accountability">
+              Public Accountability
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li>
+           <a data-location="menu" href="academics/index.html">
+            Academics &amp; Research
+           </a>
+           <ul>
+            <li>
+             <a data-location="menu" href="programs/index.html" title="Programs">
+              Programs
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/teaching-and-learning/index.html" title="Teaching &amp; Learning">
+              Teaching &amp; Learning
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/research/index.html" title="Research">
+              Research
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/internationalization/index.html" title="Internationalization">
+              Internationalization
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/faculties/index.html" title="Faculties &amp; Affiliated Institutions ">
+              Faculties &amp; Affiliated Institutions
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/library/index.html" title="Library">
+              Library
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li>
+           <a data-location="menu" href="future-students/index.html">
+            Future Students
+           </a>
+           <ul>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/index.html" title="Undergraduate Students">
+              Undergraduate Students
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="academics/faculties/graduate-and-postdoctoral-studies/index.html" title="Graduate Students">
+              Graduate Students
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/applicants/indigenous-students/index.html" title="Indigenous Students">
+              Indigenous Students
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/applicants/international/index.html" title="International Students">
+              International Students
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="continuing-education/index.html" title="Continuing Education">
+              Continuing Education
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/tuition-finances/index.html" title="Tuition &amp; Finances">
+              Tuition &amp; Finances
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li>
+           <a data-location="menu" href="future-students/undergraduate/experience-laurier/index.html">
+            Experience Laurier
+           </a>
+           <ul>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/supports-and-services/athletics-and-recreation.html" title="Athletics &amp; Recreation">
+              Athletics &amp; Recreation
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/programs/entrepreneurship.html" title="Entrepreneurship">
+              Entrepreneurship
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/programs/global-engagement-and-exchanges/index.html" title="Global Engagement &amp; Exchanges">
+              Global Engagement &amp; Exchanges
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/residence/index.html" title="Residence">
+              Residence
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="future-students/undergraduate/supports-and-services/health-and-well-being.html" title="Health &amp; Well-Being">
+              Health &amp; Well-Being
+             </a>
+            </li>
+           </ul>
+          </li>
+          <li>
+           <span class="nolink">
+            Information For
+           </span>
+           <ul>
+            <li>
+             <a data-location="menu" href="information-for/visiting-laurier/index.html" title="Visitors">
+              Visitors
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="information-for/community-members/employers/index.html" title="Employers">
+              Employers
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="information-for/parents-and-families/index.html" title="Parents &amp; Families">
+              Parents &amp; Families
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="information-for/community-members/index.html" title="Community Members">
+              Community Members
+             </a>
+            </li>
+            <li>
+             <a data-location="menu" href="information-for/guidance-counsellors/index.html" title="Guidance Counsellors &amp; Educators">
+              Guidance Counsellors &amp; Educators
+             </a>
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </nav>
+       </div>
+       <div class="row">
+        <div class="large-12 columns">
+         <ul class="inline-list">
+          <li>
+           <a data-location="menu" href="https://give.wlu.ca" target="_blank" title="">
+            Give
+           </a>
+          </li>
+          <li>
+           <a data-location="menu" href="news/index.html" title="">
+            News Hub
+           </a>
+          </li>
+          <li>
+           <a data-location="menu" href="https://events.dudesolutions.com/wlu/?view=list2" target="_blank" title="">
+            Events
+           </a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="menu bottom">
+      <div class="rowBody">
+       <div class="look_laurier">
+        <div class="row">
+         <div class="large-4 columns">
+          <p class="toolkit-header">
+           Steps to Apply
+          </p>
+          <a class="btn white btn-block" href="future-students/undergraduate/admissions/index.html">
+           Undergraduate Admissions
+          </a>
+          <a class="btn white btn-block" href="academics/faculties/graduate-and-postdoctoral-studies/admissions/index.html">
+           Graduate Admissions
+          </a>
+         </div>
+         <div class="upcoming_deadlines desktop">
+          <ul class="toolkit-boxes">
+           <li>
+            <p>
+             <span>
+              CONNECT WITH US
+             </span>
+            </p>
+            <ul>
+             <li>
+              <a href="https://www.wlu.ca/future-students/undergraduate/index.html#form" title="Open new page to request more information ">
+               Undergraduate Studies
+              </a>
+             </li>
+             <li>
+              <a href="mailto:FGPS@wlu.ca" rel="noopener" target="_blank" title="Email Facutly of Graduate and Postdoctoral Studies">
+               Graduate Studies
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Show Me the Campus
+             </strong>
+            </p>
+            <ul>
+             <li>
+              <a href="future-students/undergraduate/experience-laurier/tours.html">
+               Come Visit Us
+              </a>
+             </li>
+             <li>
+              <a href="https://www.wlu.ca/future-students/undergraduate/tours-and-events/assets/resources/virtual-tour-waterloo.html" rel="noopener" target="_blank" title="Got to Waterloo Campus Virtual Tour">
+               Virtual Tour – Waterloo
+              </a>
+             </li>
+             <li>
+              <a href="https://www.wlu.ca/future-students/undergraduate/tours-and-events/assets/resources/virtual-tour-brantford.html" rel="noopener" target="_blank" title="Go to Brantord Campus Virtual Tour">
+               Virtual Tour – Brantford
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li>
+            <p>
+             <strong>
+              Explore Our Programs
+             </strong>
+            </p>
+            <ul>
+             <li>
+              <a href="/programs/?filter=undergrad">
+               Undergraduate Programs
+              </a>
+             </li>
+             <li>
+              <a href="/programs/?filter=graduate">
+               Graduate Programs
+              </a>
+             </li>
+            </ul>
+           </li>
+          </ul>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="site__content">
+   <div class="header__fill">
+   </div>
+   <div class="story__here">
+    <style>
+     .body,
+    .ato-component {
+        background: #fff;
+    }
+    
+    /* <![CDATA[ */
+        
+
+
+.ato-component.video-full-screen .video-controls.top .fa-arrow-up {
+	visibility: hidden;
+}
+
+.call__action.purple-light:hover, .call__action.purple-light:focus {
+border: 2px solid #fff;
+}
+
+
+
+/* image collage component */
+.fullWidthImage {
+    background-size: cover !important;
+    filter: sepia(.25);
+}
+
+
+.noTopPadding {
+    padding-top: 0 !important;
+}
+
+
+/** Future Students Start **/
+
+.quoteComponent {
+padding: 30px 30px !important;
+/* border-top: 1px solid #000; */
+/*background: #fffaf2 url('https://www.wlu.ca/future-students/assets/images/ripped-paper-pattern.png') left top repeat-x !important;
+background-size: 30% !important; */
+box-shadow:0 -2px 4px 0 rgba(0, 0, 0, 0.05), 0 -2px 10px 0 rgba(0, 0, 0, 0.035) !important;
+}
+
+.quoteComponent .col-33.ato-component.text, .quoteComponent .col-67.right-content.ato-component.text {
+background: transparent !important;
+}
+
+.quoteContentFs h2 {
+    font-size: 45px !important;
+    font-family: "Calluna", sans-serif !important;
+}
+.quoteContentFs h2:first-of-type {
+    border-top: 2px solid #444;
+    padding-top: 24px;
+}
+
+.quoteContentFs hr {
+margin: 30px 0;
+border: none;
+border-top: 1px solid #000000;
+}
+
+.quoteContentFs .call__action.purple-dark {
+box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+border: none !important;
+}
+.quoteContentFs .call__action.purple-dark:hover {
+    border: none !important;
+}
+
+.quoteContentFs {
+padding-left: 25px;
+}
+
+
+@media only screen and (max-width: 960px) {
+.quoteComponent {
+    padding: 60px 30px !important;
+    }
+}
+
+/** Future Students End **/
+
+
+
+@media only screen and (max-width: 414px) {
+
+.site__content .header__fill {
+	min-height: 131px; 
+}
+}
+
+
+    /* ]]> */
+    </style>
+    <script type="text/javascript">
+     var videos = [];
+    var videoInterval = [];
+    var pages= [];
+    var chapterMenu = [];
+    
+    /* <![CDATA[ */
+        
+		
+
+$(document).ready(function() {
+
+$('span:contains("noTopPadding")').closest('.ato-component.multicolumn').addClass('noTopPadding');
+});
+
+
+
+// if tag has class, add class to parent
+$(document).ready(function() {
+$('.testimonials').closest('.ato-component.text').addClass('quoteComponent');
+});
+
+
+/* ai2html below */
+
+$(document).ready(function(){
+$( '<link rel="stylesheet" href="https://use.typekit.net/swo8vbu.css"/><style media="screen,print"> #g-thats-what-being-a-golden-hawk-is-all-about-box, #g-thats-what-being-a-golden-hawk-is-all-about-box .g-artboard{margin: 0 auto;}#g-thats-what-being-a-golden-hawk-is-all-about-box p{margin: 0;}#g-thats-what-being-a-golden-hawk-is-all-about-box .g-aiAbs{position: absolute;}#g-thats-what-being-a-golden-hawk-is-all-about-box .g-aiImg{position: absolute; top: 0; display: block; width: 100% !important;}#g-thats-what-being-a-golden-hawk-is-all-about-box .g-aiSymbol{position: absolute; box-sizing: border-box;}#g-thats-what-being-a-golden-hawk-is-all-about-box .g-aiPointText p{white-space: nowrap;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20{position: relative; overflow: hidden;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 p{font-family: marydale, sans-serif; font-weight: 400; line-height: 26px; height: auto; filter: alpha(opacity=100); -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; letter-spacing: 0em; font-size: 20px; text-align: left; color: rgb(254, 191, 64); text-transform: none; padding-bottom: 0; padding-top: 0; mix-blend-mode: normal; font-style: normal; position: static;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-pstyle0{height: 26px; text-align: center;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-pstyle1{line-height: 23px; height: 23px; font-size: 19px; text-align: center;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-cstyle0{letter-spacing: -0.014em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-cstyle1{letter-spacing: -0.131em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-cstyle2{letter-spacing: 0.017em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20 .g-cstyle3{letter-spacing: 0.059em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21{position: relative; overflow: hidden;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 p{font-family: marydale, sans-serif; font-weight: 400; line-height: 26px; height: auto; filter: alpha(opacity=100); -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; letter-spacing: 0em; font-size: 20px; text-align: left; color: rgb(254, 191, 64); text-transform: none; padding-bottom: 0; padding-top: 0; mix-blend-mode: normal; font-style: normal; position: static;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-pstyle0{height: 26px; text-align: center;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-pstyle1{line-height: 23px; height: 23px; font-size: 19px; text-align: center;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-cstyle0{letter-spacing: -0.014em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-cstyle1{letter-spacing: -0.131em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-cstyle2{letter-spacing: 0.017em;}#g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21 .g-cstyle3{letter-spacing: 0.059em;}</style><div id="g-thats-what-being-a-golden-hawk-is-all-about-box" class="ai2html"> <div id="g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20" class="g-artboard" style="width: 340px; height: 186.34995512503px" data-aspect-ratio="1.825" data-min-width="340" > <div style=""></div><img id="g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_20-img" class="g-aiImg" alt="" src="https://www.wlu.ca/future-students/assets/images/thats-what-being-a-golden-hawk-is-all-about-1.png"/> <div id="g-ai0-1" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 52.925672490393%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 52.925672490393%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 52.925672490393%; top: 68.7363%; margin-top: -17.1px; left: 42.2598%; margin-left: -92.5px; width: 185px; " > <p class="g-pstyle0">That\'s what being a</p></div><div id="g-ai0-2" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 53.2134563484592%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 53.2134563484592%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 53.2134563484592%; top: 65.7685%; margin-top: -15.6px; left: 65.5368%; margin-left: -14.5px; width: 29px; " > <p class="g-pstyle1"></p></div><div id="g-ai0-3" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 52.925672490393%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 52.925672490393%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 52.925672490393%; top: 81.6153%; margin-top: -17.1px; left: 53.4741%; margin-left: -128.5px; width: 257px; " > <p class="g-pstyle0"> <span style="text-transform: uppercase">Golden Hawk</span> is all about.</p></div></div><div id="g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21" class="g-artboard" style="max-width: 210px; max-height: 210px" data-aspect-ratio="0.998" data-min-width="0" data-max-width="339" > <div style="padding: 0 0 100.1666% 0"></div><img id="g-thats-what-being-a-golden-hawk-is-all-about-Artboard_1_copy_21-img" class="g-aiImg" alt="" src="https://www.wlu.ca/future-students/assets/images/thats-what-being-a-golden-hawk-is-all-about-2.png"/> <div id="g-ai1-1" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 52.925672490393%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 52.925672490393%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 52.925672490393%; top: 62.7954%; margin-top: -17.1px; left: 49.3731%; margin-left: -92.5px; width: 185px; " > <p class="g-pstyle0">That\'s what being a</p></div><div id="g-ai1-2" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 53.2134563484592%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 53.2134563484592%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 53.2134563484592%; top: 61.117%; margin-top: -15.6px; left: 75.1548%; margin-left: -14.5px; width: 29px; " > <p class="g-pstyle1"></p></div><div id="g-ai1-3" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 52.925672490393%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 52.925672490393%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 52.925672490393%; top: 75.6311%; margin-top: -17.1px; left: 49.0245%; margin-left: -83.5px; width: 167px; " > <p class="g-pstyle0"> <span style="text-transform: uppercase">Golden Hawk</span> </p></div><div id="g-ai1-4" class="g-art g-aiAbs g-aiPointText" style=" transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); transform-origin: 50% 52.925672490393%; -webkit-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -webkit-transform-origin: 50% 52.925672490393%; -ms-transform: matrix(0.9969, -0.0785, 0.0785, 0.9969, 0, 0); -ms-transform-origin: 50% 52.925672490393%; top: 87.9915%; margin-top: -17.1px; left: 34.5454%; margin-left: -53px; width: 106px; " > <p class="g-pstyle0">is all about.</p></div></div></div>' ).insertAfter( '.series > .content > .text > div.single-item' );
+
+});
+
+$(document).ready(function(){ 
+(function() {
+        // only want one resizer on the page
+        if (document.documentElement.className.indexOf("g-resizer-v3-init") > -1) return;
+        document.documentElement.className += " g-resizer-v3-init";
+        // require IE9+
+        if (!("querySelector" in document)) return;
+        function resizer() {
+            var elements = Array.prototype.slice.call(document.querySelectorAll(".g-artboard[data-min-width]")),
+                widthById = {};
+            elements.forEach(function(el) {
+                var parent = el.parentNode,
+                    width = widthById[parent.id] || parent.getBoundingClientRect().width,
+                    minwidth = el.getAttribute("data-min-width"),
+                    maxwidth = el.getAttribute("data-max-width");
+                widthById[parent.id] = width;
+
+                if (+minwidth <= width && (+maxwidth >= width || maxwidth === null)) {
+                    el.style.display = "block";
+                } else {
+                    el.style.display = "none";
+                }
+            });
+            try {
+                if (window.parent && window.parent.$) {
+                    window.parent.$("body").trigger("resizedcontent", [window]);
+                }
+                if (window.require) {
+                    require(['foundation/main'], function() {
+                        require(['shared/interactive/instances/app-communicator'], function(AppCommunicator) {
+                            AppCommunicator.triggerResize();
+                        });
+                    });
+                }
+            } catch(e) { console.log(e); }
+        }
+            
+            resizer();
+        
+        document.addEventListener('DOMContentLoaded', resizer);
+        // feel free to replace throttle with _.throttle, if available
+        window.addEventListener('resize', throttle(resizer, 200));        
+
+        function throttle(func, wait) {
+            // from underscore.js
+            var _now = Date.now || function() { return new Date().getTime(); },
+                context, args, result, timeout = null, previous = 0;
+            var later = function() {
+                previous = _now();
+                timeout = null;
+                result = func.apply(context, args);
+                if (!timeout) context = args = null;
+            };
+            return function() {
+                var now = _now(), remaining = wait - (now - previous);
+                context = this;
+                args = arguments;
+                if (remaining <= 0 || remaining > wait) {
+                    if (timeout) {
+                        clearTimeout(timeout);
+                        timeout = null;
+                    }
+                    previous = now;
+                    result = func.apply(context, args);
+                    if (!timeout) context = args = null;
+                } else if (!timeout && options.trailing !== false) {
+                    timeout = setTimeout(later, remaining);
+                }
+                return result;
+            };
+        }
+
+       
+    })();
+});
+
+
+
+
+    /* ]]> */
+    </script>
+    <div class="ato__components">
+     <div class="ato-component video-full-screen" id="fw_video_e2186f380a0a56300280ef46e8802d70_1">
+      <div class="inner">
+       <div class="background" style="background: ;                  opacity: 0;">
+       </div>
+       <div class="title">
+        <div class="inner">
+         <div class="content">
+          <style>
+           <!--
+.hpHeadline {
+    letter-spacing: 12px;
+    margin-bottom: 30px;
+    line-height: 60px !important;
+    margin-top:200px;
+}
+@media screen and (max-width: 1409px) {
+    .hpHeadline {
+         margin-bottom: 10px;
+    }
+    }
+
+@media screen and (max-width: 731px) {
+    .hpHeadline {
+        line-height: 50px !important;
+    }
+    }
+@media screen and (max-width: 414px) {
+.hpHeadline {
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    margin-top: 160px;
+    line-height: 43px !important;
+}
+}
+-->
+          </style>
+          <h1 class="hpHeadline" style="font-size: 60px; font-family: 'Calluna Sans', verdana, geneva, sans-serif; color: #ffffff; text-align: center; text-transform: uppercase; text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5); font-weight: bold;">
+           Wilfrid Laurier University
+          </h1>
+          <p style="font-family: 'Calluna Sans', verdana, geneva, sans-serif; text-align: center; text-transform: uppercase; letter-spacing: 2px; font-size: 30px; font-weight: bold; line-height: 24px;">
+           You Belong Here
+          </p>
+         </div>
+        </div>
+       </div>
+       <script type="text/javascript">
+        obj={};
+                    obj['page'] = "fw_video_e2186f380a0a56300280ef46e8802d70_1";
+                    obj['count'] = "1";
+                    obj['audio_allow'] = "";
+                    obj['video_loop'] = "Yes";
+                    obj['video_captions'] = "";
+                    videos.push(obj);
+       </script>
+       <video autoplay="autoplay" class="media" data-id="1" data-object-fit="cover" loop="" muted="muted" playsinline="true" poster="video/holiday-video-2022.jpg" preload="" style="filter: blur();                          -webkit-filter: blur();">
+        <source src="video/holiday-video-2022.mp4" type="video/mp4"/>
+        Your browser does not support HTML5 video.
+       </video>
+       <div class="video-controls">
+        <div class="play">
+         <i class="fas fa-pause">
+         </i>
+        </div>
+       </div>
+       <div class="video-controls middle">
+        <div class="scroll">
+         <i class="fas fa-arrow-down">
+         </i>
+        </div>
+       </div>
+       <div class="video-controls top">
+        <div class="scroll">
+         <i class="fas fa-arrow-up">
+         </i>
+        </div>
+       </div>
+      </div>
+     </div>
+     <style>
+      /* <![CDATA[ */
+           .spotlight__title__inner > span > a,
+           .spotlight__title__inner > span > a:active,
+           .spotlight__title__inner > span > a:focus,
+           .spotlight__title__inner > span > a:hover,
+           .spotlight__title__inner > span > a:visited {
+            color: #444444 !important;
+            }
+        /* ]]> */
+     </style>
+     <div class="ato-component spolight__gallery" id="e2186f380a0a56300280ef46e8802d70_2" style="background: #fff; color: #444444;">
+      <div class="spotlight__title">
+       <div class="spotlight__title__inner">
+        <h2>
+         Our Stories
+        </h2>
+        <span style="background: #fff; color: #444444;">
+         <p>
+          <span>
+           Read our latest news releases and the
+           <a href="news/index.html">
+            stories that define us
+           </a>
+           .
+          </span>
+          <span>
+          </span>
+         </p>
+        </span>
+       </div>
+      </div>
+      <div class="spotlight__controls">
+       <div class="spotlight__controls__inner">
+        <div class="line" style="background: #fff; color: #444444; border-top: 1px solid #444444;">
+        </div>
+        <button aria-label="Next" class="slick-prev slick-arrow" style="background: #fff; color: #444444;" type="button">
+         <i class="fal fa-angle-left">
+         </i>
+        </button>
+        <button aria-label="Next" class="slick-next slick-arrow" style="background: #fff; color: #444444;" type="button">
+         <i class="fal fa-angle-right">
+         </i>
+        </button>
+       </div>
+      </div>
+      <div class="center">
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="features/black-history-month/index.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Laurier celebrates Black History Month." class="media" data-object-fit="cover" src="images/general/bhm-350x350-notext.png"/>
+         </div>
+         <div class="slide__caption" style="background: #330072; ">
+          <p class="slide__caption__content">
+           Laurier celebrates Black History Month.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/features/black-history-month/index 1" href="features/black-history-month/index.html" style="">
+             Read More
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="features/2023/winter/wins-10th-anniversary.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Laurier Centre for Women in Science marks 10 years of research, advocacy and mentorship." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/girl-with-dinosaurs.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #6B7036; ">
+          <p class="slide__caption__content">
+           Laurier Centre for Women in Science marks 10 years of research, advocacy and mentorship.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/features/2023/winter/wins-10th-anniversary 2" href="features/2023/winter/wins-10th-anniversary.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2023/feb/laurier-researchers-quantify-the-persistent-positive-energy-of-dolly-parton.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Quantifying the persistent positivity of Dolly Parton." class="media" data-object-fit="cover" src="images/spotlights/2023/feb/dolly-parton-button.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #F2A900;  color: #222222; ">
+          <p class="slide__caption__content">
+           Quantifying the persistent positivity of Dolly Parton.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2023/feb/laurier-researchers-quantify-the-persistent-positive-energy-of-dolly-parton 3" href="news/spotlights/2023/feb/laurier-researchers-quantify-the-persistent-positive-energy-of-dolly-parton.html" style=" color: #222222; ">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2023/jan/campus-initiatives-support-laurier-students-experiencing-food-insecurity.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Campus initiatives support Laurier students experiencing food insecurity." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/mini-market-sl.png"/>
+         </div>
+         <div class="slide__caption" style="background: #0077A2; ">
+          <p class="slide__caption__content">
+           Campus initiatives support Laurier students experiencing food insecurity.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2023/jan/campus-initiatives-support-laurier-students-experiencing-food-insecurity 4" href="news/spotlights/2023/jan/campus-initiatives-support-laurier-students-experiencing-food-insecurity.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2023/jan/first-year-laurier-students-earn-top-honours-in-anthropology-writing-competition.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="First-year Laurier students earn top honours in anthropology writing competition." class="media" data-object-fit="cover" src="images/spotlights/2020/april/award-ribbon-graphic.png"/>
+         </div>
+         <div class="slide__caption" style="background: #924DA7; ">
+          <p class="slide__caption__content">
+           First-year Laurier students earn top honours in anthropology writing competition.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2023/jan/first-year-laurier-students-earn-top-honours-in-anthropology-writing-competition 5" href="news/spotlights/2023/jan/first-year-laurier-students-earn-top-honours-in-anthropology-writing-competition.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="https://campusmagazine.wlu.ca/2022/fall/features/overcoming-during-covid-19.html" target="_blank">
+         </a>
+         <div class="slide__image">
+          <img alt="The outstanding accomplishments of six alumni who graduated during the pandemic." class="media" data-object-fit="cover" src="academics/faculties/faculty-of-music/assets/concert-programs/2022/calum-c.png"/>
+         </div>
+         <div class="slide__caption" style="background: #F2A900;  color: #222222; ">
+          <p class="slide__caption__content">
+           The outstanding accomplishments of six alumni who graduated during the pandemic.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="https://campusmagazine.wlu.ca/2022/fall/features/overcoming-during-covid-19.html 6" href="https://campusmagazine.wlu.ca/2022/fall/features/overcoming-during-covid-19.html" style=" color: #222222; ">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2022/dec/laurier-grad-student-tatyana-feiner-connects-research-to-practice-at-cop15.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Laurier grad student Tatyana Feiner connects research to practice at COP15." class="media" data-object-fit="cover" src="images/spotlights/2022/dec/cop15-spotlight.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #6B7036; ">
+          <p class="slide__caption__content">
+           Laurier grad student Tatyana Feiner connects research to practice at COP15.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2022/dec/laurier-grad-student-tatyana-feiner-connects-research-to-practice-at-cop15 7" href="news/spotlights/2022/dec/laurier-grad-student-tatyana-feiner-connects-research-to-practice-at-cop15.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2022/dec/student-ambassadors-play-a-golden-role-in-lauriers-recruitment-strategy.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Student ambassadors play a golden role in Laurier’s recruitment strategy." class="media" data-object-fit="cover" src="images/spotlights/2022/dec/ambassadors-quad-sl.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #330072; ">
+          <p class="slide__caption__content">
+           Student ambassadors play a golden role in Laurier’s recruitment strategy.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2022/dec/student-ambassadors-play-a-golden-role-in-lauriers-recruitment-strategy 8" href="news/spotlights/2022/dec/student-ambassadors-play-a-golden-role-in-lauriers-recruitment-strategy.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2022/dec/class-in-session-for-future-educators-at-lauriers-brantford-campus.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Class in session for future educators at Laurier’s Brantford campus." class="media" data-object-fit="cover" src="images/spotlights/2022/dec/faculty-ed-spotlight.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #924DA7; ">
+          <p class="slide__caption__content">
+           Class in session for future educators at Laurier’s Brantford campus.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2022/dec/class-in-session-for-future-educators-at-lauriers-brantford-campus 9" href="news/spotlights/2022/dec/class-in-session-for-future-educators-at-lauriers-brantford-campus.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/news-releases/2023/jan/lauriers-ux-design-for-change-challenge-seeks-student-ideas-to-alleviate-homelessness.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Design for Change challenge seeks student ideas to alleviate homelessness." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/design-for-change-ux-2023.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #0077A2; ">
+          <p class="slide__caption__content">
+           Design for Change challenge seeks student ideas to alleviate homelessness.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/news-releases/2023/jan/lauriers-ux-design-for-change-challenge-seeks-student-ideas-to-alleviate-homelessness 10" href="news/news-releases/2023/jan/lauriers-ux-design-for-change-challenge-seeks-student-ideas-to-alleviate-homelessness.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2023/jan/international-journey-leads-snigdha-basu-to-lauriers-master-of-environmental-studies-program.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="International journey leads Snigdha Basu to Master of Environmental Studies program." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/snigdha-basu.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #330072; ">
+          <p class="slide__caption__content">
+           International journey leads Snigdha Basu to Master of Environmental Studies program.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2023/jan/international-journey-leads-snigdha-basu-to-lauriers-master-of-environmental-studies-program 11" href="news/spotlights/2023/jan/international-journey-leads-snigdha-basu-to-lauriers-master-of-environmental-studies-program.html" style="">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/spotlights/2023/jan/poland-field-course-immerses-laurier-students-in-the-history-of-the-holocaust.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Poland field course immerses Laurier students in the history of the Holocaust." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/candles-sl.png"/>
+         </div>
+         <div class="slide__caption" style="background: #F2A900;  color: #222222; ">
+          <p class="slide__caption__content">
+           Poland field course immerses Laurier students in the history of the Holocaust.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/spotlights/2023/jan/poland-field-course-immerses-laurier-students-in-the-history-of-the-holocaust 12" href="news/spotlights/2023/jan/poland-field-course-immerses-laurier-students-in-the-history-of-the-holocaust.html" style=" color: #222222; ">
+             Read the Story
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="https://www.youtube.com/watch?v=_BSOqnVYYj8" target="_blank">
+         </a>
+         <div class="slide__image">
+          <img alt="Displacement: Laurier research helping refugees of climate change and war." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/refugee-camp.png"/>
+         </div>
+         <div class="slide__caption" style="background: #6B7036; ">
+          <p class="slide__caption__content">
+           Displacement: Laurier research helping refugees of climate change and war.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="https://www.youtube.com/watch?v=_BSOqnVYYj8 13" href="https://www.youtube.com/watch?v=_BSOqnVYYj8" style="">
+             Watch the Video
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/news-releases/2023/feb/laurier-music-launches-navigating-the-music-industry-ecosystem-certificate.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Laurier Music launches Navigating the Music Industry Ecosystem Certificate" class="media" data-object-fit="cover" src="images/spotlights/2023/feb/dean-turner_jackie-dean-350--350-px.png"/>
+         </div>
+         <div class="slide__caption" style="background: #330072; ">
+          <p class="slide__caption__content">
+           Laurier Music launches Navigating the Music Industry Ecosystem Certificate
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/news-releases/2023/feb/laurier-music-launches-navigating-the-music-industry-ecosystem-certificate 14" href="news/news-releases/2023/feb/laurier-music-launches-navigating-the-music-industry-ecosystem-certificate.html" style="">
+             Learn More
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="news/news-releases/2023/feb/laurier-announces-new-master-of-science-in-health-sciences-program.html" target="">
+         </a>
+         <div class="slide__image">
+          <img alt="Laurier announces new Master of Science in Health Sciences Program." class="media" data-object-fit="cover" src="images/spotlights/2023/feb/health-sciences-sl.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #924DA7; ">
+          <p class="slide__caption__content">
+           Laurier announces new Master of Science in Health Sciences Program.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="site://www.wlu.ca/news/news-releases/2023/feb/laurier-announces-new-master-of-science-in-health-sciences-program 15" href="news/news-releases/2023/feb/laurier-announces-new-master-of-science-in-health-sciences-program.html" style="">
+             Learn More
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div>
+        <div class="spotlight__slide">
+         <a class="slide__href" href="https://www.youtube.com/watch?v=NBSx4H-nAow" target="_blank">
+         </a>
+         <div class="slide__image">
+          <img alt="Watch highlights from Laurier's 2023 Winter's a Drag event." class="media" data-object-fit="cover" src="images/spotlights/2023/jan/winters-a-drag.jpg"/>
+         </div>
+         <div class="slide__caption" style="background: #0077A2; ">
+          <p class="slide__caption__content">
+           Watch highlights from Laurier's 2023 Winter's a Drag event.
+          </p>
+          <div class="slide__link">
+           <div class="slide__link__inner">
+            <a aria-label="https://www.youtube.com/watch?v=NBSx4H-nAow 16" href="https://www.youtube.com/watch?v=NBSx4H-nAow" style="">
+             Watch the Video
+            </a>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="ato-component multicolumn" id="multicolumn_e2186f380a0a56300280ef46e8802d70_3" style="background: #fff; color: #444444;">
+      <div class="row">
+       <div class="rowBody">
+        <div class="flexbox">
+         <div class="column item1 flexbox flex-items" style="width: 67%;">
+          <div class="ato-component main text" id="text_block_e2186f380a0a56300280ef46e8802d70_3_1" style="background: #ffffff; color: ;">
+           <style>
+            /* <![CDATA[ */
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_1 a,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_1 a:active,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_1 a:focus,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_1 a:hover,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_1 a:visited {
+                color: ;
+                }
+            /* ]]> */
+           </style>
+           <div class="row">
+            <div class="rowBody">
+             <div class="text__module column-1" style="max-width: 50em; margin: 0 auto;">
+              <style>
+               <!--
+.ato-component.spolight__gallery {
+        padding: 100px 0 100px !important;
+    }
+-->
+              </style>
+              <div class="quoteContentFs">
+               <h2 style="margin-top: 0; text-align: left; font-variant: tabular-nums;">
+                Calling Milton Home in 2024
+               </h2>
+               <p style="text-align: left;">
+                Wilfrid Laurier University is excited to extend the university's high-quality academic and student experience along the Toronto-Waterloo Innovation Corridor to the fast-growing community of Milton – giving students from the Halton Region the chance to study close to home.
+               </p>
+               <p style="text-align: left;">
+                As a multi-campus, multi-community university, Laurier is known for offering unique programs that make each campus its own, while retaining the essence of Laurier’s strong community culture that binds us together.
+               </p>
+               <p style="text-align: left;">
+                <a href="/about/discover-laurier/strategic-initiatives/milton/index.html" rel="noopener" style="text-decoration: none;">
+                 <button class="call__action purple-dark" data-title="milton campus">
+                  <span style="font-size: 12pt;">
+                   Learn More about Milton
+                  </span>
+                 </button>
+                </a>
+               </p>
+              </div>
+              <span style="display: none !important;">
+               noTopPadding
+              </span>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="column item2 flexbox flex-items" style="width: 33%;">
+          <div class="ato-component main text" id="text_block_e2186f380a0a56300280ef46e8802d70_3_2" style="background: #ffffff; color: ;">
+           <style>
+            /* <![CDATA[ */
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_2 a,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_2 a:active,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_2 a:focus,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_2 a:hover,
+                #text_block_e2186f380a0a56300280ef46e8802d70_3_2 a:visited {
+                color: ;
+                }
+            /* ]]> */
+           </style>
+           <div class="row">
+            <div class="rowBody">
+             <div class="text__module column-1" style="max-width: 50em; margin: 0 auto;">
+              <div>
+               <img alt="render-milton-gateway-sl.jpg" height="350" src="images/spotlights/2022/july/render-milton-gateway-sl.jpg" style="display: block; margin-left: auto; margin-right: auto;" width="350"/>
+              </div>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="ato-component text" id="quotes_e2186f380a0a56300280ef46e8802d70_4" style="background: #fffaf2; color: #444;">
+      <div class="row">
+       <div class="rowBody">
+        <div class="testimonials">
+         <div class="inner">
+          <style>
+           #quotes_e2186f380a0a56300280ef46e8802d70_4 .testimonials .series .single-item .slick-slide::after {
+                                    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+                                }
+          </style>
+          <div class="series">
+           <div class="flexbox content">
+            <div class="col-33 ato-component text" style="background: #fffaf2; color: #444;">
+             <style>
+              /* <![CDATA[ */
+                                                    #quotes_e2186f380a0a56300280ef46e8802d70_4 .single-item a,
+                                                    #quotes_e2186f380a0a56300280ef46e8802d70_4 .single-item a:active,
+                                                    #quotes_e2186f380a0a56300280ef46e8802d70_4 .single-item a:focus,
+                                                    #quotes_e2186f380a0a56300280ef46e8802d70_4 .single-item a:hover,
+                                                    #quotes_e2186f380a0a56300280ef46e8802d70_4 .single-item a:visited {
+                                                        color: #330072;
+                                                    }
+                                                /* ]]> */
+             </style>
+             <div class="single-item" style="background: rgb(255, 255, 255); color: #444;">
+              <div>
+               <div class="content">
+                <div class="image">
+                 <img alt="Quote Image" data-object-fit="cover" src="future-students/undergraduate/assets/images/spotlights/tayania-siwek-smith-sl.jpg"/>
+                </div>
+                <div>
+                 <p>
+                  “Laurier truly feels like a community. Everyone around me is here to make sure I succeed, not just in my sport but in life as well.”
+                 </p>
+                 <p style="padding-left: 30px;">
+                  Tayania
+                  <em>
+                   <br/>
+                   Computer Science and Business
+                   <br/>
+                  </em>
+                 </p>
+                </div>
+               </div>
+              </div>
+              <div>
+               <div class="content">
+                <div class="image">
+                 <img alt="Quote Image" data-object-fit="cover" src="future-students/undergraduate/applicants/international/assets/images/paris-lad-sl.jpg"/>
+                </div>
+                <div>
+                 <p>
+                  “The Brantford campus feels like a small town, rather than a big city. I like the homey atmosphere where everyone knows everyone.”
+                 </p>
+                 <p style="padding-left: 30px;">
+                  Paris
+                  <em>
+                   <br/>
+                   Game Design
+                  </em>
+                 </p>
+                </div>
+               </div>
+              </div>
+              <div>
+               <div class="content">
+                <div class="image">
+                 <img alt="Quote Image" data-object-fit="cover" src="future-students/undergraduate/applicants/international/assets/images/abegail-ormond-sl.jpg"/>
+                </div>
+                <div>
+                 <p>
+                  “This is where I feel like I belong. This is where I feel like I’m learning, fostering myself and learning about who I am and how I can fit into this wonderful community of friendly people who want to do the same thing — better ourselves, better the school and better our community.”
+                 </p>
+                 <p style="padding-left: 30px;">
+                  Abegail
+                  <em>
+                   <br/>
+                   Business
+                   <br/>
+                  </em>
+                 </p>
+                </div>
+               </div>
+              </div>
+              <div>
+               <div class="content">
+                <div class="image">
+                 <img alt="Quote Image" data-object-fit="cover" src="future-students/undergraduate/assets/images/spotlights/elora-austrup-sl.jpg"/>
+                </div>
+                <div>
+                 <p style="font-size: 1.1em;">
+                  “I love Laurier because of the community feel. Laurier is the perfect size, making you feel right at home. I know the connections and relationships I’ve made will last forever.”
+                 </p>
+                 <p style="padding-left: 30px;">
+                  Elora
+                  <br/>
+                  <span>
+                   <em>
+                    Kinesiology
+                   </em>
+                  </span>
+                 </p>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+            <div class="col-67 right-content ato-component text" style="background: #fffaf2; color: #444;">
+             <div>
+              <script async="true" data-clive-id="733" data-clive-type="smartcontent" src="https://live.clive.cloud/smartContents/733/embed">
+              </script>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="ato-component full-width-banner" id="full_width_banner_e2186f380a0a56300280ef46e8802d70_5" style="background: #fff;">
+      <style>
+       /* <![CDATA[ */
+            #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .inner {
+               padding: 265px 60px 0px;
+            }
+
+            @media screen and (max-width: 600px){
+              #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .inner {
+                padding: 265px 30px 0px;
+              }
+            }
+
+            #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .inner .main-content {
+              max-width: 50%;
+              margin: 0;
+              color: #444444;
+            }
+
+            #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .inner .caption {
+               color: #444444;
+            }
+
+            #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .full-width-gradient {
+                opacity: 0;
+                background: transparent;
+            }
+
+            #full_width_banner_e2186f380a0a56300280ef46e8802d70_5 .full-width-image {
+              background: url('https://www.wlu.ca/images/general/photo-grid-collage-viewbook-2019.jpg');
+              background-position: center center !important;
+              -webkit-filter: blur(0px);
+              filter: blur(0px);
+            }
+        /* ]]> */
+      </style>
+      <div class="row">
+       <div class="full-width-gradient">
+       </div>
+       <div class="full-width-image">
+       </div>
+       <div class="rowBody">
+        <div class="inner">
+         <div class="main-content">
+          <div>
+           <content>
+           </content>
+          </div>
+         </div>
+         <div class="caption">
+          <content>
+          </content>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <style>
+      /* <![CDATA[ */
+                #events_e2186f380a0a56300280ef46e8802d70_6 .left a,
+                #events_e2186f380a0a56300280ef46e8802d70_6 .left a:active,
+                #events_e2186f380a0a56300280ef46e8802d70_6 .left a:focus,
+                #events_e2186f380a0a56300280ef46e8802d70_6 .left a:hover,
+                #events_e2186f380a0a56300280ef46e8802d70_6 .left a:visited {
+                color: #fff;
+                }
+            /* ]]> */
+     </style>
+     <style>
+      /* <![CDATA[ */
+            #events_e2186f380a0a56300280ef46e8802d70_6 .events {
+                color: #444444;
+            }
+            
+            #events_e2186f380a0a56300280ef46e8802d70_6 .cal_header,
+            #events_e2186f380a0a56300280ef46e8802d70_6 .events .more_events a {
+                color: #FFF;
+                background: #924DA7;
+            }
+                
+            #events_e2186f380a0a56300280ef46e8802d70_6 .title {
+                color: #924DA7;
+            }
+            
+            #events_e2186f380a0a56300280ef46e8802d70_6 .prev, 
+            #events_e2186f380a0a56300280ef46e8802d70_6 .next {
+                color: #FFF;
+            }
+                
+                
+            #events_e2186f380a0a56300280ef46e8802d70_6 .calendar {
+                background: #FFF;
+            }
+        /* ]]> */
+     </style>
+     <div class="ato-component events__calendar" id="events_e2186f380a0a56300280ef46e8802d70_6" style="background: #330072; color: #fff;">
+      <div class="row">
+       <div class="flexbox rowBody">
+        <div class="col-67 left flexbox">
+         <div class="row ato-component text" style="background: #330072; color: #fff;">
+          <style>
+           <!--
+a.whiteLink, a.whiteLink:active, a.whiteLink:focus, a.whiteLink:hover, a.whiteLink:visited {
+        color: #fff;
+    }
+-->
+          </style>
+          <script async="true" data-clive-id="734" data-clive-type="smartcontent" src="https://live.clive.cloud/smartContents/734/embed">
+          </script>
+         </div>
+        </div>
+        <div class="col-33">
+         <div class="ato-component text" style="background: #330072; color: #fff;">
+          <h2 class="h4">
+           Featured Events
+          </h2>
+          <div class="row calendar">
+           <div class="cal_header flexbox flexbox--center">
+            <div class="col-33">
+             <i class="fal fa-calendar-alt">
+             </i>
+            </div>
+            <div class="col-67 flexbox flexbox--center" data-id="calendar_e2186f380a0a56300280ef46e8802d70_6">
+            </div>
+           </div>
+           <div class="events">
+            <div data-calendar="calendar_e2186f380a0a56300280ef46e8802d70_6">
+             <div>
+              <ul class="event">
+               <li>
+                <a href="http://events.dudesolutions.com/wlu/site/students/event/employer-events-13/" target="_blank">
+                 <div class="col-33">
+                  <p class="day">
+                   13
+                  </p>
+                  <p class="month">
+                   Feb
+                  </p>
+                 </div>
+                 <div class="col-67">
+                  <p class="title">
+                   Employer Events
+                  </p>
+                  <div>
+                   <i class="far fa-clock">
+                   </i>
+                   12 A.M.
+ -                                                                           12 A.M.
+                  </div>
+                  <p class="location">
+                   <i class="fas fa-map-marker-alt">
+                   </i>
+                  </p>
+                 </div>
+                </a>
+               </li>
+               <li>
+                <a href="http://events.dudesolutions.com/wlu/site/students/event/cooking-101-2/" target="_blank">
+                 <div class="col-33">
+                  <p class="day">
+                   14
+                  </p>
+                  <p class="month">
+                   Feb
+                  </p>
+                 </div>
+                 <div class="col-67">
+                  <p class="title">
+                   Cooking 101
+                  </p>
+                  <div>
+                   <i class="far fa-clock">
+                   </i>
+                   5 P.M.
+ -                                                                           6 P.M.
+                  </div>
+                  <p class="location">
+                   <i class="fas fa-map-marker-alt">
+                   </i>
+                   One Market
+                  </p>
+                 </div>
+                </a>
+               </li>
+               <li>
+                <a href="http://events.dudesolutions.com/wlu/event/program-evaluation-certificate-41/" target="_blank">
+                 <div class="col-33">
+                  <p class="day">
+                   15
+                  </p>
+                  <p class="month">
+                   Feb
+                  </p>
+                 </div>
+                 <div class="col-67">
+                  <p class="title">
+                   Program Evaluation Certificate
+                  </p>
+                  <div>
+                   <i class="far fa-clock">
+                   </i>
+                   4 P.M.
+ -                                                                           5:30 P.M.
+                  </div>
+                  <p class="location">
+                   <i class="fas fa-map-marker-alt">
+                   </i>
+                   Zoom
+                  </p>
+                 </div>
+                </a>
+               </li>
+               <li>
+                <a href="http://events.dudesolutions.com/wlu/event/time-travel-to-brantford-19001920/" target="_blank">
+                 <div class="col-33">
+                  <p class="day">
+                   15
+                  </p>
+                  <p class="month">
+                   Feb
+                  </p>
+                 </div>
+                 <div class="col-67">
+                  <p class="title">
+                   Time Travel to Brantford, 1900–1920
+                  </p>
+                  <div>
+                   <i class="far fa-clock">
+                   </i>
+                   7 P.M.
+ -                                                                           8:30 P.M.
+                  </div>
+                  <p class="location">
+                   <i class="fas fa-map-marker-alt">
+                   </i>
+                  </p>
+                 </div>
+                </a>
+               </li>
+               <li>
+                <a href="http://events.dudesolutions.com/wlu/site/students/event/laurier-international-drop-in-lunch-1/" target="_blank">
+                 <div class="col-33">
+                  <p class="day">
+                   16
+                  </p>
+                  <p class="month">
+                   Feb
+                  </p>
+                 </div>
+                 <div class="col-67">
+                  <p class="title">
+                   Laurier International Drop-in Lunch
+                  </p>
+                  <div>
+                   <i class="far fa-clock">
+                   </i>
+                   NOON
+ -                                                                           2 P.M.
+                  </div>
+                  <p class="location">
+                   <i class="fas fa-map-marker-alt">
+                   </i>
+                   One Market
+                  </p>
+                 </div>
+                </a>
+               </li>
+              </ul>
+             </div>
+            </div>
+            <div class="more_events">
+             <a href="https://events.dudesolutions.com/wlu/?view=" target="_blank">
+              Full Events Calendar
+             </a>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <footer class="site__footer">
+   <div class="rowBody">
+    <div class="footer_wlu">
+     <div class="row">
+      <div class="logo">
+       <a href="/">
+        <img alt="Wilfrid Laurier University" src="images/general/desktop_logo.png"/>
+       </a>
+      </div>
+      <ul class="footer-links">
+       <li>
+        <a href="campus-status/index.html" target="_blank">
+         Campus Status
+        </a>
+       </li>
+       <li>
+        <a href="about/discover-laurier/contact-us.html" target="_blank">
+         Contact Us
+        </a>
+       </li>
+       <li>
+        <a href="about/discover-laurier/accessibility/index.html" target="_blank">
+         Accessibility
+        </a>
+       </li>
+       <li>
+        <a href="about/working-at-laurier/index.html" target="_blank">
+         Careers
+        </a>
+       </li>
+       <li>
+        <a href="news/social-media-accounts.html" target="_blank">
+         Social Media Directory
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="row">
+      <ul class="social-links">
+       <li>
+        <a aria-label="Instagram Social Media Link - 1" class="social flexbox flexbox--center" href="https://www.instagram.com/WilfridLaurierUni " role="button" target="_blank">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a aria-label="Twitter Social Media Link - 2" class="social flexbox flexbox--center" href="https://twitter.com/@Laurier" role="button" target="_blank">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a aria-label="Facebook Social Media Link - 3" class="social flexbox flexbox--center" href="https://www.facebook.com/WilfridLaurierUniversity" role="button" target="_blank">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a aria-label="Linked In Social Media Link - 4" class="social flexbox flexbox--center" href="https://www.linkedin.com/edu/school?id=10883" role="button" target="_blank">
+         <i class="fab fa-linkedin-in">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a aria-label="Email Social Media Link - 5" class="social flexbox flexbox--center" href="mailto:chooselaurier@wlu.ca" role="button" target="_blank">
+         <i class="fas fa-envelope">
+         </i>
+        </a>
+       </li>
+       <li>
+        <a aria-label="Youtube Social Media Link - 6" class="social flexbox flexbox--center" href="https://www.youtube.com/user/LaurierVideo" role="button" target="_blank">
+         <i class="fab fa-youtube">
+         </i>
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="row">
+      <p class="name">
+       WILFRID LAURIER UNIVERSITY
+      </p>
+      <ul aria-label="Campus Locations" class="cities">
+       <li>
+        Waterloo
+       </li>
+       <li>
+        Brantford
+       </li>
+       <li>
+        Milton
+       </li>
+       <li>
+        Kitchener
+       </li>
+       <li>
+        Toronto
+       </li>
+      </ul>
+      <p class="copyright">
+       © 2023 Wilfrid Laurier University
+      </p>
+     </div>
+    </div>
+    <a class="scroll--top" href="#" style="display: none;">
+     <i class="fal fa-arrow-up">
+     </i>
+    </a>
+   </div>
+  </footer>
+  <!-- JSON -->
+  <!-- Custom JS -->
+  <script src="js/builds/global-v2.js?refresh=2" type="text/javascript">
+  </script>
+  <script src="js/builds/accessibility.js" type="text/javascript">
+  </script>
+  <script src="js/ato/scripts-home.js?refresh=7" type="text/javascript">
+  </script>
+  <script src="js/ato/main.js" type="text/javascript">
+  </script>
+  <script src="js/ato/full-screen-media.js" type="text/javascript">
+  </script>
+  <script src="js/ato/choice-selector.js" type="text/javascript">
+  </script>
+  <script src="js/ato/quotes.js" type="text/javascript">
+  </script>
+  <script src="js/ato/spotlights.js" type="text/javascript">
+  </script>
+  <script src="js/ato/search.js" type="text/javascript">
+  </script>
+  <script src="js/ato/font.js" type="text/javascript">
+  </script>
+  <script src="js/ato/filter.js" type="text/javascript">
+  </script>
+  <script src="js/ato/laurier-by-the-numbers.js" type="text/javascript">
+  </script>
+  <script src="js/ato/laurier-instagram.js" type="text/javascript">
+  </script>
+  <script src="js/ato/accordions.js" type="text/javascript">
+  </script>
+  <script src="js/ato/chaptering-menuing.js" type="text/javascript">
+  </script>
+  <script src="js/ato/full-width-image-links.js" type="text/javascript">
+  </script>
+  <script src="js/ato/give-header.js" type="text/javascript">
+  </script>
+  <script src="js/ato/wyntk.js" type="text/javascript">
+  </script>
+  <script async="true" src="https://live.clive.cloud/page-views/track/280" type="text/javascript">
+  </script>
+  <script src="js/ato/ato-registrar-report.js" type="text/javascript">
+  </script>
+  <script src="js/ato/ato-accordions.js" type="text/javascript">
+  </script>
+  <script src="js/ato/ato-news.js" type="text/javascript">
+  </script>
+  <script src="js/ato/ato-number-counter.js" type="text/javascript">
+  </script>
+  <script src="js/ato/ato-table.js" type="text/javascript">
+  </script>
+  <link href="https://wlu.ca/search/css/search_overlay.css" rel="stylesheet"/>
+  <script src="https://wlu.ca/search/js/search_overlay.js" type="text/javascript">
+  </script>
+  <div class="search_overlay" style="display:none;">
+   <div class="search_overlay__background">
+   </div>
+   <div class="search_overlay__content">
+    <div class="inner">
+     <div>
+      <p style="text-align: center; -webkit-font-smoothing: antialiased;">
+       Search for
+       <a href="/search/index.html?query=academic+programs">
+        academic programs
+       </a>
+       ,
+       <a href="/search/index.html?query=residence">
+        residence
+       </a>
+       ,
+       <a href="/search/index.html?query=tours+and+events">
+        tours and events
+       </a>
+       and more.
+      </p>
+     </div>
+     <form action="search/index.html" class="form search_form" method="GET" name="search_form">
+      <div class="search_header">
+       <button class="search_icon" type="button">
+        <i aria-hidden="true" class="far fa-search">
+        </i>
+       </button>
+       <input autocomplete="off" name="query" placeholder="Search" type="text" value=""/>
+       <button id="searchBtnSubmit" type="submit">
+        Search
+       </button>
+       <ul class="search_autocomplete">
+       </ul>
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+  <link href="https://wlu.ca/css/accept_cookies.css" rel="stylesheet"/>
+  <script src="https://wlu.ca/js/accept_cookies.js" type="text/javascript">
+  </script>
+  <div class="accept_cookies" style="display:none;">
+   <div class="inner">
+    <div class="content">
+     <h3 class="h5">
+      <strong>
+       We use cookies on this site to enhance your experience.
+      </strong>
+     </h3>
+     <p>
+      By selecting “Accept” and continuing to use this website, you consent to the use of cookies.
+     </p>
+    </div>
+    <button data-id="accept_cookies" type="button">
+     Accept
+    </button>
+   </div>
+  </div>
+  <!-- CSS/JS -->
+  <link href="_emergency-response/css/emergency-response.css" rel="stylesheet"/>
+  <script src="_emergency-response/alert.js" type="text/javascript">
+  </script>
+ </body>
+</html>
