@@ -36,7 +36,7 @@
  - In `utils.py`: I wrote the `session_handler()`, set up the user-agents and proxies. Wrote the initial iteration of the `get_content(url)` function, later updated by Nausher to pass in params. Additionally, I wrote the `get_page(base_url, params)` function. I also initially wrote the `write_raw_data(content, url)` function and the `hash_url(url)`function. 
 - Also wrote the loading animation in the terminal with the cute giraffe (for fun). 
  - In `webcrawler2.py`: I built the entirety of the Google Scholar crawler.
- 
+ - Wrote the report for `webcrawler2.py` and for `utils.py`.
  
 ####  **Mobina Tooranisama** 200296720 
 - 
