@@ -1,8 +1,6 @@
 import sys
 import requests
-import hashlib
 import json
-from time import sleep
 from bs4 import BeautifulSoup
 from utils import *
 
