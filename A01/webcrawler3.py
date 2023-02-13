@@ -29,10 +29,13 @@ def replace_html(text):
 
 def graph(text):
     """
-    x
+    idk what this does yet
+    TODO: edit this to make work properly
     """
     tokens = text.count("0")
     tags = text.count("1")
+    print(tokens)
+    print(tags)
     N = tokens + tags
 
     mpl.plot([tokens], [tags])
@@ -42,53 +45,55 @@ def graph(text):
     mpl.show()
 
 
-# def generate_heatmap(bits):
-    """
-    x
-    """
-    max_tags = 0
-    heatmap = np.zeros((len(bits), len(bits)))
-    for i in range(len(bits)):
-        for j in range(i, len(bits)):
-            tags_before = sum(bits[:i])
-            tags_after = sum(bits[j:])
-            # non_tags_between = j - i - sum(bits[i:j])
-
-            # middle part of the summation in the slides
-            f = 0
-            for b in bits[i:j]:
-                f += (1 - b)
-
-            total_tags = tags_before + f + tags_after
-            heatmap[i, j] = total_tags
-
-            # X.append(i)
-            # Y.append(j)
-            # Z.append(total_tags)
-
-    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
-    mpl.show()
-
-
 def generate_heatmap(bits):
-    max_tags = 0
-    heatmap = np.zeros((len(bits), len(bits)))
-    for i in range(len(bits)):
-        for j in range(i, len(bits)):
-            tags_before = sum(bits[:i])
-            tags_after = sum(bits[j:])
-            # non_tags_between = j - i - sum(bits[i:j])
+    """
+    Description:
+        Generates a heatmap of the number of tags in a document.
 
-            # middle part of the summation in the slides
+    Parameters:
+        bits (list): A list of 0s and 1s representing the content of a document.
+    """
+    n = len(bits)
+    heatmap = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i, n):
+            a = sum(bits[:i])
+            b = sum(bits[j:])
             f = 0
-            for b in bits[i:j]:
-                f += (1 - b)
+            for bit in bits[i:j]:
+                f += (1 - bit)
 
-            total_tags = tags_before + f + tags_after
-            heatmap[i, j] = total_tags
+            heatmap[i, j] = a + f + b
 
     mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
     mpl.show()
+
+
+def optimize_webpage(bits):
+    """
+    Description:
+        Returns the optimal range of content to display on a webpage.
+
+    Parameters:
+        bits (list): A list of 0s and 1s representing the content of a document.
+    """
+    n = len(bits)
+    max_tags, i_prime, j_prime = 0, 0, 0
+    for i in range(n):
+        for j in range(i, n):
+            a = sum(bits[:i])
+            b = sum(bits[j:])
+            f = 0
+            for bit in bits[i:j]:
+                f += (1 - bit)
+
+            total = a + f + b
+            if (total > max_tags):
+                max_tags = total
+                i_prime = i
+                j_prime = j
+
+    return i_prime, j_prime
 
 
 def main():
@@ -97,7 +102,7 @@ def main():
         Main function.
 
     Usage:
-        python webcrawler2.py <url>
+        python3 webcrawler3.py <url>
     """
     try:
         url = sys.argv[1]
@@ -108,8 +113,15 @@ def main():
     # print_giraffe()
     # print_loading()
     content = replace_html(get_content(url))
-    generate_heatmap([int(x) for x in content])
-    if content:
+    bits = [int(x) for x in content]
+
+    optimisation = optimize_webpage(bits)
+    print("Optimal range: {} to {}".format(optimisation[0], optimisation[1]))
+
+    generate_heatmap(bits)
+    # graph(content)
+
+    if (content):
         write_raw_data(content, url)
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
