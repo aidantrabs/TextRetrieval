@@ -1,8 +1,6 @@
-import sys
 import os
 import requests
 import hashlib
-import json
 from time import sleep
 from bs4 import BeautifulSoup
 
@@ -13,39 +11,42 @@ HEADERS = {
 
 PROXIES = {'http': os.getenv('HTTP_PROXY')}
 
+
 def session_handler():
     """
     Description:
-         Returns a session object and sets the user agent.
+        Returns a session object and sets the user agent.
 
     Parameters:
-         None
+        None
     """
     session = requests.session()
     session.headers.update(HEADERS)
     return session
 
+
 def get_content(url):
     """
     Description:
-         Returns the text content of the page at the given URL.
+        Returns the text content of the page at the given URL.
 
     Parameters:
-         url (str): The URL of the page to retrieve.
+        url (str): The URL of the page to retrieve.
     """
     base_url, params = parse_url(url)
     page = get_page(base_url, params)
     if page:
         soup = BeautifulSoup(page.content, 'html.parser')
-        return soup
+        return str(soup)
+
 
 def parse_url(url):
     """
     Description:
-         Returns the base URL and parameters of the given URL.
+        Returns the base URL and parameters of the given URL.
 
     Parameters:
-         url (str): The URL to parse.
+        url (str): The URL to parse.
     """
     tokens = url.split("?")
     base_url = tokens[0]
@@ -58,55 +59,61 @@ def parse_url(url):
 
     return base_url, params
 
+
 def get_page(base_url, params):
     """
     Description:
-         Returns the HTML of the page at the given URL.
+        Returns the HTML of the page at the given URL.
 
     Parameters:
-         url (str): The URL of the page to retrieve.
+        url (str): The URL of the page to retrieve.
     """
     try:
-        response = requests.get(base_url, headers=HEADERS, params=params, proxies=PROXIES)
-        if response.status_code == 200:
+        response = requests.get(base_url, headers=HEADERS,
+                                params=params, proxies=PROXIES)
+        if (response.ok):
             return response
         else:
-            print(response.status_code)
-            return None
+            print("Page returned with a non-ok response code:",
+                  response.status_code)
+
     except:
         return None
+
 
 def write_raw_data(content, url):
     """
     Description:
-         Writes the content to a file with hashed name.
+        Writes the content to a file with hashed name.
 
     Parameters:
-         content (str): The content to write to the file.
-         url (str): The URL of the page to retrieve.
+        content (str): The content to write to the file.
+        url (str): The URL of the page to retrieve.
     """
     os.mkdir("data") if not os.path.exists("data") else None
     filename = os.path.join("data", hash_url(url) + ".txt")
     with open(filename, 'w+') as f:
         f.write(content)
 
+
 def hash_url(url):
     """
     Description:
-         Returns the SHA256 hash of the given URL.
+        Returns the SHA256 hash of the given URL.
 
     Parameters:
-         url (str): The URL to hash.
+        url (str): The URL to hash.
     """
     return hashlib.sha256(url.encode()).hexdigest()
+
 
 def print_giraffe():
     """
     Description:
-         Prints a giraffe to the command line.
+        Prints a giraffe to the command line.
 
     Parameters:
-         None
+        None
     """
     print(r"""
 
@@ -120,13 +127,14 @@ def print_giraffe():
                          ,"   ##    /
           """)
 
+
 def print_loading():
     """
     Description:
-         Prints a fully-animated loading bar to the command line.
+        Prints a fully-animated loading bar to the command line.
 
     Parameters:
-         None
+        None
     """
     items = list(range(0, 50))
     l = len(items)
@@ -136,21 +144,23 @@ def print_loading():
         sleep(0.09)
         loading(i + 1, l, prefix='Progress:', suffix='Complete', length=l)
 
+
 def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>'):
     """
     Description:
-         A frame of a loading bar for the command line. Yes, I have time on my hands.
+        A frame of a loading bar for the command line. Yes, I have time on my hands.
 
     Parameters:
-         iter (int): The current iteration.
-         total (int): The total number of iterations.
-         prefix (str): The prefix to display before the loading bar.
-         suffix (str): The suffix to display after the loading bar.
-         decimals (int): The number of decimals to display.
-         length (int): The length of the loading bar.
-         fill (str): The character to use to fill the loading bar.
+        iter (int): The current iteration.
+        total (int): The total number of iterations.
+        prefix (str): The prefix to display before the loading bar.
+        suffix (str): The suffix to display after the loading bar.
+        decimals (int): The number of decimals to display.
+        length (int): The length of the loading bar.
+        fill (str): The character to use to fill the loading bar.
     """
-    percent = ("{0:." + str(decimals) + "f}").format(100 * (iter / float(total)))
+    percent = ("{0:." + str(decimals) + "f}").format(100 *
+                                                     (iter / float(total)))
     filled_len = int(length * iter // total)
     bar = fill * filled_len + '-' * (length - filled_len)
 

@@ -1,68 +1,99 @@
 import sys
-import requests
-import hashlib
-import json
-import re
+import regex as re
+import numpy as np
 import matplotlib.pyplot as mpl
-from time import sleep
-from bs4 import BeautifulSoup
 from utils import *
 
-HTML_TAGS_REGEX = r"/<\/?[^>]+(>|$)/gm"
-HTML_CONTENT_REGEX = r"/<[^>]+>/gm"
+# Matches all content in an HTML doc that isn't an HTML tag.
+HTML_CONTENT_REGEX = r"\b\w+\b(?![^<]*>)"
+
+# Matches all HTML tags in a document.
+HTML_TAGS_REGEX = r"<[^<]+?>"
+
+# Matches all non-binary characters.
+ZERO_ONE_REGEX = r"[^01]+"
+
 
 def replace_html(text):
     """
-     Description:
-          Returns the text with HTML tags removed.
+    Description:
+        Returns the text with HTML tags removed.
 
-     Parameters:
-          text (str): The text to remove HTML tags from.
+    Parameters:
+        text (str): The text to remove HTML tags from.
      """
-    return re.sub(HTML_TAGS_REGEX, '', re.sub(HTML_CONTENT_REGEX, '', text))
+    return re.sub(ZERO_ONE_REGEX, "",
+                  re.sub(HTML_TAGS_REGEX, "1",
+                         re.sub(HTML_CONTENT_REGEX, "0", text)))
 
 
 def graph(text):
     """
-    x
+    idk what this does yet
+    TODO: edit this to make work properly
     """
     tokens = text.count("0")
     tags = text.count("1")
+    print(tokens)
+    print(tags)
     N = tokens + tags
 
-    plt.plot([token_count], [tag_count])
-    plt.title('Content Block')
-    plt.xlabel('Token count')
-    plt.ylabel('Tag count')
-    plt.show()
+    mpl.plot([tokens], [tags])
+    mpl.title('Content Block')
+    mpl.xlabel('Token count')
+    mpl.ylabel('Tag count')
+    mpl.show()
 
 
 def generate_heatmap(bits):
     """
-    x
+    Description:
+        Generates a heatmap of the number of tags in a document.
+
+    Parameters:
+        bits (list): A list of 0s and 1s representing the content of a document.
     """
-    max_tags = 0
-    heatmap = np.zeros((len(bits), len(bits)))
-    for i in range(len(bits)):
-        for j in range(i, len(bits)):
-            tags_before = sum(bits[:i])
-            tags_after = sum(bits[j:])
-            # non_tags_between = j - i - sum(bits[i:j])
-
-            # middle part of the summation in the slides
+    n = len(bits)
+    heatmap = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i, n):
+            a = sum(bits[:i])
+            b = sum(bits[j:])
             f = 0
-            for b in bits[i:j]:
-                f += (1 - b)
+            for bit in bits[i:j]:
+                f += (1 - bit)
 
-            total_tags = tags_before + f + tags_after
-            heatmap[i, j] = total_tags
+            heatmap[i, j] = a + f + b
 
-            # X.append(i)
-            # Y.append(j)
-            # Z.append(total_tags)
+    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
+    mpl.show()
 
-    plt.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
-    plt.show()
+
+def optimize_webpage(bits):
+    """
+    Description:
+        Returns the optimal range of content to display on a webpage.
+
+    Parameters:
+        bits (list): A list of 0s and 1s representing the content of a document.
+    """
+    n = len(bits)
+    max_tags, i_prime, j_prime = 0, 0, 0
+    for i in range(n):
+        for j in range(i, n):
+            a = sum(bits[:i])
+            b = sum(bits[j:])
+            f = 0
+            for bit in bits[i:j]:
+                f += (1 - bit)
+
+            total = a + f + b
+            if (total > max_tags):
+                max_tags = total
+                i_prime = i
+                j_prime = j
+
+    return i_prime, j_prime
 
 
 def main():
@@ -71,19 +102,26 @@ def main():
         Main function.
 
     Usage:
-        python webcrawler2.py <url>
+        python3 webcrawler3.py <url>
     """
     try:
         url = sys.argv[1]
     except:
         print("Error. No URL argument provided.")
 
-    session_handler()
-    print_giraffe()
-    print_loading()
-    content = get_content(url).prettify()
+    # session_handler()
+    # print_giraffe()
+    # print_loading()
+    content = replace_html(get_content(url))
+    bits = [int(x) for x in content]
 
-    if content:
+    optimisation = optimize_webpage(bits)
+    print("Optimal range: {} to {}".format(optimisation[0], optimisation[1]))
+
+    generate_heatmap(bits)
+    # graph(content)
+
+    if (content):
         write_raw_data(content, url)
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
