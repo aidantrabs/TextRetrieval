@@ -34,6 +34,7 @@
 ## Contributions
  #### **Aidan Traboulay** 200115590
  - In `utils.py`: I wrote the `session_handler()`, set up the user-agents and proxies. Wrote the initial iteration of the `get_content(url)` function, later updated by Nausher to pass in params. Additionally, I wrote the `get_page(base_url, params)` function. I also initially wrote the `write_raw_data(content, url)` function and the `hash_url(url)`function. 
+- Also wrote the loading animation in the terminal with the cute giraffe (for fun). 
  - In `webcrawler2.py`: I built the entirety of the Google Scholar crawler.
  
  
@@ -49,8 +50,10 @@
 The purpose of this file is to handle the session of the crawler using the `requests` library, this is contained within the `session_handler()` function. Moreover, it creates a `BeautifulSoup` object and returns the soup, within the `get_content(url)` function. A `parse_url(url)`function was also created so that when a user enters a URL argument, it fixes the error that would arise with the special characters. Another solution would have been to wrap the URL in quotations, however, this would force the user to always remember to make the URL a string. The next major function created would be the `get_page(base_url, params)` function which would send a GET request to the URL, passing in the user-agent headers, any extra parameters and the proxy of the current user's OS, it returns the response if the response is in the range of `200-299` (a successful or ok response). Otherwise, it will return a message with the non-ok or non-successful status code. Additionally, we have a file handler which writes the raw HTML to a data folder, called `write_raw_data(content, url)`. Finally we have the hashing function called `hash_url(url)` which returns a SHA256 encoding of any given url.
 
 ### Depth & Logger Crawler (`webcrawler1.py`)
+
 x
 
+  
 
 ### Google Scholar Profile Crawler (`webcrawler2.py`)
 
