@@ -9,12 +9,20 @@
 ## Group Members
 * **Aidan Traboulay** 200115590
   * trab5590@mylaurier.ca
-* **Mobina Tooranisama** 200296720 
+* **Mobina Tooranisama** 200296720
   * toor6720@mylaurier.ca
-* **Nausher Rao** 190906250 
+* **Nausher Rao** 190906250
   * raox6250@mylaurier.ca
 
 ## Contributions
 
 
 ## Explanations
+### Web Crawler 1
+x
+
+### Web Crawler 2
+x
+
+### Web Crawler 3
+x
