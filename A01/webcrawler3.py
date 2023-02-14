@@ -11,7 +11,7 @@ HTML_CONTENT_REGEX = r"\b\w+\b(?![^<]*>)"
 HTML_TAGS_REGEX = r"<[^<]+?>"
 
 # Matches all non-binary characters.
-ZERO_ONE_REGEX = r"[^01]+"
+NON_ZERO_ONE_REGEX = r"[^01]+"
 
 
 def replace_html(text):
@@ -22,54 +22,12 @@ def replace_html(text):
     Parameters:
         text (str): The text to remove HTML tags from.
      """
-    return re.sub(ZERO_ONE_REGEX, "",
+    return re.sub(NON_ZERO_ONE_REGEX, "",
                   re.sub(HTML_TAGS_REGEX, "1",
                          re.sub(HTML_CONTENT_REGEX, "0", text)))
 
 
-def graph(text):
-    """
-    idk what this does yet
-    TODO: edit this to make work properly
-    """
-    tokens = text.count("0")
-    tags = text.count("1")
-    print(tokens)
-    print(tags)
-    N = tokens + tags
-
-    mpl.plot([tokens], [tags])
-    mpl.title('Content Block')
-    mpl.xlabel('Token count')
-    mpl.ylabel('Tag count')
-    mpl.show()
-
-
-def generate_heatmap(bits):
-    """
-    Description:
-        Generates a heatmap of the number of tags in a document.
-
-    Parameters:
-        bits (list): A list of 0s and 1s representing the content of a document.
-    """
-    n = len(bits)
-    heatmap = np.zeros((n, n))
-    for i in range(n):
-        for j in range(i, n):
-            a = sum(bits[:i])
-            b = sum(bits[j:])
-            f = 0
-            for bit in bits[i:j]:
-                f += (1 - bit)
-
-            heatmap[i, j] = a + f + b
-
-    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
-    mpl.show()
-
-
-def optimize_webpage(bits):
+def optimise_webpage(bits):
     """
     Description:
         Returns the optimal range of content to display on a webpage.
@@ -96,6 +54,43 @@ def optimize_webpage(bits):
     return i_prime, j_prime
 
 
+def generate_heatmap(bits):
+    """
+    Description:
+        Generates a heatmap of the number of tags in a document.
+
+    Parameters:
+        bits (list): A list of 0s and 1s representing the content of a document.
+    """
+    n = len(bits)
+    heatmap = np.zeros((n, n))
+    for i in range(n):
+        for j in range(i, n):
+            a = sum(bits[:i])
+            b = sum(bits[j:])
+            f = 0
+            for bit in bits[i:j]:
+                f += (1 - bit)
+
+            heatmap[i, j] = a + f + b
+
+    mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
+    mpl.show()
+
+
+def get_optimised_content(content, i, j):
+    """
+    Description:
+        Returns the content of a document between the given indices.
+
+    Parameters:
+        i (int): The starting index.
+        j (int): The ending index.
+    """
+    split_content = re.split(HTML_TAGS_REGEX, content)
+    return " ".join(split_content[i:j])
+
+
 def main():
     """
     Description:
@@ -109,20 +104,20 @@ def main():
     except:
         print("Error. No URL argument provided.")
 
-    # session_handler()
-    # print_giraffe()
-    # print_loading()
-    content = replace_html(get_content(url))
-    bits = [int(x) for x in content]
+    session_handler()
+    print_giraffe()
+    print_loading()
 
-    optimisation = optimize_webpage(bits)
-    print("Optimal range: {} to {}".format(optimisation[0], optimisation[1]))
-
-    generate_heatmap(bits)
-    # graph(content)
-
+    raw_content = get_content(url)
+    content = replace_html(raw_content)
     if (content):
-        write_raw_data(content, url)
+        bits = [int(x) for x in content]
+        i, j = optimise_webpage(bits)
+        print("Optimal range (i^*, j^*): {} to {}".format(i, j))
+
+        optimised_content = get_optimised_content(raw_content, i, j)
+        write_raw_data(optimised_content, url)
+        generate_heatmap(bits)
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
 
