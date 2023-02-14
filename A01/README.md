@@ -94,6 +94,7 @@ NON_ZERO_ONE_REGEX = r"[^0-1]"
 After this is performed, the string of bits is turned into an integer-array of bits to make performing mathematical operations on the string easier.
 
 This bit-array is then used in two different functions; `optimize_webpage` and `generate_heatmap`. The first function uses the following mathematical function to determine the most important section of the webpage:
+
 $$ f(i,j) = \sum_{n=0}^{i - 1}{b_n} + \sum_{n=i}^{j}{(1-b_n)} + \sum_{n=j}^{N-1}{b_n} $$
 
 The function then returns the index of the bytes that represent the start and end of that section, represented by $i^*$ and $j^*$ respectively. The second function uses the `matplotlib` library to generate a heatmap of the webpage, where the darker the color, the more important that section of the webpage is.
