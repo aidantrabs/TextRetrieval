@@ -120,7 +120,6 @@ def print_giraffe():
                          ,"   ##    /
           """)
 
-
 def print_loading():
     """
     Description:

@@ -5,28 +5,22 @@ import datetime as dt
 
 def get_dt():
     """
-    Description: 
-        get the download datetimes for each URL in the given page.
-
-    Usage:
-        dt = get_dt()
+    Description:
+        Returns the current date and time.
     """
     return dt.datetime.now()
 
 def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
     """
     Description:
-        Extracts all URLs from the given page. 
-    
-    Arguments:
-        url (str): The URL of the page to retrieve.
+        Crawls the given URL and all of its hyperlinks.
+
+    Parameters:
+        url (str): The URL to crawl.
         max_depth (int): The maximum depth to crawl.
-        rewrite (bool): Whether to overwrite existing files.
+        rewrite (bool): Whether to rewrite the files.
         verbose (bool): Whether to print the URLs as they are crawled.
         depth (int): The current depth of the crawler.
-
-    Usage:
-        crawl_urls(url, max_depth, rewrite, verbose)
     """
     http_resp = get_page(url, {})
     
@@ -77,7 +71,6 @@ def main():
     except:
         print("Error. Need to provide a max depth.")
 
-    
     rewrite = '--rewrite' in sys.argv
     verbose = '--verbose' in sys.argv
 
