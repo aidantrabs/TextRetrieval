@@ -36,7 +36,10 @@
 - In `webcrawler1.py`: I wrote the `crawl_urls(url, max_depth, rewrite, verbose)` function. I aso wrote the `get_dt()` function to retreive the current datetime.
 
 ####  **Nausher Rao** 190906250
--
+- In `utils.py`: I wrote the `parse_url(url)` function, which takes a fully-valid URL, and dissasembles it into a base URL and a dictionary of parameters to be used by the `requests` library. I also edited the `get_page(baseUrl, params)` function to pass in the parameters, as well as edited the `write_raw_data(content, url)` to write the raw HTML to a data folder properly.
+- In `webcrawler3.py`: I built the entirety of the Tag & Graph crawler.
+- Wrote the report for `webcrawler3.py` and for `utils.py`.
+
 
 ## Explanations
 All three crawlers were written using `Python 3.10`, utilizing the `BeautifulSoup`, `matplotlib`, `numpy`, `requests`, `sys`, `re`, and `json` libraries, as well as the utility file, which contained all the set up and hashing functions for each crawler.
