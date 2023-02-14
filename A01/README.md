@@ -65,7 +65,7 @@ The `main` function is the entry point of the script, it first processes the com
 
 The purpose of this crawler was to scan and parse through all the relevant data on any given Google Scholar profile. The crawler was built in `Python 3.10`, utilizing the `BeautifulSoup`, `requests`, `sys` and `json` libraries, as well as the utility file, which contained all the set up and hashing functions for each crawler. The structure of the program is as follows: `def get_parsed_content(url)` - this function handles all the content of the raw HTML from the BeautifulSoup object. Majority of the parsing is done using the `.find()` or `.find_all()` methods. In the event that data of the same type needs to be collected from one search I utilized Python's list comprehension methodology; an example of this would be where I would need to find the researcher's keywords:
 ```python
-researcher_keywords = [keywords.get_text() for  keywords  in  soup.find_all("a", class_="gsc_prf_inta gs_ibl")]
+researcher_keywords = [keywords.get_text() for keywords in soup.find_all("a", class_="gsc_prf_inta gs_ibl")]
 ```
  Additionally, in the case where I would need to get various information for one person or paper, I created an empty array where a dictionary of data will be stored and linked together. An example of this would be the `researcher_coauthor_dict` which stored the a dictionary of the coauthor's name, title and relevant link together: 
 ```python
