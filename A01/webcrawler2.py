@@ -124,7 +124,6 @@ def write_json_data(content, url):
     with open(filename, 'w') as f:
         f.write(json.dumps(content_dict, indent=4))
 
-
 def main():
     """
     Description:

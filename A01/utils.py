@@ -11,7 +11,6 @@ HEADERS = {
 
 PROXIES = {'http': os.getenv('HTTP_PROXY')}
 
-
 def session_handler():
     """
     Description:
@@ -23,7 +22,6 @@ def session_handler():
     session = requests.session()
     session.headers.update(HEADERS)
     return session
-
 
 def get_content(url):
     """
@@ -38,7 +36,6 @@ def get_content(url):
     if page:
         soup = BeautifulSoup(page.content, 'html.parser')
         return soup
-
 
 def parse_url(url):
     """
@@ -58,7 +55,6 @@ def parse_url(url):
         params[key] = value
 
     return base_url, params
-
 
 def get_page(base_url, params):
     """
@@ -80,7 +76,6 @@ def get_page(base_url, params):
     except:
         return None
 
-
 def write_raw_data(content, url):
     """
     Description:
@@ -95,7 +90,6 @@ def write_raw_data(content, url):
     with open(filename, 'w+') as f:
         f.write(content)
 
-
 def hash_url(url):
     """
     Description:
@@ -105,7 +99,6 @@ def hash_url(url):
         url (str): The URL to hash.
     """
     return hashlib.sha256(url.encode()).hexdigest()
-
 
 def print_giraffe():
     """
@@ -143,7 +136,6 @@ def print_loading():
     for i, item in enumerate(items):
         sleep(0.09)
         loading(i + 1, l, prefix='Progress:', suffix='Complete', length=l)
-
 
 def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>'):
     """
