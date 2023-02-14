@@ -37,7 +37,7 @@ def get_content(url):
     page = get_page(base_url, params)
     if page:
         soup = BeautifulSoup(page.content, 'html.parser')
-        return str(soup)
+        return soup
 
 
 def parse_url(url):
