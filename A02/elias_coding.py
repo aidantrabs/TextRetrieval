@@ -1,6 +1,8 @@
 from math import log, floor, pow
 import sys
 
+from numpy import str_
+
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
 
 def is_valid_binary(x: str):
@@ -108,13 +110,13 @@ def encode_elias_gamma(x: int):
     if(x == 0):
         return "0"
 
-    n = 1 + int(log2(x))
-    b = x - 2 ** (int(log2(x)))
     l = int(log2(x))
+    n = 1 + l
+    b = x - 2 ** l
     return to_unary(n) + to_binary(b, l)
 
 
-def decode_elias_delta(x: int):
+def decode_elias_delta(x: str):
     """
     Description:
         Decodes a number from elias delta.
@@ -129,11 +131,11 @@ def decode_elias_delta(x: int):
         return "ERROR"
 
     x = list(x)
-    k = 0
-    while True:
-        if(not x[k] == "0"):
-            break
-        k += 1
+    k = x.count("0")
+    # while True:
+    #     if(not x[k] == "0"):
+    #         break
+    #     k += 1
 
     x = x[2*k+1:]
     x.reverse()
@@ -147,7 +149,7 @@ def decode_elias_delta(x: int):
     return int(n)
 
 
-def decode_elias_gamma(x: int):
+def decode_elias_gamma(x: str):
     """
     Description:
         Decodes a number from elias gamma.
@@ -162,12 +164,12 @@ def decode_elias_gamma(x: int):
         return "ERROR"
 
     x = list(x)
-    k = 0
-    while True:
-        if(not x[k] == "0"):
-            break
+    k = x.count("0")
+    # while True:
+    #     if(not x[k] == "0"):
+    #         break
 
-        k = k + 1
+    #     k += 1
 
     x = x[k:2*k+1]
     n = 0
