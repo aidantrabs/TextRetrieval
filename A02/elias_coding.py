@@ -3,7 +3,7 @@ import sys
 
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
 
-def is_valid_binary(x):
+def is_valid_binary(x: str):
     """
     Description:
         Checks if a string is a valid binary number.
@@ -17,7 +17,7 @@ def is_valid_binary(x):
     return len(set(x).intersection(ALPHA_NUM)) == 0
 
 
-def to_unary(x):
+def to_unary(x: int):
     """
     Description:
         Converts a number to unary.
@@ -31,7 +31,7 @@ def to_unary(x):
     return (x - 1) * "0" + "1"
 
 
-def to_binary(x, l):
+def to_binary(x: int, l: int):
     """
     Description:
         Converts a number to binary.
@@ -47,7 +47,7 @@ def to_binary(x, l):
     return s.format(x)
 
 
-def to_binary_no_msb(x):
+def to_binary_no_msb(x: int):
     """
     Description:
         Converts a number to binary without the most significant bit.
@@ -62,7 +62,7 @@ def to_binary_no_msb(x):
     return b[1:]
 
 
-def log2(x):
+def log2(x: int):
     """
     Description:
         Calculates the logarithm of a number to base 2.
@@ -76,25 +76,25 @@ def log2(x):
     return log(x, 2)
 
 
-def encode_elias_delta(k):
+def encode_elias_delta(x: int):
     """
     Description:
         Encodes a number to elias delta.
 
     Parameters:
-        k (int): The number to encode.
+        x (int): The number to encode.
 
     Returns:
         str: The encoded binary number.
     """
-    if (k == 0):
+    if(x == 0):
         return "0"
 
-    n = 1 + floor(log2(k))
-    return to_unary(n) + to_binary_no_msb(k)
+    n = 1 + floor(log2(x))
+    return to_unary(n) + to_binary_no_msb(x)
 
 
-def encode_elias_gamma(x):
+def encode_elias_gamma(x: int):
     """
     Description:
         Encodes a number to elias gamma.
@@ -114,7 +114,7 @@ def encode_elias_gamma(x):
     return to_unary(n) + to_binary(b, l)
 
 
-def decode_elias_delta(x):
+def decode_elias_delta(x: int):
     """
     Description:
         Decodes a number from elias delta.
@@ -131,7 +131,7 @@ def decode_elias_delta(x):
     x = list(x)
     k = 0
     while True:
-        if not x[k] == "0":
+        if(not x[k] == "0"):
             break
         k += 1
 
@@ -141,13 +141,13 @@ def decode_elias_delta(x):
     n = 0
 
     for i in range(len(x)):
-        if x[i] == "1":
+        if(x[i] == "1"):
             n = n + pow(2, i)
 
     return int(n)
 
 
-def decode_elias_gamma(x):
+def decode_elias_gamma(x: int):
     """
     Description:
         Decodes a number from elias gamma.
@@ -164,8 +164,9 @@ def decode_elias_gamma(x):
     x = list(x)
     k = 0
     while True:
-        if not x[k] == "0":
+        if(not x[k] == "0"):
             break
+
         k = k + 1
 
     x = x[k:2*k+1]
@@ -173,7 +174,7 @@ def decode_elias_gamma(x):
     x.reverse()
 
     for i in range(len(x)):
-        if x[i] == "1":
+        if(x[i] == "1"):
             n += pow(2, i)
 
     return int(n)
@@ -209,5 +210,5 @@ def main():
     for num in data:
         print(algo(num))
 
-if __name__ == "__main__":
+if (__name__ == "__main__"):
     main()
