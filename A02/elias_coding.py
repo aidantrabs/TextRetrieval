@@ -116,6 +116,7 @@ def encode_elias_gamma(x: int):
     return to_unary(n) + to_binary(b, l)
 
 
+#TODO: FIX
 def decode_elias_delta(x: str):
     """
     Description:
@@ -131,11 +132,11 @@ def decode_elias_delta(x: str):
         return "ERROR"
 
     x = list(x)
-    k = x.count("0")
-    # while True:
-    #     if(not x[k] == "0"):
-    #         break
-    #     k += 1
+    k = 0
+    while True:
+        if(not x[k] == "0"):
+            break
+        k += 1
 
     x = x[2*k+1:]
     x.reverse()
@@ -164,12 +165,9 @@ def decode_elias_gamma(x: str):
         return "ERROR"
 
     x = list(x)
-    k = x.count("0")
-    # while True:
-    #     if(not x[k] == "0"):
-    #         break
-
-    #     k += 1
+    k = 0
+    while(x[k] == "0"):
+        k += 1
 
     x = x[k:2*k+1]
     n = 0
@@ -191,12 +189,6 @@ def main():
     }
 
     try:
-        data = (sys.argv[-1])[1:-2].split(",")
-    except:
-        print("Error. No data argument provided.")
-        return
-
-    try:
         algo_type = sys.argv[sys.argv.index("--alg") + 1]
     except:
         print("Error. Need to provide an algorithm.")
@@ -206,6 +198,12 @@ def main():
         encode = "e" if "--encode" in sys.argv else "d"
     except:
         print("Error. Need to provide an encoding or decoding.")
+        return
+
+    try:
+        data = [(int(x) if encode == "e" else x) for x in (sys.argv[-1])[1:-1].split(",")]
+    except:
+        print("Error. No data argument provided.")
         return
 
     algo = FUNCTION_MAP[f"{encode}{algo_type[0]}"]
