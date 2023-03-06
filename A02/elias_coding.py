@@ -188,14 +188,14 @@ def main():
     }
 
     parser = argparse.ArgumentParser(prog="Elias Coding", description="Elias Coding")
-    parser.add_argument("--alg", help="The algorithm to use. Can be either 'elias_delta' or 'elias_gamma'.")
+    parser.add_argument("--alg", help="The algorithm to use. Can be either 'elias_delta' or 'elias_gamma'.", type=str)
     parser.add_argument("--encode", help="Encode the data.", action="store_true")
     parser.add_argument("--decode", help="Decode the data.", action="store_true")
-    parser.add_argument("data", help="The data to encode or decode.")
+    parser.add_argument("data", help="The data to encode or decode.", type=str)
     args = parser.parse_args()
 
     if(args.encode and args.decode):
-        print("Error. Cannot encode and decode at the same time.")
+        print("Error! Cannot encode and decode at the same time.")
         return
 
     elif(args.encode):
@@ -205,7 +205,7 @@ def main():
         encode = "d"
 
     else:
-        print("Error. Need to provide an encoding or decoding.")
+        print("Error! Need to provide an encoding or decoding.")
         return
 
     if(args.alg == "delta"):
@@ -215,7 +215,7 @@ def main():
         algo_type = "g"
 
     else:
-        print("Error. Need to provide an algorithm.")
+        print("Error! Need to provide an algorithm.")
         return
 
     algo = FUNCTION_MAP[f"{encode}{algo_type}"]
