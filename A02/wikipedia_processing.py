@@ -1,9 +1,17 @@
 import argparse
 import json
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
 import os
+import string
+import scipy.interpolate
 import sys
+from typing import List, Tuple
 
 DATA_DIRECTORY = "./data_wikipedia"
+DATA_FILE_ENCODING = "utf-8"
+
 
 class Parameters:
     """
@@ -32,44 +40,107 @@ class Parameters:
         return
 
 
-def process_files(params: Parameters):
+def get_full_merged_string(params: Parameters):
     """
     Description:
-        Processes all files in the data directory.
+        Processes all files in the data directory, and compiles all the
+        "text" attributes of the JSON objects in the files into a single
+        cleaned string.
 
     Parameters:
         params (Parameters): The parameters for the script.
+
+    Returns:
+        (str): The merged lower-case string with punctuation removed.
     """
+    text = ""
     for fileName in os.listdir(DATA_DIRECTORY):
         properFileName = os.path.join(DATA_DIRECTORY, fileName)
         if(not os.path.isfile(properFileName)):
             continue
 
-        process_file(properFileName, params)
+        text += get_file_merged_string(properFileName)
 
-    return
+    return text.lower().translate(str.maketrans('', '', string.punctuation))
 
 
-def process_file(fileName: str, params: Parameters):
+def get_file_merged_string(fileName: str):
     """
     Description:
-        Processes a file.
+        Compiles all the "text" attributes of the JSON objects in the file
+        and combines them into a single string.
 
     Parameters:
         fileName (str): The name of the file to process.
-        params (Parameters): The parameters for the script.
+
+    Returns:
+        (str): The merged string.
     """
-    file = open(fileName, "r")
+    file = open(fileName, "r", encoding=DATA_FILE_ENCODING)
     data = json.load(file) #[ {id, text, title} ]
-    mergedText = ""
+    text = ""
 
     for entry in data:
-        id = entry["id"]
-        text = entry["text"]
-        title = entry["title"]
-        mergedText += text
+        text += entry["text"]
 
-    return
+    return text
+
+
+def get_word_counts(text: str):
+    """
+    Description:
+        Creates an tuple array of word counts from the text, where the key
+        is the word and the value is the count.
+
+    Parameters:
+        text (str): The text to get the word counts from.
+
+    Returns:
+        (dict): The dictionary of word counts, sorted ascendingly by count.
+    """
+    counts = {}
+    for word in text.split(" "):
+        if(word not in counts):
+            counts[word] = 1
+
+        else:
+            counts[word] += 1
+
+    return counts
+
+
+
+
+
+def zipf_law(wordCounts: List[Tuple[str, int]]):
+    """
+    Description:
+        Performs Zipf's law on the text.
+
+    Parameters:
+        text (str): The text to perform Zipf's law on.
+    """
+    depth = 10
+    counts = dict(sorted(wordCounts.items(), key=lambda x: x[1], reverse=True)[0:depth])
+
+    def percentify(value, max):
+        return round(value / max * 100)
+
+    def smoothify(yInput):
+        x = np.array(range(0, depth))
+        y = np.array(yInput)
+        # define x as 600 equally spaced values between the min and max of original x
+        x_smooth = np.linspace(x.min(), x.max(), 600)
+        # define spline with degree k=3, which determines the amount of wiggle
+        spl = scipy.interpolate.make_interp_spline(x, y, k=3)
+        y_smooth = spl(x_smooth)
+        # Return the x and y axis
+        return x_smooth, y_smooth
+
+
+    ziffianCurveValues = [100/i for i in range(1, depth+1)]
+    x, y = smoothify(ziffianCurveValues)
+    plt.plot(x, y, label='Ziffian Curve', ls=':', color='grey')
 
 
 def main():
@@ -83,23 +154,18 @@ def main():
     parser.add_argument("--stopword", help="Perform stopword removal.", action="store_true")
     parser.add_argument("--stemming", help="Perform stemming.", action="store_true")
     parser.add_argument("--invertedindex", help="Perform inverted index creation.", action="store_true")
+
     args = parser.parse_args()
+    params = Parameters(args.zipf, args.tokenize, args.stopword, args.stemming, args.invertedindex)
 
-    params = Parameters()
-    params.zipf = args.zipf
-    params.tokenize = args.tokenize
-    params.stopword = args.stopword
-    params.stemming = args.stemming
-    params.invertedIndex = args.invertedindex
-    process_files(params)
+    text = get_full_merged_string(params)
+    counts = get_word_counts(text)
+    zipf_law(counts)
 
-    # params = Parameters()
-    # params.zipf = "--zipf" in sys.argv
-    # params.tokenize = "--tokenize" in sys.argv
-    # params.stopword = "--stopword" in sys.argv
-    # params.stemming = "--stemming" in sys.argv
-    # params.invertedIndex = "--invertedindex" in sys.argv
-    # process_files(params)
+    print(f"Length of fully merged text is {len(text)} characters.")
+    print(f"Memory of fully merged text is {sys.getsizeof(text) / 1000000} MB.")
+
+
     return
 
 
