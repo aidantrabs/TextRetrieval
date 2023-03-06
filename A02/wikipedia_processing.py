@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import sys
@@ -21,6 +22,14 @@ class Parameters:
     stopword: bool
     stemming: bool
     invertedIndex: bool
+
+    def __init__(self, zipf: bool, tokenize: bool, stopword: bool, stemming: bool, invertedIndex: bool):
+        self.zipf = zipf
+        self.tokenize = tokenize
+        self.stopword = stopword
+        self.stemming = stemming
+        self.invertedIndex = invertedIndex
+        return
 
 
 def process_files(params: Parameters):
@@ -68,14 +77,29 @@ def main():
     Description:
         Main function for the wikipedia processing script.
     """
-    params = Parameters()
-    params.zipf = "--zipf" in sys.argv
-    params.tokenize = "--tokenize" in sys.argv
-    params.stopword = "--stopword" in sys.argv
-    params.stemming = "--stemming" in sys.argv
-    params.invertedIndex = "--invertedindex" in sys.argv
+    parser = argparse.ArgumentParser(prog="Wikipedia Processing", description="Process Wikipedia JSON data.")
+    parser.add_argument("--zipf", help="Perform Zipf's law.", action="store_true")
+    parser.add_argument("--tokenize", help="Perform tokenization.", action="store_true")
+    parser.add_argument("--stopword", help="Perform stopword removal.", action="store_true")
+    parser.add_argument("--stemming", help="Perform stemming.", action="store_true")
+    parser.add_argument("--invertedindex", help="Perform inverted index creation.", action="store_true")
+    args = parser.parse_args()
 
+    params = Parameters()
+    params.zipf = args.zipf
+    params.tokenize = args.tokenize
+    params.stopword = args.stopword
+    params.stemming = args.stemming
+    params.invertedIndex = args.invertedindex
     process_files(params)
+
+    # params = Parameters()
+    # params.zipf = "--zipf" in sys.argv
+    # params.tokenize = "--tokenize" in sys.argv
+    # params.stopword = "--stopword" in sys.argv
+    # params.stemming = "--stemming" in sys.argv
+    # params.invertedIndex = "--invertedindex" in sys.argv
+    # process_files(params)
     return
 
 

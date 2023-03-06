@@ -1,9 +1,10 @@
-from math import log, floor, pow
+import argparse
 import sys
-
-from numpy import str_
+from math import log, floor, pow
+from typing import List
 
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
+
 
 def is_valid_binary(x: str):
     """
@@ -133,9 +134,7 @@ def decode_elias_delta(x: str):
 
     x = list(x)
     k = 0
-    while True:
-        if(not x[k] == "0"):
-            break
+    while(x[k] == "0"):
         k += 1
 
     x = x[2*k+1:]
@@ -188,27 +187,42 @@ def main():
         "dg": decode_elias_gamma
     }
 
-    try:
-        algo_type = sys.argv[sys.argv.index("--alg") + 1]
-    except:
-        print("Error. Need to provide an algorithm.")
+    parser = argparse.ArgumentParser(prog="Elias Coding", description="Elias Coding")
+    parser.add_argument("--alg", help="The algorithm to use. Can be either 'elias_delta' or 'elias_gamma'.")
+    parser.add_argument("--encode", help="Encode the data.", action="store_true")
+    parser.add_argument("--decode", help="Decode the data.", action="store_true")
+    parser.add_argument("data", help="The data to encode or decode.")
+    args = parser.parse_args()
+
+    if(args.encode and args.decode):
+        print("Error. Cannot encode and decode at the same time.")
         return
 
-    try:
-        encode = "e" if "--encode" in sys.argv else "d"
-    except:
+    elif(args.encode):
+        encode = "e"
+
+    elif(args.decode):
+        encode = "d"
+
+    else:
         print("Error. Need to provide an encoding or decoding.")
         return
 
-    try:
-        data = [(int(x) if encode == "e" else x) for x in (sys.argv[-1])[1:-1].split(",")]
-    except:
-        print("Error. No data argument provided.")
+    if(args.alg == "delta"):
+        algo_type = "d"
+
+    elif(args.alg == "gamma"):
+        algo_type = "g"
+
+    else:
+        print("Error. Need to provide an algorithm.")
         return
 
-    algo = FUNCTION_MAP[f"{encode}{algo_type[0]}"]
+    algo = FUNCTION_MAP[f"{encode}{algo_type}"]
+    data = [(int(x) if encode == "e" else x) for x in args.data[1:-1].split(",")]
     for num in data:
         print(algo(num))
+
 
 if (__name__ == "__main__"):
     main()
