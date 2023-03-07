@@ -27,21 +27,46 @@
 
 ## Contributions
  #### **Aidan Traboulay** 200115590
- - 
+ -
 
 ####  **Mobina Tooranisama** 200296720
-- 
+-
 
 ####  **Nausher Rao** 190906250
-- 
+- I worked on the `elias_coding.py` file, writing all the functions for encoding and decoding. This file extensively used the built-in `math` module.
+- I worked on the `wikipeda_processing.py` file, writing all the functions for processing the wikipedia data. This file extensively used the built-in `json`, `os`, and `sys` modules.
 
 
 ## Explanations
+All three programs used quite different modules, but were all written using `Python 3.10`.
 
 ### Wikipedia Processing (`wikipedia_processing.py`)
+x
+
 
 ### Elias Coding (`elias_coding.py`)
+The main function calls different functions depending on the arguments passed to the program. The program can be run in two modes with two different algorithms: encoding and decoding with the Elias Gamma and Elias Delta algorithms. Each number is iterated over and passed to the specific function.
+
+
+#### Elias Delta Coding
+The `encode_elias_delta` function takes a number as input and returns the result. The function first calculates the log_2 of the given number and adds 1. This number is then converted to binary and the first bit is removed. The remaining bits are then concatenated with the original number in unary. This formula can be seen bellow:
+$$ n = 1 + \lfloor log_{2}(x) \rfloor \newline result = n_{binary} + x_{unary}$$
+
+
+#### Elias Gamma Coding
+The `encode_elias_gamma` function takes a number as input and returns the result. The function first calculates the log_2 of the given number and adds 1. After this, variables `n` and `b` are calculated using the following formula:
+$$ n = 1 + log_{2}(x) \newline b = (x - 2)^{log_{2}(x)} \newline result = n_{unary} + b_{binary}$$
+
+
+#### Elias Delta Decoding
+The `decode_elias_delta` function takes a string as input and returns the result. First, the function checks to see if the input is a valid binary number. The function then iterates over the string and counts the number of 1's. The number is then
+
+
+#### Elias Gamma Decoding
+The `decode_elias_gamma` function takes a string as input and returns the result. First, the function checks to see if the input is a valid binary number. The function then iterates over the string and counts the number of 1's. The number is then
+
 
 ### Page Rank (`page_rank.py`)
+
 
 ### Noisy Channel (`noisy_channel.py`)
