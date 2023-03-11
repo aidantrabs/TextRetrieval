@@ -106,7 +106,17 @@ Lastly, the program uses the values attained from the `optimize_webpage` functio
 
 ### Usage
 #### Web Crawler #1 - Depth & Logger Crawler
+`python3 webcrawler1.py <max_depth> <url> [--rewrite] [--verbose]`
+##### Examples
+`python3 webcrawler1.py 2 https://sherrao.tech --rewrite --verbose`
+`python3 webcrawler1.py 2 https://aidantraboulay.tech --rewrite`
 
 #### Web Crawler #2 - Google Scholar Profile Crawler
+`python3 webcrawler2.py <url>`
+##### Example
+`python3 webcrawler2.py https://scholar.google.com/citations?user=RvyPyJ0AAAAJ&hl=en`
 
 #### Web Crawler #3 - Tag & Graph Crawler
+`python3 webcrawler3.py <url>`
+##### Example
+`python3 webcrawler3.py https://sherrao.tech`
