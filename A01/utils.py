@@ -18,32 +18,46 @@ def session_handler():
 
     Parameters:
         None
+
+    Returns:
+        requests.Session: A session object.
     """
     session = requests.session()
     session.headers.update(HEADERS)
     return session
 
-def get_content(url):
+
+def get_content(url: str):
     """
     Description:
         Returns the text content of the page at the given URL.
 
     Parameters:
         url (str): The URL of the page to retrieve.
+
+    Returns:
+        str: The text content of the page.
     """
     base_url, params = parse_url(url)
     page = get_page(base_url, params)
-    if page:
+    if(page):
         soup = BeautifulSoup(page.content, 'html.parser')
         return soup
 
-def parse_url(url):
+    return
+
+
+def parse_url(url: str):
     """
     Description:
         Returns the base URL and parameters of the given URL.
 
     Parameters:
         url (str): The URL to parse.
+
+    Returns:
+        str: The base URL.
+        dict: A dictionary of the parameters.
     """
     tokens = url.split("?")
     base_url = tokens[0]
@@ -56,27 +70,31 @@ def parse_url(url):
 
     return base_url, params
 
-def get_page(base_url, params):
+
+def get_page(base_url: str, params: dict):
     """
     Description:
         Returns the HTML of the page at the given URL.
 
     Parameters:
         url (str): The URL of the page to retrieve.
+        params (dict): A dictionary of the parameters.
+
+    Returns:
+        str: The HTML of the page.
     """
     try:
-        response = requests.get(base_url, headers=HEADERS,
-                                params=params, proxies=PROXIES)
-        if (response.ok):
+        response = requests.get(base_url, headers=HEADERS, params=params, proxies=PROXIES)
+        if(response.ok):
             return response
         else:
-            print("Page returned with a non-ok response code:",
-                  response.status_code)
+            print("Page returned with a non-ok response code:", response.status_code)
 
     except:
         return None
 
-def write_raw_data(content, url):
+
+def write_raw_data(content: str, url: str):
     """
     Description:
         Writes the content to a file with hashed name.
@@ -90,6 +108,9 @@ def write_raw_data(content, url):
     with open(filename, 'w+') as f:
         f.write(content)
 
+    return
+
+
 def hash_url(url):
     """
     Description:
@@ -97,16 +118,17 @@ def hash_url(url):
 
     Parameters:
         url (str): The URL to hash.
+
+    Returns:
+        str: The SHA256 hash of the given URL.
     """
     return hashlib.sha256(url.encode()).hexdigest()
+
 
 def print_giraffe():
     """
     Description:
         Prints a giraffe to the command line.
-
-    Parameters:
-        None
     """
     print(r"""
 
@@ -119,14 +141,13 @@ def print_giraffe():
                          ,"     ## /
                          ,"   ##    /
           """)
+    return
+
 
 def print_loading():
     """
     Description:
         Prints a fully-animated loading bar to the command line.
-
-    Parameters:
-        None
     """
     items = list(range(0, 50))
     l = len(items)
@@ -136,7 +157,10 @@ def print_loading():
         sleep(0.09)
         loading(i + 1, l, prefix='Progress:', suffix='Complete', length=l)
 
-def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>'):
+    return
+
+
+def loading(iter: int, total: int, prefix: str = '', suffix: str = '', decimals: int = 1, length: int = 100, fill: str = '>'):
     """
     Description:
         A frame of a loading bar for the command line. Yes, I have time on my hands.
@@ -159,3 +183,5 @@ def loading(iter, total, prefix='', suffix='', decimals=1, length=100, fill='>')
 
     if iter == total:
         print()
+
+    return

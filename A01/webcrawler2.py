@@ -1,58 +1,66 @@
 import argparse
-import sys
 import json
 from utils import *
 
 
-def get_paginated_url(url):
-     """
-     Description:
-          Checks if the given URL has pagination.
-
-     Parameters:
-          url (str): The URL to check.
-     """
-     soup = get_content(url)
-     pagination = soup.find("button", id="gsc_bpf_more")
-     if pagination:
-          paginated_url = url + "&cstart=20&pagesize=1000"
-          return paginated_url
-
-     return
-
-
-def get_paginated_content(paginated_url):
-     """
-     Description:
-          Returns the parsed content of the page at the given URL.
-
-     Parameters:
-          paginated_url (str): The URL of the page to retrieve.
-     """
-     soup = get_content(paginated_url)
-     paginated_researcher_paper_dict = []
-     for paper in soup.find_all("tr", class_="gsc_a_tr"):
-           paginated_researcher_paper_dict.append({
-                "paper_title": paper.find("a", class_="gsc_a_at").get_text(),
-                "paper_authors": paper.find_all("div", {"class": "gs_gray"})[0].get_text(),
-                "paper_journal": paper.find_all("div", {"class": "gs_gray"})[1].get_text().split(",")[0].strip(""),
-                "paper_citedby": paper.find("a", class_="gsc_a_ac gs_ibl").get_text(),
-                "paper_year": paper.find("span", class_="gsc_a_h gsc_a_hc gs_ibl").get_text()
-           })
-
-     return paginated_researcher_paper_dict
-
-
-def get_parsed_content(url):
+def get_paginated_url(url: str):
     """
     Description:
-         Returns the parsed content of the page at the given URL.
+        Checks if the given URL has pagination.
 
     Parameters:
-         url (str): The URL of the page to retrieve.
+        url (str): The URL to check.
+
+    Returns:
+        str: The URL with pagination.
     """
     soup = get_content(url)
+    pagination = soup.find("button", id="gsc_bpf_more")
+    if(pagination):
+        paginated_url = url + "&cstart=20&pagesize=1000"
+        return paginated_url
 
+    return
+
+
+def get_paginated_content(paginated_url: str):
+    """
+    Description:
+        Returns the parsed content of the page at the given URL.
+
+    Parameters:
+        paginated_url (str): The URL of the page to retrieve.
+
+    Returns:
+        list: A list of dictionaries containing the paper title, authors, journal, citedby, and year.
+    """
+    soup = get_content(paginated_url)
+    paginated_researcher_paper_dict = []
+    for paper in soup.find_all("tr", class_="gsc_a_tr"):
+        paginated_researcher_paper_dict.append({
+            "paper_title": paper.find("a", class_="gsc_a_at").get_text(),
+            "paper_authors": paper.find_all("div", {"class": "gs_gray"})[0].get_text(),
+            "paper_journal": paper.find_all("div", {"class": "gs_gray"})[1].get_text().split(",")[0].strip(""),
+            "paper_citedby": paper.find("a", class_="gsc_a_ac gs_ibl").get_text(),
+            "paper_year": paper.find("span", class_="gsc_a_h gsc_a_hc gs_ibl").get_text()
+        })
+
+    return paginated_researcher_paper_dict
+
+
+def get_parsed_content(url: str):
+    """
+    Description:
+        Returns the parsed content of the page at the given URL.
+
+    Parameters:
+        url (str): The URL of the page to retrieve.
+
+    Returns:
+        dict: A dictionary containing the researcher name, caption,
+        institution, keywords, image URL, citations, h-index, i10-index, coauthors, and papers.
+    """
+    soup = get_content(url)
     researcher_name = soup.find("div", id="gsc_prf_in").contents[0]
     researcher_caption = soup.find("div", class_="gsc_prf_il").contents[0].strip(", ")
     researcher_institution = soup.find("a", class_="gsc_prf_ila").contents[0]
@@ -86,14 +94,17 @@ def get_parsed_content(url):
         researcher_hindex, researcher_i10index, researcher_coauthor_dict, researcher_paper_dict
 
 
-def combine_paper_lists(researcher_paper_dict, paginated_researcher_paper_dict):
+def combine_paper_lists(researcher_paper_dict: list, paginated_researcher_paper_dict: list):
     """
     Description:
-         Combines the two lists of papers.
+        Combines the two lists of papers.
 
     Parameters:
-         researcher_paper_dict (list): The list of papers.
-         paginated_researcher_paper_dict (list): The list of papers.
+        researcher_paper_dict (list): The list of papers.
+        paginated_researcher_paper_dict (list): The list of papers.
+
+    Returns:
+        list: A list of dictionaries containing the paper title, authors, journal, citedby, and year.
     """
     for paper in paginated_researcher_paper_dict:
         researcher_paper_dict.append(paper)
@@ -101,14 +112,14 @@ def combine_paper_lists(researcher_paper_dict, paginated_researcher_paper_dict):
     return researcher_paper_dict
 
 
-def write_json_data(content, url):
+def write_json_data(content: str, url: str):
     """
     Description:
-         Writes the content to a file with hashed name.
+        Writes the content to a file with hashed name.
 
     Parameters:
-         content (str): The content to write to the file.
-         url (str): The URL of the page to retrieve.
+        content (str): The content to write to the file.
+        url (str): The URL of the page to retrieve.
     """
     parsed_content = get_parsed_content(url)
     paginated_researcher_paper_dict = get_paginated_content(get_paginated_url(url))
@@ -156,7 +167,7 @@ def main():
     url = args.url
     content = get_content(url).prettify()
 
-    if (content):
+    if(content):
         write_raw_data(content, url)
         write_json_data(content, url)
     else:
@@ -165,5 +176,5 @@ def main():
     return
 
 
-if __name__ == "__main__":
+if(__name__ == "__main__"):
     main()

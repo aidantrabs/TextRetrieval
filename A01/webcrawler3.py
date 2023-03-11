@@ -1,8 +1,7 @@
 import argparse
 import matplotlib.pyplot as mpl
 import numpy as np
-import regex as re
-import sys
+import re
 from utils import *
 
 # Matches all content in an HTML doc that isn't an HTML tag.
@@ -15,20 +14,21 @@ HTML_TAGS_REGEX = r"<[^<]+?>"
 NON_ZERO_ONE_REGEX = r"[^01]+"
 
 
-def replace_html(text):
+def replace_html(text: str):
     """
     Description:
         Returns the text with HTML tags removed.
 
     Parameters:
         text (str): The text to remove HTML tags from.
-     """
-    return re.sub(NON_ZERO_ONE_REGEX, "",
-                  re.sub(HTML_TAGS_REGEX, "1",
-                         re.sub(HTML_CONTENT_REGEX, "0", text)))
+    """
+    a = re.sub(HTML_CONTENT_REGEX, "0", text)
+    b = re.sub(HTML_TAGS_REGEX, "1", a)
+    c = re.sub(NON_ZERO_ONE_REGEX, "", b)
+    return c
 
 
-def optimise_webpage(bits):
+def optimise_webpage(bits: list):
     """
     Description:
         Returns the optimal range of content to display on a webpage.
@@ -55,7 +55,7 @@ def optimise_webpage(bits):
     return i_prime, j_prime
 
 
-def generate_heatmap(bits):
+def generate_heatmap(bits: list):
     """
     Description:
         Generates a heatmap of the number of tags in a document.
@@ -80,14 +80,18 @@ def generate_heatmap(bits):
     return
 
 
-def get_optimised_content(content, i, j):
+def get_optimised_content(content: str, i: int, j: int):
     """
     Description:
         Returns the content of a document between the given indices.
 
     Parameters:
+        content (str): The content of the document.
         i (int): The starting index.
         j (int): The ending index.
+
+    Returns:
+        str: The content of the document between the given indices.
     """
     split_content = re.split(HTML_TAGS_REGEX, content)
     return " ".join(split_content[i:j])
@@ -110,13 +114,13 @@ def main():
         return
 
     session_handler()
-    print_giraffe()
-    print_loading()
+    # print_giraffe()
+    # print_loading()
 
     url = args.url
-    raw_content = get_content(url)
+    raw_content = str(get_content(url))
     content = replace_html(raw_content)
-    if (content):
+    if(content):
         bits = [int(x) for x in content]
         i, j = optimise_webpage(bits)
         print("Optimal range (i^*, j^*): {} to {}".format(i, j))
@@ -131,5 +135,5 @@ def main():
     return
 
 
-if __name__ == "__main__":
+if(__name__ == "__main__"):
     main()

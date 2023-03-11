@@ -1,5 +1,4 @@
 import argparse
-import sys
 import datetime as dt
 from bs4 import BeautifulSoup
 from utils import *
@@ -13,7 +12,7 @@ def get_dt():
     return dt.datetime.now()
 
 
-def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
+def crawl_urls(url: str, max_depth: int, rewrite: bool = False, verbose: bool = False, depth:int = 0):
     """
     Description:
         Crawls the given URL and all of its hyperlinks.
@@ -26,8 +25,8 @@ def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
         depth (int): The current depth of the crawler.
     """
     http_resp = get_page(url, {})
-
-    if not http_resp:
+    if(not http_resp):
+        print("Error. Could not retrieve page.")
         return
 
     soup = BeautifulSoup(http_resp.text, "html.parser")
@@ -38,17 +37,15 @@ def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
     links = [link.get("href") for link in hyperlinks]
 
     filename = "{}.txt".format(hashed)
-    if not rewrite and os.path.isfile(filename):
-        if verbose:
-            print("{},{}".format(url, depth))
+    if(not rewrite and os.path.isfile(filename) and verbose):
+        print("{},{}".format(url, depth))
 
     write_raw_data(soup.prettify(), filename)
     with open("crawler1.log", "a") as logs:
         logs.write(f"{hashed}, {url}, {datetime}, {http_resp}\n")
 
-    if max_depth == 0:
-        if verbose:
-            print(f"{url},{depth}")
+    if(max_depth == 0 and verbose):
+        print(f"{url},{depth}")
 
     for link in links:
         crawl_urls(link, max_depth - 1, rewrite, verbose, depth + 1)
@@ -93,5 +90,5 @@ def main():
     return
 
 
-if __name__ == "__main__":
-     main()
+if(__name__ == "__main__"):
+    main()
