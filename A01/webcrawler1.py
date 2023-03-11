@@ -1,7 +1,9 @@
+import argparse
 import sys
+import datetime as dt
 from bs4 import BeautifulSoup
 from utils import *
-import datetime as dt
+
 
 def get_dt():
     """
@@ -9,6 +11,7 @@ def get_dt():
         Returns the current date and time.
     """
     return dt.datetime.now()
+
 
 def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
     """
@@ -23,25 +26,24 @@ def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
         depth (int): The current depth of the crawler.
     """
     http_resp = get_page(url, {})
-    
+
     if not http_resp:
         return
 
-    soup = BeautifulSoup(http_resp.text, 'html.parser')
+    soup = BeautifulSoup(http_resp.text, "html.parser")
     hashed = hash_url(url)
     datetime = get_dt()
-    
-    hyperlinks = soup.find_all('a')
-    links = [link.get('href') for link in hyperlinks]
+
+    hyperlinks = soup.find_all("a")
+    links = [link.get("href") for link in hyperlinks]
 
     filename = "{}.txt".format(hashed)
     if not rewrite and os.path.isfile(filename):
         if verbose:
             print("{},{}".format(url, depth))
-    
-    write_raw_data(soup.prettify(), filename)
 
-    with open('crawler1.log', 'a') as logs:
+    write_raw_data(soup.prettify(), filename)
+    with open("crawler1.log", "a") as logs:
         logs.write(f"{hashed}, {url}, {datetime}, {http_resp}\n")
 
     if max_depth == 0:
@@ -50,6 +52,9 @@ def crawl_urls(url, max_depth, rewrite=False, verbose=False, depth=0):
 
     for link in links:
         crawl_urls(link, max_depth - 1, rewrite, verbose, depth + 1)
+
+    return
+
 
 def main():
     """
@@ -61,24 +66,32 @@ def main():
     """
     global max_depth
 
-    try:
-        url = sys.argv[-1]
-    except:
-        print("Error. No URL argument provided.")
-        
-    try:
-        max_depth = int(sys.argv[1])
-    except:
-        print("Error. Need to provide a max depth.")
+    parser = argparse.ArgumentParser(prog="Web Crawler #1", description="Web Crawler #1")
+    parser.add_argument("max_depth", help="The maximum depth to crawl.", type=int)
+    parser.add_argument("--rewrite", help="Rewrite the files.", action="store_true")
+    parser.add_argument("--verbose", help="Print the URLs as they are crawled.", action="store_true")
+    parser.add_argument("url", help="The URL to crawl.", type=str)
+    args = parser.parse_args()
 
-    rewrite = '--rewrite' in sys.argv
-    verbose = '--verbose' in sys.argv
+    if(not args.max_depth):
+        print("Error. No max depth argument provided.")
+        return
+
+    elif(args.max_depth < 0):
+        print("Error. Max depth must be greater than or equal to 0.")
+        return
+
+    if(not args.url):
+        print("Error. No URL argument provided.")
+        return
 
     session_handler()
     print_giraffe()
     print_loading()
 
-    crawl_urls(url, max_depth, rewrite, verbose)
+    crawl_urls(args.url, args.max_depth, args.rewrite, args.verbose)
+    return
+
 
 if __name__ == "__main__":
      main()

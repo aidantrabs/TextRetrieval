@@ -1,7 +1,8 @@
-import sys
-import regex as re
-import numpy as np
+import argparse
 import matplotlib.pyplot as mpl
+import numpy as np
+import regex as re
+import sys
 from utils import *
 
 # Matches all content in an HTML doc that isn't an HTML tag.
@@ -12,6 +13,7 @@ HTML_TAGS_REGEX = r"<[^<]+?>"
 
 # Matches all non-binary characters.
 NON_ZERO_ONE_REGEX = r"[^01]+"
+
 
 def replace_html(text):
     """
@@ -24,6 +26,7 @@ def replace_html(text):
     return re.sub(NON_ZERO_ONE_REGEX, "",
                   re.sub(HTML_TAGS_REGEX, "1",
                          re.sub(HTML_CONTENT_REGEX, "0", text)))
+
 
 def optimise_webpage(bits):
     """
@@ -51,6 +54,7 @@ def optimise_webpage(bits):
 
     return i_prime, j_prime
 
+
 def generate_heatmap(bits):
     """
     Description:
@@ -59,10 +63,10 @@ def generate_heatmap(bits):
     Parameters:
         bits (list): A list of 0s and 1s representing the content of a document.
     """
-    n = len(bits)
-    heatmap = np.zeros((n, n))
-    for i in range(n):
-        for j in range(i, n):
+    b = len(bits)
+    heatmap = np.zeros((b, b))
+    for i in range(b):
+        for j in range(i, b):
             a = sum(bits[:i])
             b = sum(bits[j:])
             f = 0
@@ -73,6 +77,8 @@ def generate_heatmap(bits):
 
     mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
     mpl.show()
+    return
+
 
 def get_optimised_content(content, i, j):
     """
@@ -86,6 +92,7 @@ def get_optimised_content(content, i, j):
     split_content = re.split(HTML_TAGS_REGEX, content)
     return " ".join(split_content[i:j])
 
+
 def main():
     """
     Description:
@@ -94,15 +101,19 @@ def main():
     Usage:
         python3 webcrawler3.py <url>
     """
-    try:
-        url = sys.argv[1]
-    except:
+    parser = argparse.ArgumentParser(prog="Web Crawler #3", description="Web Crawler #3")
+    parser.add_argument("url", help="The URL of the webpage to crawl.")
+    args = parser.parse_args()
+
+    if(not args.url):
         print("Error. No URL argument provided.")
+        return
 
     session_handler()
     print_giraffe()
     print_loading()
 
+    url = args.url
     raw_content = get_content(url)
     content = replace_html(raw_content)
     if (content):
@@ -113,8 +124,12 @@ def main():
         optimised_content = get_optimised_content(raw_content, i, j)
         write_raw_data(optimised_content, url)
         generate_heatmap(bits)
+
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
+
+    return
+
 
 if __name__ == "__main__":
     main()

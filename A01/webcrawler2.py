@@ -1,8 +1,8 @@
+import argparse
 import sys
-import requests
 import json
-from bs4 import BeautifulSoup
 from utils import *
+
 
 def get_paginated_url(url):
      """
@@ -17,6 +17,9 @@ def get_paginated_url(url):
      if pagination:
           paginated_url = url + "&cstart=20&pagesize=1000"
           return paginated_url
+
+     return
+
 
 def get_paginated_content(paginated_url):
      """
@@ -38,6 +41,7 @@ def get_paginated_content(paginated_url):
            })
 
      return paginated_researcher_paper_dict
+
 
 def get_parsed_content(url):
     """
@@ -81,6 +85,7 @@ def get_parsed_content(url):
         researcher_keywords, researcher_imgURL, researcher_citations, \
         researcher_hindex, researcher_i10index, researcher_coauthor_dict, researcher_paper_dict
 
+
 def combine_paper_lists(researcher_paper_dict, paginated_researcher_paper_dict):
     """
     Description:
@@ -94,6 +99,7 @@ def combine_paper_lists(researcher_paper_dict, paginated_researcher_paper_dict):
         researcher_paper_dict.append(paper)
 
     return researcher_paper_dict
+
 
 def write_json_data(content, url):
     """
@@ -120,9 +126,12 @@ def write_json_data(content, url):
         "researcher_papers": research_papers
     }
 
-    filename = 'data/' + hash_url(url) + '.json'
-    with open(filename, 'w') as f:
+    filename = "data/" + hash_url(url) + ".json"
+    with open(filename, "w") as f:
         f.write(json.dumps(content_dict, indent=4))
+
+    return
+
 
 def main():
     """
@@ -132,14 +141,19 @@ def main():
     Usage:
          python3 webcrawler2.py <url>
     """
-    try:
-        url = sys.argv[1]
-    except:
+    parser = argparse.ArgumentParser(prog="Web Crawler #2", description="Web Crawler #2")
+    parser.add_argument("url", help="The URL of the page to retrieve.")
+    args = parser.parse_args()
+
+    if(not args.url):
         print("Error. No URL argument provided.")
+        return
 
     session_handler()
     print_giraffe()
     print_loading()
+
+    url = args.url
     content = get_content(url).prettify()
 
     if (content):
@@ -147,6 +161,9 @@ def main():
         write_json_data(content, url)
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
+
+    return
+
 
 if __name__ == "__main__":
     main()
