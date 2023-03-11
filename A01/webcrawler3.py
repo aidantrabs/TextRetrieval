@@ -101,7 +101,7 @@ def main():
     Usage:
         python3 webcrawler3.py <url>
     """
-    parser = argparse.ArgumentParser(prog="Web Crawler #3", description="Web Crawler #3")
+    parser = argparse.ArgumentParser(prog="Web Crawler #3", description="Tag & Graph Crawler.")
     parser.add_argument("url", help="The URL of the webpage to crawl.")
     args = parser.parse_args()
 

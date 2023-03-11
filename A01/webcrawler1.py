@@ -66,7 +66,7 @@ def main():
     """
     global max_depth
 
-    parser = argparse.ArgumentParser(prog="Web Crawler #1", description="Web Crawler #1")
+    parser = argparse.ArgumentParser(prog="Web Crawler #1", description="Depth & Logger Crawler.")
     parser.add_argument("max_depth", help="The maximum depth to crawl.", type=int)
     parser.add_argument("--rewrite", help="Rewrite the files.", action="store_true")
     parser.add_argument("--verbose", help="Print the URLs as they are crawled.", action="store_true")

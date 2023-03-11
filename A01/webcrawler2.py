@@ -141,7 +141,7 @@ def main():
     Usage:
          python3 webcrawler2.py <url>
     """
-    parser = argparse.ArgumentParser(prog="Web Crawler #2", description="Web Crawler #2")
+    parser = argparse.ArgumentParser(prog="Web Crawler #2", description="Google Scholar Profile Crawler.")
     parser.add_argument("url", help="The URL of the page to retrieve.")
     args = parser.parse_args()
 

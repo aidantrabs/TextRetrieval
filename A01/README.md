@@ -103,3 +103,10 @@ The second function, `generate_heatmap`, uses a similar formula to the one used 
 
 Lastly, the program uses the values attained from the `optimize_webpage` function, and grabs the most important content, printing it to the hashed-URL named file.
 
+
+### Usage
+#### Web Crawler #1 - Depth & Logger Crawler
+
+#### Web Crawler #2 - Google Scholar Profile Crawler
+
+#### Web Crawler #3 - Tag & Graph Crawler
