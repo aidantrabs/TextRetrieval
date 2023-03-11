@@ -114,8 +114,8 @@ def main():
         return
 
     session_handler()
-    # print_giraffe()
-    # print_loading()
+    print_giraffe()
+    print_loading()
 
     url = args.url
     raw_content = str(get_content(url))
@@ -123,6 +123,7 @@ def main():
     if(content):
         bits = [int(x) for x in content]
         i, j = optimise_webpage(bits)
+        print("D")
         print("Optimal range (i^*, j^*): {} to {}".format(i, j))
 
         optimised_content = get_optimised_content(raw_content, i, j)
