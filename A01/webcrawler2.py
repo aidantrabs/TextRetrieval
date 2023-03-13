@@ -16,7 +16,7 @@ def get_paginated_url(url: str):
     """
     soup = get_content(url)
     pagination = soup.find("button", id="gsc_bpf_more")
-    if(pagination):
+    if (pagination):
         paginated_url = url + "&cstart=20&pagesize=1000"
         return paginated_url
 
@@ -156,7 +156,7 @@ def main():
     parser.add_argument("url", help="The URL of the page to retrieve.")
     args = parser.parse_args()
 
-    if(not args.url):
+    if (not args.url):
         print("Error. No URL argument provided.")
         return
 
@@ -167,7 +167,7 @@ def main():
     url = args.url
     content = get_content(url).prettify()
 
-    if(content):
+    if (content):
         write_raw_data(content, url)
         write_json_data(content, url)
     else:
@@ -176,5 +176,5 @@ def main():
     return
 
 
-if(__name__ == "__main__"):
+if (__name__ == "__main__"):
     main()

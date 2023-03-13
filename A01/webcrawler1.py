@@ -25,7 +25,7 @@ def crawl_urls(url: str, max_depth: int, rewrite: bool = False, verbose: bool = 
         depth (int): The current depth of the crawler.
     """
     http_resp = get_page(url, {})
-    if(not http_resp):
+    if (not http_resp):
         print("Error. Could not retrieve page.")
         return
 
@@ -37,14 +37,14 @@ def crawl_urls(url: str, max_depth: int, rewrite: bool = False, verbose: bool = 
     links = [link.get("href") for link in hyperlinks]
 
     filename = "{}.txt".format(hashed)
-    if(not rewrite and os.path.isfile(filename) and verbose):
+    if (not rewrite and os.path.isfile(filename) and verbose):
         print("{},{}".format(url, depth))
 
     write_raw_data(soup.prettify(), filename)
     with open("crawler1.log", "a") as logs:
         logs.write(f"{hashed}, {url}, {datetime}, {http_resp}\n")
 
-    if(max_depth == 0 and verbose):
+    if (max_depth == 0 and verbose):
         print(f"{url},{depth}")
 
     for link in links:
@@ -70,15 +70,15 @@ def main():
     parser.add_argument("url", help="The URL to crawl.", type=str)
     args = parser.parse_args()
 
-    if(not args.max_depth):
+    if (not args.max_depth):
         print("Error. No max depth argument provided.")
         return
 
-    elif(args.max_depth < 0):
+    elif (args.max_depth < 0):
         print("Error. Max depth must be greater than or equal to 0.")
         return
 
-    if(not args.url):
+    if (not args.url):
         print("Error. No URL argument provided.")
         return
 
@@ -90,5 +90,5 @@ def main():
     return
 
 
-if(__name__ == "__main__"):
+if (__name__ == "__main__"):
     main()

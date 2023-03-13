@@ -40,7 +40,7 @@ def get_content(url: str):
     """
     base_url, params = parse_url(url)
     page = get_page(base_url, params)
-    if(page):
+    if (page):
         soup = BeautifulSoup(page.content, 'html.parser')
         return soup
 
@@ -85,7 +85,7 @@ def get_page(base_url: str, params: dict):
     """
     try:
         response = requests.get(base_url, headers=HEADERS, params=params, proxies=PROXIES)
-        if(response.ok):
+        if (response.ok):
             return response
         else:
             print("Page returned with a non-ok response code:", response.status_code)

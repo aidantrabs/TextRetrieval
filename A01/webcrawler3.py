@@ -109,7 +109,7 @@ def main():
     parser.add_argument("url", help="The URL of the webpage to crawl.")
     args = parser.parse_args()
 
-    if(not args.url):
+    if (not args.url):
         print("Error. No URL argument provided.")
         return
 
@@ -120,7 +120,7 @@ def main():
     url = args.url
     raw_content = str(get_content(url))
     content = replace_html(raw_content)
-    if(content):
+    if (content):
         bits = [int(x) for x in content]
         i, j = optimise_webpage(bits)
         print("D")
@@ -136,5 +136,5 @@ def main():
     return
 
 
-if(__name__ == "__main__"):
+if (__name__ == "__main__"):
     main()
