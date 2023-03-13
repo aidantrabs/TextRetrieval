@@ -11,6 +11,11 @@ from typing import List
 
 DATA_DIRECTORY = "./data_wikipedia"
 DATA_FILE_ENCODING = "utf-8"
+TOKENIZED_FILE_NAME = "wikipedia.token"
+STOPWORD_FILE_NAME = "wikipedia.token.stop"
+STEMMED_FILE_NAME = "wikipedia.token.stemm"
+INVERTED_INDEX_FILE_NAME = "wikipedia.index"
+
 
 def generate_corpus():
     """
@@ -52,43 +57,20 @@ def get_tokenized_corpus(corpus: str):
     return nltk.word_tokenize(corpus)
 
 
-# def zipf_law(wordCounts: List[Tuple[str, int]]):
 def zipf_law(tokens: List[str]):
     """
     Description:
         Performs Zipf's law on the text.
 
     Parameters:
-        text (str): The text to perform Zipf's law on.
+        tokens (List[str]): The list of tokens to perform Zipf's law on.
     """
+    print("Performing Zipf's law...")
     frequencies = nltk.FreqDist(tokens)
     frequencies.plot(50, cumulative=False)
 
-    # depth = 100
-    # counts = dict(sorted(wordCounts.items(), key=lambda x: x[1], reverse=True)[0:depth])
-    # for idx, (words, frequency) in enumerate(counts.items()):
-    #     if idx == 0:
-    #         top_count = frequency
-    #     print(words, frequency, round(top_count/frequency, 2))
-
-    # def percentify(value, max):
-    #     return round(value / max * 100)
-
-    # def smoothify(yInput):
-    #     x = np.array(range(0, depth))
-    #     y = np.array(yInput)
-    #     # define x as 600 equally spaced values between the min and max of original x
-    #     x_smooth = np.linspace(x.min(), x.max(), 600)
-    #     # define spline with degree k=3, which determines the amount of wiggle
-    #     spl = scipy.interpolate.make_interp_spline(x, y, k=3)
-    #     y_smooth = spl(x_smooth)
-    #     # Return the x and y axis
-    #     return x_smooth, y_smooth
-
-
-    # ziffianCurveValues = [100/i for i in range(1, depth+1)]
-    # x, y = smoothify(ziffianCurveValues)
-    # plt.plot(x, y, label="Ziffian Curve", ls=":", color="grey")
+    print("Done!")
+    return
 
 
 def tokenize(tokens: List[str]):
@@ -97,11 +79,13 @@ def tokenize(tokens: List[str]):
         Tokenizes the text and saves the result to a 'wikipedia.token' file.
 
     Parameters:
-        text (str): The text to tokenize.
+        tokens (List[str]): The list of tokens to tokenize.
     """
-    with open("wikipedia.token", "w", encoding=DATA_FILE_ENCODING) as file:
+    print("Tokenizing...")
+    with open(TOKENIZED_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write("\n".join(tokens))
 
+    print("Done!")
     return
 
 
@@ -112,14 +96,17 @@ def remove_stopwords(tokens: List[str]):
         'wikipedia.token.stop' file.
 
     Parameters:
-        text (str): The text to remove stopwords from.
+        tokens (List[str]): The list of tokens to remove stopwords from.
     """
+    print("Removing stopwords...")
     stopwords = nltk.corpus.stopwords.words("english")
     result = [word for word in tokens if word not in stopwords]
-    with open("wikipedia.token.stop", "w", encoding=DATA_FILE_ENCODING) as file:
+    with open(STOPWORD_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write("\n".join(result))
 
+    print("Done!")
     return
+
 
 def porter_stemming(tokens: List[str]):
     """
@@ -128,36 +115,44 @@ def porter_stemming(tokens: List[str]):
         a 'wikipedia.token.stemm' file.
 
     Parameters:
-        text (str): The text to perform Porter stemming on.
+        tokens (List[str]): The list of tokens to perform Porter stemming on.
     """
+    print("Performing Porter stemming...")
     stemmer = nltk.stem.PorterStemmer()
     result = [stemmer.stem(word) for word in tokens]
-    with open("wikipedia.token.stemm", "w", encoding=DATA_FILE_ENCODING) as file:
+    with open(STEMMED_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write("\n".join(result))
 
+    print("Done!")
     return
 
 
-def inverted_index(tokens: List[str]):
+def inverted_index(corpus: str):
     """
     Description:
         Creates an inverted index for the text and saves the result to
         a 'wikipedia.token.index' file.
 
     Parameters:
-        text (str): The text to create an inverted index for.
+        corpus (str): The text to create an inverted index for.
+
+    Returns:
+        (Dict[str, List[int]]): The inverted index.
     """
+    print("Creating inverted index...")
     index = {}
-    for index, word in enumerate(tokens):
-        if(word not in index):
-            index[word] = [index]
-        else:
-            index[word].append(index)
+    for i, word in enumerate(corpus):
+        for token in set(nltk.word_tokenize(corpus)):
+            if (token not in index):
+                index[token] = {i: word.count(token)}
 
-    with open("wikipedia.token.index", "w", encoding=DATA_FILE_ENCODING) as file:
-        for word, positions in index.items():
-            file.write(f"{word} {positions}")
+            else:
+                index[token][i] = word.count(token)
 
+    with open(INVERTED_INDEX_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
+        file.write(json.dumps(index))
+
+    print("Done!")
     return index
 
 
@@ -182,19 +177,19 @@ def main():
     print(f"Length of fully merged text is {len(corpus)} characters.")
     print(f"Memory of fully merged text is {sys.getsizeof(corpus) / 1000000} MB.")
 
-    if(args.zipf):
+    if (args.zipf):
         zipf_law(tokens)
 
-    if(args.tokenize):
+    if (args.tokenize):
         tokenize(tokens)
 
-    if(args.stopword):
+    if (args.stopword):
         remove_stopwords(tokens)
 
-    if(args.stemming):
+    if (args.stemming):
         porter_stemming(tokens)
 
-    if(args.invertedindex):
+    if (args.invertedindex):
         inverted_index(tokens)
 
     return
