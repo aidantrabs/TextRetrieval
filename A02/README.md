@@ -76,6 +76,8 @@ The purpose of the program was to utilize the page rank algorithm which took the
 
 <br>
 
+#### Program Breakdown
+
 The function `load_data()` loads the data set and splits the lines, seperating the **from_nodes** and **in_nodes** and applies them to a simple graph, which is just a Python dictionary. It returns the graph of the nodes and the number of outbound links given in each node.
 
 The function `page_rank()` aplies the page rank algorithm to each node in the graph. It uses an iterative approach and returns the current pagerank values.
