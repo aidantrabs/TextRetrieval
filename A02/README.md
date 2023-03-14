@@ -86,4 +86,9 @@ The function `arg_handler()` handles all the user arguments and returns them.
 
 The function `main()` runs the program, by applying the arguments to the `page_rank_handler()`.
 
+#### Usage
+python3 page_rank.py --maxiteration 20 --lambda .25 --thr .01 --nodes 5 87524 632
+
+- Note: The user passes in the node list as individual values, space seperated.
+
 ### Noisy Channel (`noisy_channel.py`)
