@@ -7,7 +7,7 @@
 
 
 
-#### Monday 6th March 2023
+#### Monday 13th March 2023
 
 
 
@@ -27,7 +27,7 @@
 
 ## Contributions
  #### **Aidan Traboulay** 200115590
- -
+ - I worked on the `page_rank.py` file, which utilized the page rank algorithm to determine the page rank of pages in a given data set. 
 
 ####  **Mobina Tooranisama** 200296720
 -
@@ -72,6 +72,18 @@ The `decode_elias_gamma` function takes a string as input and returns the result
 
 
 ### Page Rank (`page_rank.py`)
+The purpose of the program was to utilize the page rank algorithm which took the arguments of `max iteration`, `lambda`, `threshold` and a list of `nodes`. The basic idea was to parse through a large data set (`web-Stanford.txt`) which provided **2,312,502** node connections, the page rank algorithm is then applied to find specified nodes and determine the page rank of those nodes, in order of highest priority. When developing this program, the biggest issue I faced was that of the large data set. My first few iterations of the program worked extremely quickly on a smaller data set which I extracted. Finally, I was able to implement an efficent program, while it is not instanenous it is significantly faster. It avoids recomputing the reciprocal of the number of outbound edges for each node at each iteration by precomputing it once before the iterations begin. It also calculates the number of outbound edges for each node in a more efficient way by iterating over the edges only once, which reduces the number of iterations required to converge. A selection sort is then applied to then display the results to the user. 
 
+<br>
+
+The function `load_data()` loads the data set and splits the lines, seperating the **from_nodes** and **in_nodes** and applies them to a simple graph, which is just a Python dictionary. It returns the graph of the nodes and the number of outbound links given in each node.
+
+The function `page_rank()` aplies the page rank algorithm to each node in the graph. It uses an iterative approach and returns the current pagerank values.
+
+The function `page_rank_handler()` applies the user's arguments to the page rank algorithm (`page_rank()`) and prints the page ID and the rank of that page.
+
+The function `arg_handler()` handles all the user arguments and returns them.
+
+The function `main()` runs the program, by applying the arguments to the `page_rank_handler()`.
 
 ### Noisy Channel (`noisy_channel.py`)
