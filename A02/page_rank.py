@@ -1,93 +1,118 @@
 import argparse
+import re
 
-DATA_SET = "data/test-web-Stanford.txt"
+DATA_SET = "data/web-Stanford.txt"
 
 def load_data():
      """
      Description:
-          Load the data from the data set.
-
+          Load the data set.
      Parameters:
           None
-
      Returns:
-          nodes: the set of nodes.
-          edges: the list of edges.
+          graph: the graph of nodes.
+          outbound: the number of outbound links for each node.
      """
-     nodes = set()
-     edges = []
-     with open(DATA_SET, 'r') as f:
-          for line in f:
-               line = line.strip()
-               if not line.startswith('#'):
-                    from_node, to_node = line.split('\t')
-                    nodes.add(int(from_node))
-                    nodes.add(int(to_node))
-                    edges.append((int(from_node), int(to_node)))
+     graph = {}
+     outbound = {}
 
-     return nodes, edges
+     with open(DATA_SET, "r") as f:
+          for line in f.readlines():
+               if line.startswith("#"):
+                    continue
 
-def init_page_rank(nodes):
+               nodes = line.strip().split()
+               from_node = nodes[0]
+               to_node = nodes[1]
+
+               if to_node not in graph:
+                    graph[to_node] = []
+
+               if from_node not in graph:
+                    graph[from_node] = []
+
+               if from_node not in outbound:
+                    outbound[from_node] = 0
+
+               graph[to_node].append(from_node)
+               outbound[from_node] += 1
+
+     return graph, outbound
+
+def page_rank(prev, curr, graph, outbound, lambda_, num_nodes):
      """
      Description:
-          Initialize the PageRank values for all nodes.
-
+          Calculate the PageRank for each node.
      Parameters:
-          nodes: the set of nodes.
-
+          prev: the previous PageRank values.
+          curr: the current PageRank values.
+          graph: the graph of nodes.
+          outbound: the number of outbound links for each node.
+          num_nodes: the number of nodes.
      Returns:
-          page_rank: the dictionary of PageRank values for all nodes.
+          curr: the current PageRank values.
      """
-     page_rank = {}
-     for node in nodes:
-          page_rank[node] = 1 / len(nodes)
+     for node in graph:
+          rank = lambda_ / num_nodes
 
-     return page_rank
+          for neighbor in graph[node]:
+               try:
+                    node_length = outbound[neighbor]
+                    node_rank = prev[neighbor]
+               except:
+                    node_length = 1
+                    node_rank = 1
 
-def page_rank(nodes, edges, maxiteration, lambda_, thr, nodes_to_print):
+               rank += (1 - lambda_) * (node_rank / node_length)
+
+          curr[node] = rank
+
+     return curr
+
+def page_rank_handler(graph, outbound, maxiteration, lambda_, thr, nodes):
      """
      Description:
-          Calculate the PageRank values for all nodes.
-
+          Handle the PageRank algorithm.
      Parameters:
-          nodes: the set of nodes.
-          edges: the list of edges.
+          graph: the graph of nodes.
+          outbound: the number of outbound links for each node.
           maxiteration: the maximum number of iterations to stop if algorithm has not converged.
           lambda_: the λ parameter value.
           thr: the threshold value to stop if algorithm has converged.
-          nodes_to_print: the NodeIDs that we want to get their PageRank values at the end of iterations.
-
+          nodes: the NodeIDs that we want to get their PageRank values at the end of iterations.
      Returns:
-          page_rank: the dictionary of PageRank values for all nodes.
+          None
      """
-     page_rank = init_page_rank(nodes)
-     for _ in range(maxiteration):
-          new_page_rank = {}
-          for node in nodes:
-               new_page_rank[node] = (1 - lambda_) / len(nodes)
-               for from_node, to_node in edges:
-                    if to_node == node:
-                         new_page_rank[node] += lambda_ * page_rank[from_node] / len([to_node for from_node, to_node in edges if from_node == from_node and to_node == node])
-          if sum([abs(new_page_rank[node] - page_rank[node]) for node in nodes]) < thr:
+     num_nodes = len(graph)
+     nodes = set(nodes)
+     prev = {node: 1 / num_nodes for node in graph}
+     curr = {node: 1 / num_nodes for node in graph}
+
+     for i in range(maxiteration):
+          print("Iteration: ", i)
+          curr = page_rank(prev, curr, graph, outbound, lambda_, num_nodes)
+
+          if all(abs(curr[node] - prev[node]) < thr for node in graph):
+               print("Converged at iteration: ", i)
                break
-          page_rank = new_page_rank
 
-     for node in nodes_to_print:
-          if node in page_rank:
-               print("NodeID: ", node, ", PageRank: ", page_rank[node])
+          prev = curr
+
+     page_rank_sorted = sorted(curr.items(), key=lambda x: x[1], reverse=True)
+     for node, rank in page_rank_sorted:
+          if node in nodes:
+               print("NodeID: ", node, "\t", "PageRank: ", rank)
           else:
-               print("NodeID: ", node, " not found in input data")
+               print("NodeID: ", node, "\t", "PageRank: ", rank, " (not in the list of nodes to be printed)")
 
-     return page_rank
+     return
 
 def arg_handler():
      """
      Description:
           Handle the arguments.
-
      Parameters:
           None
-
      Returns:
           args: the arguments.
      """
@@ -95,7 +120,7 @@ def arg_handler():
      parser.add_argument("--maxiteration", type=int, default=100, help="the maximum number of iterations to stop if algorithm has not converged.")
      parser.add_argument("--lambda_", type=float, default=0.85, help="the λ parameter value.")
      parser.add_argument("--thr", type=float, default=0.0001, help="the threshold value to stop if algorithm has converged.")
-     parser.add_argument("--nodes", type=int, nargs="+", help="the NodeIDs that we want to get their PageRank values at the end of iterations.")
+     parser.add_argument("--nodes", type=int, nargs="+", default=[1, 2, 3, 4, 5], help="the NodeIDs that we want to get their PageRank values at the end of iterations.") 
      args = parser.parse_args()
 
      return args
@@ -104,10 +129,8 @@ def main():
      """
      Description:
           Main function.
-
      Parameters:
           None
-
      Returns:
           None
      """
@@ -118,9 +141,10 @@ def main():
      print("thr: ", args.thr)
      print("nodes: ", args.nodes)
 
-     nodes, edges = load_data()
-     
-     page_rank(nodes, edges, args.maxiteration, args.lambda_, args.thr, args.nodes)
+     graph, outbound = load_data()
+     page_rank_handler(graph, outbound, args.maxiteration, args.lambda_, args.thr, args.nodes)
+
+     return
 
 if __name__ == "__main__":
      main() 
