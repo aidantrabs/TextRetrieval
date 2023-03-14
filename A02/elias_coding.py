@@ -1,6 +1,5 @@
 import argparse
 import math
-import sys
 from typing import List
 
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
