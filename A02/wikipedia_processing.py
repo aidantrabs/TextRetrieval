@@ -16,6 +16,8 @@ STOPWORD_FILE_NAME = "wikipedia.token.stop"
 STEMMED_FILE_NAME = "wikipedia.token.stemm"
 INVERTED_INDEX_FILE_NAME = "wikipedia.index"
 
+JSON_FILE_NAMES = [os.path.join(DATA_DIRECTORY, fileName) for fileName in os.listdir(DATA_DIRECTORY)]
+JSON_FILE_NAMES = [fileName for fileName in JSON_FILE_NAMES if os.path.isfile(fileName)]
 
 def generate_corpus():
     """
@@ -31,10 +33,7 @@ def generate_corpus():
         (str): The merged lower-case string with punctuation removed.
     """
     text = ""
-    fileNames = [os.path.join(DATA_DIRECTORY, fileName) for fileName in os.listdir(DATA_DIRECTORY)]
-    fileNames = [fileName for fileName in fileNames if os.path.isfile(fileName)]
-
-    for fileName in fileNames:
+    for fileName in JSON_FILE_NAMES:
         file = open(fileName, "r", encoding=DATA_FILE_ENCODING)
         data = json.load(file) #[ {id, text, title} ]
         for entry in data:
@@ -89,6 +88,22 @@ def tokenize(tokens: List[str]):
     return
 
 
+def _remove_stopwords(tokens: List[str]):
+    """
+    Description:
+        Removes stopwords from the text.
+
+    Parameters:
+        tokens (List[str]): The list of tokens to remove stopwords from.
+
+    Returns:
+        (List[str]): The list of tokens without stopwords.
+    """
+    stopwords = nltk.corpus.stopwords.words("english")
+    result = [word for word in tokens if word not in stopwords]
+    return result
+
+
 def remove_stopwords(tokens: List[str]):
     """
     Description:
@@ -99,13 +114,28 @@ def remove_stopwords(tokens: List[str]):
         tokens (List[str]): The list of tokens to remove stopwords from.
     """
     print("Removing stopwords...")
-    stopwords = nltk.corpus.stopwords.words("english")
-    result = [word for word in tokens if word not in stopwords]
+    result = _remove_stopwords(tokens)
     with open(STOPWORD_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write("\n".join(result))
 
     print("Done!")
     return
+
+
+def _porter_stemming(tokens: List[str]):
+    """
+    Description:
+        Performs Porter stemming on the text.
+
+    Parameters:
+        tokens (List[str]): The list of tokens to perform Porter stemming on.
+
+    Returns:
+        (List[str]): The list of stemmed tokens.
+    """
+    stemmer = nltk.stem.PorterStemmer()
+    result = [stemmer.stem(word) for word in tokens]
+    return result
 
 
 def porter_stemming(tokens: List[str]):
@@ -118,8 +148,7 @@ def porter_stemming(tokens: List[str]):
         tokens (List[str]): The list of tokens to perform Porter stemming on.
     """
     print("Performing Porter stemming...")
-    stemmer = nltk.stem.PorterStemmer()
-    result = [stemmer.stem(word) for word in tokens]
+    result = _porter_stemming(tokens)
     with open(STEMMED_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write("\n".join(result))
 
@@ -127,7 +156,7 @@ def porter_stemming(tokens: List[str]):
     return
 
 
-def inverted_index(corpus: str):
+def inverted_index():
     """
     Description:
         Creates an inverted index for the text and saves the result to
@@ -136,18 +165,31 @@ def inverted_index(corpus: str):
     Parameters:
         corpus (str): The text to create an inverted index for.
 
+        {word: {id: count, id2: count2},}}
     Returns:
         (Dict[str, List[int]]): The inverted index.
     """
     print("Creating inverted index...")
     index = {}
-    for i, word in enumerate(corpus):
-        for token in set(nltk.word_tokenize(corpus)):
-            if (token not in index):
-                index[token] = {i: word.count(token)}
+    for fileName in JSON_FILE_NAMES:
+        file = open(fileName, "r", encoding=DATA_FILE_ENCODING)
+        data = json.load(file) #[ {id, text, title} ]
+        for entry in data:
+            articleId = entry["id"]
+            text = entry["text"].lower()
+            tokenizedText = nltk.word_tokenize(text)
+            tokenizedText = _remove_stopwords(tokenizedText)
+            tokenizedText = _porter_stemming(tokenizedText)
 
-            else:
-                index[token][i] = word.count(token)
+            for word in tokenizedText:
+                if (word not in index):
+                    index[word] = {articleId: 1}
+
+                elif (articleId not in index[word]):
+                    index[word][articleId] = 1
+
+                else:
+                    index[word][articleId] += 1
 
     with open(INVERTED_INDEX_FILE_NAME, "w", encoding=DATA_FILE_ENCODING) as file:
         file.write(json.dumps(index))
@@ -190,7 +232,7 @@ def main():
         porter_stemming(tokens)
 
     if (args.invertedindex):
-        inverted_index(tokens)
+        print(inverted_index())
 
     return
 

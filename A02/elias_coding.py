@@ -1,6 +1,5 @@
 import argparse
-import sys
-from math import log, floor, pow
+import math
 from typing import List
 
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
@@ -31,7 +30,7 @@ def to_unary(x: int):
     Returns:
         str: The unary representation of the number.
     """
-    return (x - 1) * "0" + "1"
+    return "1" * x + "0"
 
 
 def to_binary(x: int, l: int):
@@ -46,23 +45,14 @@ def to_binary(x: int, l: int):
     Returns:
         str: The binary representation of the number.
     """
-    s = "{0:0%db}" % l
-    return s.format(x)
+    r = bin(x)[2:]
+    if (len(r) <= l):
+        r = r.zfill(l)
 
+    else:
+        r = r[-l:]
 
-def to_binary_no_msb(x: int):
-    """
-    Description:
-        Converts a number to binary without the most significant bit.
-
-    Parameters:
-        x (int): The number to convert.
-
-    Returns:
-        str: The binary representation of the number.
-    """
-    b = "{0:b}".format(int(x))
-    return b[1:]
+    return r
 
 
 def log2(x: int):
@@ -76,7 +66,20 @@ def log2(x: int):
     Returns:
         int: The logarithm of the number.
     """
-    return log(x, 2)
+    return int(math.log(x, 2))
+
+def pow2(x: int):
+    """
+    Description:
+        Calculates the power of a number to base 2.
+
+    Parameters:
+        x (int): The number to calculate the power of.
+
+    Returns:
+        int: The power of the number.
+    """
+    return int(math.pow(2, x))
 
 
 def encode_elias_delta(x: int):
@@ -90,11 +93,13 @@ def encode_elias_delta(x: int):
     Returns:
         str: The encoded binary number.
     """
-    if(x == 0):
+    if (x == 1):
         return "0"
 
-    n = 1 + floor(log2(x))
-    return to_unary(n) + to_binary_no_msb(x)
+    kd = log2(x)
+    kdd = log2(kd + 1)
+    kdr = (kd + 1) - pow2(kdd)
+    return to_unary(kdd) + " " + to_binary(kdr, kdd) + " " + to_binary(x, kdd)
 
 
 def encode_elias_gamma(x: int):
@@ -108,45 +113,48 @@ def encode_elias_gamma(x: int):
     Returns:
         str: The encoded binary number.
     """
-    if(x == 0):
+    if (x == 1):
         return "0"
 
-    l = int(log2(x))
-    n = 1 + l
-    b = x - 2 ** l
-    return to_unary(n) + to_binary(b, l)
+    kd = log2(x)
+    return to_unary(kd) + " " + to_binary(x, kd)
 
 
-#TODO: FIX
 def decode_elias_delta(x: str):
     """
     Description:
-        Decodes a number from elias delta.
+        Decodes a binary number from elias delta.
 
     Parameters:
-        x (str): The number to decode.
+        x (str): The binary number to decode.
 
     Returns:
-        int: The decoded number.
+        int: The decoded integer.
     """
-    if(not is_valid_binary(x)):
+    x = x.replace(" ", "")
+    if (not is_valid_binary(x)):
         return "ERROR"
 
-    x = list(x)
-    k = 0
-    while(x[k] == "0"):
-        k += 1
+    kdd = x.find("0" if x[0] == "1" else "1")
+    if (kdd == -1):
+        return "ERROR"
 
-    x = x[2*k+1:]
-    x.reverse()
-    x.insert(0, "1")
-    n = 0
+    kdd_b = x[kdd+1:2*kdd+1]
+    kd_b = x[kdd+kdd+1:]
+    kd = len(kd_b)
+    kr = int(x[-kd:], 2)
+    kdr = int(kdd_b, 2)
+    if (len(x) != kd + (2 * kdd) + 1):
+        return "ERROR"
 
-    for i in range(len(x)):
-        if(x[i] == "1"):
-            n = n + pow(2, i)
+    kdd_compare = log2(kd + 1)
+    kdr_compare = (kd + 1) - pow2(kdd_compare)
+    kdd_b_compare = to_binary(kdr_compare, kdd_compare)
+    print(kdd, kdd_compare, kdr, kdr_compare, kdd_b, kdd_b_compare)
+    if (kdd != kdd_compare or kdr != kdr_compare or kdd_b != kdd_b_compare):
+        return "ERROR"
 
-    return int(n)
+    return kr + 2 ** kd
 
 
 def decode_elias_gamma(x: str):
@@ -160,23 +168,23 @@ def decode_elias_gamma(x: str):
     Returns:
         int: The decoded number.
     """
-    if(not is_valid_binary(x)):
+    x = x.replace(" ", "")
+    if (not is_valid_binary(x)):
         return "ERROR"
 
-    x = list(x)
-    k = 0
-    while(x[k] == "0"):
-        k += 1
+    if (x == "0"):
+        return 1
 
-    x = x[k:2*k+1]
-    n = 0
-    x.reverse()
+    kd = x.find("0" if x[0] == "1" else "1")
+    if (kd == -1 or len(x) != kd*2 + 1):
+        return "ERROR"
 
-    for i in range(len(x)):
-        if(x[i] == "1"):
-            n += pow(2, i)
+    try:
+        kr = x[kd+1:(kd * 2)+1]
+    except:
+        return "ERROR"
 
-    return int(n)
+    return 2**kd + int(kr, 2)
 
 
 def main():
@@ -191,27 +199,27 @@ def main():
     parser.add_argument("--alg", help="The algorithm to use. Can be either 'elias_delta' or 'elias_gamma'.", type=str)
     parser.add_argument("--encode", help="Encode the data.", action="store_true")
     parser.add_argument("--decode", help="Decode the data.", action="store_true")
-    parser.add_argument("data", help="The data to encode or decode.", type=str)
+    parser.add_argument("data", help="The data to encode or decode.")
     args = parser.parse_args()
 
-    if(args.encode and args.decode):
+    if (args.encode and args.decode):
         print("Error! Cannot encode and decode at the same time.")
         return
 
-    elif(args.encode):
+    elif (args.encode):
         encode = "e"
 
-    elif(args.decode):
+    elif (args.decode):
         encode = "d"
 
     else:
         print("Error! Need to provide an encoding or decoding.")
         return
 
-    if(args.alg == "delta"):
+    if (args.alg == "delta"):
         algo_type = "d"
 
-    elif(args.alg == "gamma"):
+    elif (args.alg == "gamma"):
         algo_type = "g"
 
     else:
@@ -222,6 +230,8 @@ def main():
     data = [(int(x) if encode == "e" else x) for x in args.data[1:-1].split(",")]
     for num in data:
         print(algo(num))
+
+    return
 
 
 if (__name__ == "__main__"):
