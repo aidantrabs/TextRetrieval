@@ -74,8 +74,6 @@ The `decode_elias_gamma` function takes a string as input and returns the result
 ### Page Rank (`page_rank.py`)
 The purpose of the program was to utilize the page rank algorithm which took the arguments of `max iteration`, `lambda`, `threshold` and a list of `nodes`. The basic idea was to parse through a large data set (`web-Stanford.txt`) which provided **2,312,502** node connections, the page rank algorithm is then applied to find specified nodes and determine the page rank of those nodes, in order of highest priority. When developing this program, the biggest issue I faced was that of the large data set. My first few iterations of the program worked extremely quickly on a smaller data set which I extracted. Finally, I was able to implement an efficent program, while it is not instanenous it is significantly faster. It avoids recomputing the reciprocal of the number of outbound edges for each node at each iteration by precomputing it once before the iterations begin. It also calculates the number of outbound edges for each node in a more efficient way by iterating over the edges only once, which reduces the number of iterations required to converge. A selection sort is then applied to then display the results to the user. 
 
-<br>
-
 #### Program Breakdown
 
 The function `load_data()` loads the data set and splits the lines, seperating the **from_nodes** and **in_nodes** and applies them to a simple graph, which is just a Python dictionary. It returns the graph of the nodes and the number of outbound links given in each node.
