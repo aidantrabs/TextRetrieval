@@ -30,7 +30,7 @@
  - I worked on the `page_rank.py` file, which utilized the page rank algorithm to determine the page rank of pages in a given data set. 
 
 ####  **Mobina Tooranisama** 200296720
--
+- I worked on the `noisy_channel.py` file, which uses the noisy channel model to spell check and corrects misspelled words and calculates probabilities of words in a given dataset.
 
 ####  **Nausher Rao** 190906250
 - I worked on the `elias_coding.py` file, writing all the functions for encoding and decoding. This file extensively used the built-in `math` module.
@@ -94,3 +94,18 @@ python3 page_rank.py --maxiteration 20 --lambda .25 --thr .01 --nodes 5 87524 63
 - Note: The user passes in the node list as individual values, space seperated.
 
 ### Noisy Channel (`noisy_channel.py`)
+The `noisy_channel.py` module defines the functions required for implementing the Noisy Channel Model, including the `noisy_channel_model`, `generate_candidates`, and `channel_model` functions. 
+
+The `noisy_channel_model` function generates a set of candidate words for the misspelled word and returns a dictionary of candidate words with their respective probabilities. 
+
+The `generate_candidates` function generates a set of candidate words by performing operations such as deleting, transposing, replacing, and inserting characters. 
+
+The `channel_model` function calculates the probability of a word being a candidate by calculating the cost of transforming one word into another using edit distance.
+
+The `main` function  uses argparse to parse command-line arguments. The `--correct` option takes a list of misspelled words and returns the most probable correction for each misspelled word. The `--proba` option takes a list of words and returns their respective probabilities in the dataset.
+
+#### Usage
+```sh
+python noisy_channel.py --correct [advertice, univercity, university , iimprove]
+python noisy_channel.py --proba [advertise, computer, algorithm, medicine874r]
+```
