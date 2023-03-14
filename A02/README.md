@@ -109,6 +109,7 @@ The `channel_model` function calculates the probability of a word being a candid
 The `main` function  uses argparse to parse command-line arguments. The `--correct` option takes a list of misspelled words and returns the most probable correction for each misspelled word. The `--proba` option takes a list of words and returns their respective probabilities in the dataset.
 
 The script is callable form the command line as below:
+
 ```python noisy_channel.py [options] [values]```
 
 [Options] are as below:
