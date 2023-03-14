@@ -96,6 +96,10 @@ python3 page_rank.py --maxiteration 20 --lambda .25 --thr .01 --nodes 5 87524 63
 ### Noisy Channel (`noisy_channel.py`)
 The `noisy_channel.py` module defines the functions required for implementing the Noisy Channel Model, including the `noisy_channel_model`, `generate_candidates`, and `channel_model` functions. 
 
+The `nltk` module is used for tokenization and stopword removal. The `Counter` class from the `collections` module is used to count the occurrences of each word in the dataset. The `math` module is used for exponentiation.
+
+The script also includes a workaround for SSL certificate verification, in case SSL verification fails.
+
 The `noisy_channel_model` function generates a set of candidate words for the misspelled word and returns a dictionary of candidate words with their respective probabilities. 
 
 The `generate_candidates` function generates a set of candidate words by performing operations such as deleting, transposing, replacing, and inserting characters. 
@@ -103,6 +107,14 @@ The `generate_candidates` function generates a set of candidate words by perform
 The `channel_model` function calculates the probability of a word being a candidate by calculating the cost of transforming one word into another using edit distance.
 
 The `main` function  uses argparse to parse command-line arguments. The `--correct` option takes a list of misspelled words and returns the most probable correction for each misspelled word. The `--proba` option takes a list of words and returns their respective probabilities in the dataset.
+
+The script is callable form the command line as below:
+
+```python noisy_channel.py [options] [values]```
+
+[Options] are as below:
+1. `--correct`: that gets a list of words in an array and for each prints best word to replace.
+2. `--proba`: that gets a list of words in an array and for each item prints P(w)
 
 #### Usage
 ```sh
