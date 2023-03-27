@@ -2,8 +2,6 @@ import argparse
 import json
 from utils import *
 
-PAGE_SIZE = 2000
-
 def get_paginated_url(url: str):
     """
     Description:
@@ -18,7 +16,8 @@ def get_paginated_url(url: str):
     soup = get_content(url)
     pagination = soup.find("button", id="gsc_bpf_more")
     if (pagination):
-        paginated_url = url + f"&cstart=20&pagesize={PAGE_SIZE}"
+        for i in range(20, 1000, 20):
+            paginated_url = url + "&cstart=" + str(i) + "&pagesize=350"
         return paginated_url
 
     return
