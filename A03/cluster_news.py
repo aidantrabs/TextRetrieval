@@ -1,4 +1,36 @@
 import argparse
+from skslearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
+from sklearn.metrics import adjusted_rand_score, completeness_score, adjusted_mutual_info_score
+from sklearn.cluster import FeatureAgglomeration 
+
+def preprocess_data(data):
+     """
+     Description:
+          Preprocess the data.
+     Parameters:
+          data
+     Returns:
+          data
+     """
+     
+     return data
+
+def cluster_news(ncluster: int, kmeans: bool, whc: bool, ac: bool, dbscan: bool):
+     """
+     Description:
+          Cluster the news.
+     Parameters:
+          ncluster: the number of clusters.
+          kmeans: whether to use KMeans.
+          whc: whether to use Ward Hierarchical Clustering.
+          ac: whether to use Agglomerative Clustering.
+          dbscan: whether to use DBSCAN.
+     Returns:
+          None
+     """
+     pass
 
 def arg_handler():
      """
