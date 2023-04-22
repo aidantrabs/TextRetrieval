@@ -1,5 +1,6 @@
 import argparse;
-import csv;
+import csv
+from numpy import vectorize;
 import pandas;
 import nltk;
 import nltk.corpus;
@@ -7,21 +8,38 @@ import nltk.stem;
 import nltk.tokenize;
 from enum import Enum;
 from sklearn.feature_extraction.text import CountVectorizer;
-from typing import List;
+from typing import List, Union;
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split, cross_val_score, KFold, cross_validate
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+import joblib
 
 class ClassifierType(Enum):
     NAIVE_BAYES = 1,
-    SVM = 2,
-    DECISION_TREE = 3,
-    KNN = 4;
+    KNN = 2,
+    SVM = 3,
+    DECISION_TREE = 4;
 
 
 def arg_handler():
     """
     Description:
-        Handle the arguments.
+        Handle the arguments using argparse.
+
     Parameters:
         None
+
     Returns:
         args: the arguments.
     """
@@ -39,87 +57,216 @@ def arg_handler():
     return parser.parse_args()
 
 
-def get_tokenized_corpus(corpus: str):
-"""
-Description:
-    Tokenizes the text and saves the result to a 'wikipedia.token' file.
-
-Parameters:
-    corpus (str): The text to tokenize.
-
-Returns:
-    (List[str]): The list of tokens.
-"""
-return nltk.word_tokenize(corpus)
-
-
-def remove_stopwords(tokens: List[str]):
-"""
-Description:
-    Removes stopwords from the text.
-
-Parameters:
-    tokens (List[str]): The list of tokens to remove stopwords from.
-
-Returns:
-    (List[str]): The list of tokens without stopwords.
-"""
-stopwords = nltk.corpus.stopwords.words("english")
-result = [word for word in tokens if word not in stopwords]
-return result
-
-
-def train_with_dataset(dataset_file_name: str):
+def parse_args(args: object):
     """
     Description:
-        Train the ML model.
+        Parse the arguments.
+
     Parameters:
-        dataset_file: the file containing the dataset.
+        args: The arguments.
+
     Returns:
-        None
+        dataset: The dataset to use.
+        classifierType: The classifier to use.
+        data: If KNN is chosen as the ClassifierType, this is the n value to use.
+    """
+    data = None
+    if(args.imdb):
+        dataset = "imdb_labelled.txt"
+
+    elif(args.amazon):
+        dataset = "amazon_cells_labelled.txt"
+
+    elif(args.yelp):
+        dataset = "yelp_labelled.txt"
+
+    else:
+        raise Exception("No dataset selected!")
+
+
+    if(args.naive):
+        classifierType = ClassifierType.NAIVE_BAYES
+
+    elif(args.svm):
+        classifierType = ClassifierType.SVM
+
+    elif(args.dt):
+        classifierType = ClassifierType.DECISION_TREE
+
+    elif(args.knn):
+        classifierType = ClassifierType.KNN
+        data = args.knn
+
+    else:
+        raise Exception("No classifier selected!")
+
+    return dataset, classifierType, data
+
+
+def process_text(text: str):
+    """
+    Description:
+        Process the text fetched from a given dataset.
+
+    Parameters:
+        text: The text to process.
+
+    Returns:
+        text: The processed text.
+    """
+
+    stop_words = set(stopwords.words('english'))
+    tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
+    return text.apply(lambda x: ' '.join([word for word in tokenizer.tokenize(x.lower()) if word not in stop_words]))
+
+
+def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: Union[int, None]):
+    """
+    Description:
+        Initialize the classifier and vectorizer.
+
+    Parameters:
+        dataset_file_name: The name of the dataset file.
+        classifierType: the type of classifier to use.
+        n: The n value to use if KNN is chosen as the classifier.
+
+    Returns:
+        vectorizer: The vectorizer.
+        classifier: The classifier.
+        X: The X.
+        Y: The Y.
     """
     file_name = f"data/training_sentiment/{dataset_file_name}"
     data = pandas.read_csv(file_name, sep='\t', header=None)
-
-    tokenized = get_tokenized_corpus(data[0])
-    processed_text = remove_stopwords(tokenized)
+    text = process_text(data[0])
 
     vectorizer = CountVectorizer()
-    X = vectorizer.fit_transform(processed_text)
+    X = vectorizer.fit_transform(text)
     Y = data[1]
-    if (classType == 1):
+
+    if(classifierType == ClassifierType.NAIVE_BAYES):
         classifier = MultinomialNB()
 
-    elif(classType == 2):
-        classifier = KNeighborsClassifier(knnInteger)
-
-    elif(classType == 3):
+    elif(classifierType == ClassifierType.KNN):
         classifier = SVC()
 
-    else:
+    elif(classifierType == ClassifierType.SVM):
         classifier = DecisionTreeClassifier()
 
-    # Train the classifier
+    elif(classifierType == ClassifierType.DECISION_TREE):
+        classifier = KNeighborsClassifier(n)
+
     classifier.fit(X, Y)
-
-    # Define cross-validation technique
-    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    return vectorizer, classifier, X, Y
 
 
-    # Print performance metrics
+def calculate_performance_metrics(classifier, X, Y):
+    """
+    Description:
+        Calculate the performance metrics.
+
+    Parameters:
+        classifier: The classifier.
+        X: The X.
+        Y: The Y.
+
+    Returns:
+        accuracy: The accuracy.
+        recall: The recall.
+        precision: The precision.
+        f1: The f1 score.
+    """
     y_pred = classifier.predict(X)
     accuracy = accuracy_score(Y, y_pred)
     recall = recall_score(Y, y_pred, average="macro")
     precision = precision_score(Y, y_pred, average="macro")
     f1 = f1_score(Y, y_pred, average="macro")
+
+    return accuracy, recall, precision, f1
+
+
+def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
+    """
+    Description:
+        Calculate the cross validation metrics.
+
+    Parameters:
+        classifier: The classifier.
+        X: The X.
+        Y: The Y.
+        kf: The KFold object.
+
+    Returns:
+        accuracy: The accuracy.
+        recall: The recall.
+        precision: The precision.
+        f1: The f1 score.
+    """
+    accuracy = cross_val_score(classifier, X, Y, cv=kf, scoring="accuracy")
+    recall = cross_val_score(classifier, X, Y, cv=kf, scoring="recall_macro")
+    precision = cross_val_score(classifier, X, Y, cv=kf, scoring="precision_macro")
+    f1 = cross_val_score(classifier, X, Y, cv=kf, scoring="f1_macro")
+
+    return accuracy, recall, precision, f1
+
+
+def plot_confusion_matrix(classifier, X, Y):
+    """
+    Description:
+        Plot the confusion matrix.
+
+    Parameters:
+        classifier: The classifier.
+        X: The X.
+        Y: The Y.
+    """
+    y_pred = classifier.predict(X)
+    confusion_matrix = sklearn.metrics.confusion_matrix(Y, y_pred)
+    df_cm = pandas.DataFrame(confusion_matrix, index = [i for i in "01"], columns = [i for i in "01"])
+    plt.figure(figsize = (10, 7))
+    sn.heatmap(df_cm, annot=True, fmt="d")
+    plt.show()
+    return
+
+
+def save_vectorizer_and_classifier(vectorizer, classifier):
+    """
+    Description:
+        Save the vectorizer and classifier to the disk.
+
+    Parameters:
+        vectorizer: The vectorizer.
+        classifier: The classifier.
+    """
+    with open("vectorizer.dat", "wb") as file:
+        joblib.dump(vectorizer, file)
+
+    with open("classifier.dat", "wb") as file:
+        joblib.dump(classifier, file)
+
+    return
+
+
+def main():
+    """
+    Description:
+        The main function.
+    """
+    nltk.download("stopwords")
+    nltk.download("punkt")
+
+    args = arg_handler()
+    dataset, classifierType, data = parse_args(args)
+
+    vectorizer, classifier, X, Y = init_classifier(dataset, classifierType, data)
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+    # Calculate performance metrics
+    accuracy, recall, precision, f1 = calculate_performance_metrics(classifier, X, Y)
     print("Performance of Classification:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(accuracy, recall, precision, f1))
 
-
-    # Evaluate performance with cross-validation
-    cross_accuracy = cross_val_score(classifier, X, Y, cv=kf, scoring="accuracy")
-    cross_recall = cross_val_score(classifier, X, Y, cv=kf, scoring="recall_macro")
-    cross_precision = cross_val_score(classifier, X, Y, cv=kf, scoring="precision_macro")
-    cross_f1 = cross_val_score(classifier, X, Y, cv=kf, scoring="f1_macro")
+    # Calculate performance metrics with cross-validation
+    cross_accuracy, cross_recall, cross_precision, cross_f1 = calculate_cross_validation_performance_metrics(classifier, X, Y, kf)
     print("Evaluation of Performance with Cross-Validation:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(np.mean(cross_accuracy), np.mean(cross_recall), np.mean(cross_precision), np.mean(cross_f1)))
 
     # Plot the confusion matrix
@@ -129,63 +276,11 @@ def train_with_dataset(dataset_file_name: str):
     plt.ylabel("True Label")
     plt.title("Confusion Matrix")
     plt.savefig("sentiment_classifier.png")
-    #plt.show()
-
-    # Save the model
-    with open(saveName, "wb") as file:
-        joblib.dump(classifier, file)
-
-    #Save the vectorizer
-    with open(vectName, "wb") as file:
-        joblib.dump(vectorizer, file)
+    plt.show()
 
 
-        # for line in f:
-        #      print(line, end="")
-        #      print(line.strip().split(" "))
-        #      print(line.strip().split(" ")[-1])
-        #      break
-
-    return
-
-
-def classify_with(text: List[str], classifierType: ClassifierType):
-    """
-    Description:
-        Classify the text.
-    Parameters:
-        classifierType: the type of classifier to use.
-    Returns:
-        None
-    """
-    return
-
-def main():
-    """
-    Description:
-        The main function.
-    """
-    args = arg_handler()
-    if(args.imdb):
-        train_with_dataset("imdb_labelled.txt")
-
-    if(args.amazon):
-        train_with_dataset("amazon_cells_labelled.txt")
-
-    if(args.yelp):
-        train_with_dataset("yelp_labelled.txt")
-
-    if(args.naive):
-        classify_with("Naive Bayes", ClassifierType.NAIVE_BAYES)
-
-    if(args.svm):
-        classify_with("Support Vector Machine", ClassifierType.SUPPORT_VECTOR_MACHINE)
-
-    if(args.dt):
-        classify_with("Decision Tree", ClassifierType.DECISION_TREE)
-
-    if(args.knn):
-        classify_with("K-Nearest Neighbors", ClassifierType.K_NEAREST_NEIGHBORS)
+    # Save the vectorizer and classifier
+    save_vectorizer_and_classifier(vectorizer, classifier)
 
     return
 
