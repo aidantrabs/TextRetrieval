@@ -14,6 +14,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from nltk.corpus import stopwords
+import sklearn
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split, cross_val_score, KFold, cross_validate
 from sklearn.naive_bayes import MultinomialNB
@@ -160,7 +161,7 @@ def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: U
     return vectorizer, classifier, X, Y
 
 
-def calculate_performance_metrics(classifier, X, Y):
+def calculate_performance_metrics(classifier, X, Y, y_pred):
     """
     Description:
         Calculate the performance metrics.
@@ -176,7 +177,6 @@ def calculate_performance_metrics(classifier, X, Y):
         precision: The precision.
         f1: The f1 score.
     """
-    y_pred = classifier.predict(X)
     accuracy = accuracy_score(Y, y_pred)
     recall = recall_score(Y, y_pred, average="macro")
     precision = precision_score(Y, y_pred, average="macro")
@@ -210,7 +210,7 @@ def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
     return accuracy, recall, precision, f1
 
 
-def plot_confusion_matrix(classifier, X, Y):
+def plot_confusion_matrix(classifier, X, Y, y_pred):
     """
     Description:
         Plot the confusion matrix.
@@ -220,12 +220,19 @@ def plot_confusion_matrix(classifier, X, Y):
         X: The X.
         Y: The Y.
     """
-    y_pred = classifier.predict(X)
-    confusion_matrix = sklearn.metrics.confusion_matrix(Y, y_pred)
-    df_cm = pandas.DataFrame(confusion_matrix, index = [i for i in "01"], columns = [i for i in "01"])
-    plt.figure(figsize = (10, 7))
-    sn.heatmap(df_cm, annot=True, fmt="d")
+    cm = confusion_matrix(Y, y_pred)
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
+    plt.title("Confusion Matrix")
+    plt.savefig("sentiment_classifier.png")
     plt.show()
+
+    matrix = sklearn.metrics.confusion_matrix(Y, y_pred)
+    data_frame = pandas.DataFrame(matrix, index = [i for i in "01"], columns = [i for i in "01"])
+    plt.figure(figsize = (10, 7))
+    sns.heatmap(data_frame, annot=True, fmt="d")
+    plt.show()O
     return
 
 
@@ -260,9 +267,10 @@ def main():
 
     vectorizer, classifier, X, Y = init_classifier(dataset, classifierType, data)
     kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    y_pred = classifier.predict(X)
 
     # Calculate performance metrics
-    accuracy, recall, precision, f1 = calculate_performance_metrics(classifier, X, Y)
+    accuracy, recall, precision, f1 = calculate_performance_metrics(classifier, X, Y, y_pred)
     print("Performance of Classification:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(accuracy, recall, precision, f1))
 
     # Calculate performance metrics with cross-validation
@@ -278,10 +286,8 @@ def main():
     plt.savefig("sentiment_classifier.png")
     plt.show()
 
-
     # Save the vectorizer and classifier
     save_vectorizer_and_classifier(vectorizer, classifier)
-
     return
 
 
