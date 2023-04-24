@@ -49,7 +49,7 @@ def arg_handler():
     classifier.add_argument("--naive", action="store_true", help="Use the Naive Bayes algorithm for training the classifier.")
     classifier.add_argument("--svm", action="store_true", help="Use the Support Vector Machine algorithm for training the classifier.")
     classifier.add_argument("--decisiontree", "-dt", dest="dt", action="store_true", help="Use the Decision Tree algorithm for training the classifier.")
-    classifier.add_argument("--knn", action="store", nargs=1, help="Use the K-Nearest Neighbors algorithm for training the classifier.")
+    classifier.add_argument("--knn", action="store", nargs=1, type=int, help="Use the K-Nearest Neighbors algorithm for training the classifier.")
     return parser.parse_args()
 
 
@@ -92,7 +92,7 @@ def parse_args(args: object):
 
     elif(args.knn):
         classifierType = ClassifierType.KNN
-        data = args.knn
+        data = args.knn[0]
 
     else:
         print("Error! No classifier selected.")
@@ -146,13 +146,13 @@ def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: U
         classifier = sklearn.naive_bayes.MultinomialNB()
 
     elif(classifierType == ClassifierType.KNN):
-        classifier = sklearn.svm.SVC()
+        classifier = sklearn.neighbors.KNeighborsClassifier(n)
 
     elif(classifierType == ClassifierType.SVM):
-        classifier = sklearn.tree.DecisionTreeClassifier()
+        classifier = sklearn.svm.SVC()
 
     elif(classifierType == ClassifierType.DECISION_TREE):
-        classifier = sklearn.neighbors.KNeighborsClassifier(n)
+        classifier = sklearn.tree.DecisionTreeClassifier()
 
     classifier.fit(X, Y)
     return vectorizer, classifier, X, Y
