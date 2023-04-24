@@ -1,32 +1,36 @@
 import argparse;
 import csv
-from numpy import vectorize;
-import pandas;
+import enum
+import joblib
+import matplotlib.pyplot as plt
 import nltk;
 import nltk.corpus;
 import nltk.stem;
 import nltk.tokenize;
-from enum import Enum;
+import numpy;
+import pandas;
+import seaborn as sns
+import sklearn
+
 from sklearn.feature_extraction.text import CountVectorizer;
 from typing import List, Union;
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
-from nltk.corpus import stopwords
-import sklearn
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split, cross_val_score, KFold, cross_validate
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, confusion_matrix
-import matplotlib.pyplot as plt
-import seaborn as sns
-import joblib
 
-class ClassifierType(Enum):
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, confusion_matrix
+from sklearn.model_selection import KFold
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+
+
+CONFUSION_MATRIX_FILE_NAME = "confusion_matrix.png"
+
+class ClassifierType(enum.Enum):
     NAIVE_BAYES = 1,
     KNN = 2,
     SVM = 3,
@@ -82,7 +86,8 @@ def parse_args(args: object):
         dataset = "yelp_labelled.txt"
 
     else:
-        raise Exception("No dataset selected!")
+        print("Error! No dataset selected.")
+        exit(1)
 
 
     if(args.naive):
@@ -99,7 +104,8 @@ def parse_args(args: object):
         data = args.knn
 
     else:
-        raise Exception("No classifier selected!")
+        print("Error! No classifier selected.")
+        exit(1)
 
     return dataset, classifierType, data
 
@@ -116,7 +122,7 @@ def process_text(text: str):
         text: The processed text.
     """
 
-    stop_words = set(stopwords.words('english'))
+    stop_words = set(nltk.corpus.stopwords.words('english'))
     tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
     return text.apply(lambda x: ' '.join([word for word in tokenizer.tokenize(x.lower()) if word not in stop_words]))
 
@@ -161,7 +167,7 @@ def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: U
     return vectorizer, classifier, X, Y
 
 
-def calculate_performance_metrics(classifier, X, Y, y_pred):
+def calculate_performance_metrics(X, Y, y_pred):
     """
     Description:
         Calculate the performance metrics.
@@ -173,16 +179,16 @@ def calculate_performance_metrics(classifier, X, Y, y_pred):
 
     Returns:
         accuracy: The accuracy.
-        recall: The recall.
         precision: The precision.
+        recall: The recall.
         f1: The f1 score.
     """
     accuracy = accuracy_score(Y, y_pred)
-    recall = recall_score(Y, y_pred, average="macro")
     precision = precision_score(Y, y_pred, average="macro")
+    recall = recall_score(Y, y_pred, average="macro")
     f1 = f1_score(Y, y_pred, average="macro")
 
-    return accuracy, recall, precision, f1
+    return accuracy, precision, recall, f1
 
 
 def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
@@ -197,20 +203,21 @@ def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
         kf: The KFold object.
 
     Returns:
-        accuracy: The accuracy.
-        recall: The recall.
-        precision: The precision.
-        f1: The f1 score.
+        accuracy: The accuracy of the classifier.
+        precision: The precision of the classifier.
+        recall: The recall of the classifier.
+        f1: The f1 score of the classifier.
     """
+    from sklearn.model_selection import cross_val_score
     accuracy = cross_val_score(classifier, X, Y, cv=kf, scoring="accuracy")
-    recall = cross_val_score(classifier, X, Y, cv=kf, scoring="recall_macro")
     precision = cross_val_score(classifier, X, Y, cv=kf, scoring="precision_macro")
+    recall = cross_val_score(classifier, X, Y, cv=kf, scoring="recall_macro")
     f1 = cross_val_score(classifier, X, Y, cv=kf, scoring="f1_macro")
 
-    return accuracy, recall, precision, f1
+    return accuracy, precision, recall, f1
 
 
-def plot_confusion_matrix(classifier, X, Y, y_pred):
+def save_confusion_matrix(X, Y, y_pred):
     """
     Description:
         Plot the confusion matrix.
@@ -220,19 +227,12 @@ def plot_confusion_matrix(classifier, X, Y, y_pred):
         X: The X.
         Y: The Y.
     """
-    cm = confusion_matrix(Y, y_pred)
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+    matrix = confusion_matrix(Y, y_pred)
+    sns.heatmap(matrix, annot=True, fmt="d")
     plt.xlabel("Predicted Label")
-    plt.ylabel("True Label")
+    plt.ylabel("Actual Label")
     plt.title("Confusion Matrix")
-    plt.savefig("sentiment_classifier.png")
-    plt.show()
-
-    matrix = sklearn.metrics.confusion_matrix(Y, y_pred)
-    data_frame = pandas.DataFrame(matrix, index = [i for i in "01"], columns = [i for i in "01"])
-    plt.figure(figsize = (10, 7))
-    sns.heatmap(data_frame, annot=True, fmt="d")
-    plt.show()O
+    plt.savefig(CONFUSION_MATRIX_FILE_NAME)
     return
 
 
@@ -270,7 +270,10 @@ def main():
     y_pred = classifier.predict(X)
 
     # Calculate performance metrics
-    accuracy, recall, precision, f1 = calculate_performance_metrics(classifier, X, Y, y_pred)
+    accuracy, recall, precision, f1 = calculate_performance_metrics(X, Y, y_pred)
+    print(f"Performance Metrics - {dataset} - {classifierType}:")
+    print(f"")
+
     print("Performance of Classification:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(accuracy, recall, precision, f1))
 
     # Calculate performance metrics with cross-validation
@@ -278,13 +281,7 @@ def main():
     print("Evaluation of Performance with Cross-Validation:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(np.mean(cross_accuracy), np.mean(cross_recall), np.mean(cross_precision), np.mean(cross_f1)))
 
     # Plot the confusion matrix
-    cm = confusion_matrix(Y, y_pred)
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
-    plt.xlabel("Predicted Label")
-    plt.ylabel("True Label")
-    plt.title("Confusion Matrix")
-    plt.savefig("sentiment_classifier.png")
-    plt.show()
+    save_confusion_matrix(X, Y, y_pred)
 
     # Save the vectorizer and classifier
     save_vectorizer_and_classifier(vectorizer, classifier)
