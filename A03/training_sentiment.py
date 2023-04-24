@@ -251,7 +251,7 @@ def save_confusion_matrix(Y, y_pred):
     return
 
 
-def serialise_vectorizer_and_classifier(vectorizer, classifier):
+def serialise_model(vectorizer, classifier):
     """
     Description:
         Save and dump the vectorizer and classifier to the disk.
@@ -289,7 +289,7 @@ def main():
     print_metrics("Performance Metrics", dataset, classifierType, accuracy, precision, recall, f1)
     print_metrics("Cross Validation Performance Metrics", dataset, classifierType, accuracy_c, precision_c, recall_c, f1_c)
     save_confusion_matrix(Y, y_pred)
-    serialise_vectorizer_and_classifier(vectorizer, classifier)
+    serialise_model(vectorizer, classifier)
     return
 
 
