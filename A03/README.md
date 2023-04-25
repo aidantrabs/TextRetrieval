@@ -1,4 +1,4 @@
-
+t
 <div align="center">
 
 
@@ -27,10 +27,10 @@
 
 ## Contributions
  #### **Aidan Traboulay** 200115590
- -
+ - I worked on everything inside the `cluster_news.py` file. 
 
 ####  **Mobina Tooranisama** 200296720
--
+- I handled the refactoring of the `cluster_news.py` file. This means, making the program more consice and efficent.
 
 ####  **Nausher Rao** 190906250
 - I worked on everything inside the `training_sentiment.py` file, including all functions and definitions.
@@ -55,9 +55,15 @@ python3 training_sentiment.py [-h] ([--imdb] [--amazon] [--yelp]) ([--naive] [--
 - The program also requires one of the following classifier arguments: `--naive`, `--svm`, `--decisiontree`, `--knn <n>`. If more than one classifier is provided, the program will run the first one from the list.
 
 ### Cluster News (`cluster_news.py`)
--
-
+- The program preprocesses the large data set, known as 20_newsgroups, in the function `def preprocess_data()`. The first implementation parsed this data concurrently at first, however, it was noticed that the data set was too big to handle in this fashion. Multiple data structures were tried and failed. The solution to this problem was to utilize the function found in the sklearn data sets built-in library. Fortunately, this method allowed for the removal of all headers, footers and quotes in one function call, removing redundant data. The data is then clustered via the `def cluster_data(preprocessed_data, ncluster, clustering_method)`. Manually clustering was tried but this slowed down the program significantly. The sklearn.cluster library has the methods required to perform `kmeans`, `whc`, `ac`, and `dbscan` clustering, thus it was utilized. This 2D array data was then used to predict the output value.
+- Other functions being utilized are the `def arg_handler()` and `def main()`, where the first handles the arguments passed and main is used to call the `cluster_data()` function when an option is chosen.
 #### Usage
 ```sh
-python3 cluster_news.py
+python3 cluster_news.py [-options]
+[-options] :
+          --ncluster [n1, n2, n3, ...]   
+          --kmeans
+          --whc
+          --ac
+          --dbscan 
 ```
