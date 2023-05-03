@@ -1,5 +1,4 @@
 import argparse
-import re
 
 DATA_SET = "data/web-Stanford.txt"
 
@@ -39,18 +38,19 @@ def load_data():
 
      return graph, outbound
 
-def page_rank(prev, curr, graph, outbound, lambda_, num_nodes):
+def page_rank(prev: dict, curr: dict, graph: dict, outbound: dict, lambda_: float, num_nodes: int):
      """
      Description:
           Calculate the PageRank for each node.
      Parameters:
-          prev: the previous PageRank values.
-          curr: the current PageRank values.
-          graph: the graph of nodes.
-          outbound: the number of outbound links for each node.
-          num_nodes: the number of nodes.
+          prev (dict): the previous PageRank values.
+          curr (dict): the current PageRank values.
+          graph (dict): the graph of nodes.
+          outbound (dict): the number of outbound links for each node.
+          lambda_ (float): the λ parameter value (default: 0.85
+          num_nodes (int): the number of nodes in the graph.
      Returns:
-          curr: the current PageRank values.
+          curr (dict): the current PageRank values (after the calculation).
      """
      for node in graph:
           rank = lambda_ / num_nodes
@@ -69,17 +69,17 @@ def page_rank(prev, curr, graph, outbound, lambda_, num_nodes):
 
      return curr
 
-def page_rank_handler(graph, outbound, maxiteration, lambda_, thr, nodes):
+def page_rank_handler(graph: dict, outbound: dict, maxiteration: int, lambda_: float, thr: float, nodes: list):
      """
      Description:
           Handle the PageRank algorithm.
      Parameters:
-          graph: the graph of nodes.
-          outbound: the number of outbound links for each node.
-          maxiteration: the maximum number of iterations to stop if algorithm has not converged.
-          lambda_: the λ parameter value.
-          thr: the threshold value to stop if algorithm has converged.
-          nodes: the NodeIDs that we want to get their PageRank values at the end of iterations.
+          graph (dict): the graph of nodes.
+          outbound (dict): the number of outbound links for each node.
+          maxiteration (int): the maximum number of iterations to stop if algorithm has not converged.
+          lambda_ (float): the λ parameter value.
+          thr (float): the threshold value.
+          nodes (list): the list of nodes to be printed.
      Returns:
           None
      """
