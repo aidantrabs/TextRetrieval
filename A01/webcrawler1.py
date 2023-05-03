@@ -3,14 +3,12 @@ import datetime as dt
 from bs4 import BeautifulSoup
 from utils import *
 
-
 def get_dt():
     """
     Description:
         Returns the current date and time.
     """
     return dt.datetime.now()
-
 
 def crawl_urls(url: str, max_depth: int, rewrite: bool = False, verbose: bool = False, depth:int = 0):
     """
@@ -52,7 +50,6 @@ def crawl_urls(url: str, max_depth: int, rewrite: bool = False, verbose: bool = 
 
     return
 
-
 def main():
     """
     Description:
@@ -88,7 +85,6 @@ def main():
 
     crawl_urls(args.url, args.max_depth, args.rewrite, args.verbose)
     return
-
 
 if (__name__ == "__main__"):
     main()
