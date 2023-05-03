@@ -41,7 +41,6 @@ def generate_corpus():
 
     return text.lower().translate(str.maketrans("", "", string.punctuation))
 
-
 def get_tokenized_corpus(corpus: str):
     """
     Description:
@@ -54,7 +53,6 @@ def get_tokenized_corpus(corpus: str):
         (List[str]): The list of tokens.
     """
     return nltk.word_tokenize(corpus)
-
 
 def zipf_law(tokens: List[str]):
     """
@@ -71,7 +69,6 @@ def zipf_law(tokens: List[str]):
     print("Done!")
     return
 
-
 def tokenize(tokens: List[str]):
     """
     Description:
@@ -86,7 +83,6 @@ def tokenize(tokens: List[str]):
 
     print("Done!")
     return
-
 
 def _remove_stopwords(tokens: List[str]):
     """
@@ -103,7 +99,6 @@ def _remove_stopwords(tokens: List[str]):
     result = [word for word in tokens if word not in stopwords]
     return result
 
-
 def remove_stopwords(tokens: List[str]):
     """
     Description:
@@ -112,6 +107,9 @@ def remove_stopwords(tokens: List[str]):
 
     Parameters:
         tokens (List[str]): The list of tokens to remove stopwords from.
+
+    Returns:
+        Nones
     """
     print("Removing stopwords...")
     result = _remove_stopwords(tokens)
@@ -119,8 +117,8 @@ def remove_stopwords(tokens: List[str]):
         file.write("\n".join(result))
 
     print("Done!")
-    return
 
+    return
 
 def _porter_stemming(tokens: List[str]):
     """
@@ -135,8 +133,8 @@ def _porter_stemming(tokens: List[str]):
     """
     stemmer = nltk.stem.PorterStemmer()
     result = [stemmer.stem(word) for word in tokens]
-    return result
 
+    return result
 
 def porter_stemming(tokens: List[str]):
     """
@@ -146,6 +144,9 @@ def porter_stemming(tokens: List[str]):
 
     Parameters:
         tokens (List[str]): The list of tokens to perform Porter stemming on.
+
+    Returns:
+        None
     """
     print("Performing Porter stemming...")
     result = _porter_stemming(tokens)
@@ -153,8 +154,8 @@ def porter_stemming(tokens: List[str]):
         file.write("\n".join(result))
 
     print("Done!")
-    return
 
+    return
 
 def inverted_index():
     """
@@ -164,8 +165,8 @@ def inverted_index():
 
     Parameters:
         corpus (str): The text to create an inverted index for.
-
         {word: {id: count, id2: count2},}}
+
     Returns:
         (Dict[str, List[int]]): The inverted index.
     """
@@ -195,13 +196,19 @@ def inverted_index():
         file.write(json.dumps(index))
 
     print("Done!")
-    return index
 
+    return index
 
 def main():
     """
     Description:
         Main function for the wikipedia processing script.
+
+    Parameters:
+        None
+
+    Returns:
+        None
     """
     nltk.download("stopwords")
     nltk.download("punkt")
@@ -235,7 +242,6 @@ def main():
         print(inverted_index())
 
     return
-
 
 if (__name__ == "__main__"):
     main()
