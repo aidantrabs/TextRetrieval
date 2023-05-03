@@ -4,7 +4,6 @@ from typing import List
 
 ALPHA_NUM = "abcdefghijklmnopqrstuvwxyz23456789"
 
-
 def is_valid_binary(x: str):
     """
     Description:
@@ -18,7 +17,6 @@ def is_valid_binary(x: str):
     """
     return len(set(x).intersection(ALPHA_NUM)) == 0
 
-
 def to_unary(x: int):
     """
     Description:
@@ -31,7 +29,6 @@ def to_unary(x: int):
         str: The unary representation of the number.
     """
     return "1" * x + "0"
-
 
 def to_binary(x: int, l: int):
     """
@@ -53,7 +50,6 @@ def to_binary(x: int, l: int):
         r = r[-l:]
 
     return r
-
 
 def log2(x: int):
     """
@@ -81,7 +77,6 @@ def pow2(x: int):
     """
     return int(math.pow(2, x))
 
-
 def encode_elias_delta(x: int):
     """
     Description:
@@ -101,7 +96,6 @@ def encode_elias_delta(x: int):
     kdr = (kd + 1) - pow2(kdd)
     return to_unary(kdd) + " " + to_binary(kdr, kdd) + " " + to_binary(x, kdd)
 
-
 def encode_elias_gamma(x: int):
     """
     Description:
@@ -118,7 +112,6 @@ def encode_elias_gamma(x: int):
 
     kd = log2(x)
     return to_unary(kd) + " " + to_binary(x, kd)
-
 
 def decode_elias_delta(x: str):
     """
@@ -144,6 +137,7 @@ def decode_elias_delta(x: str):
     kd = len(kd_b)
     kr = int(x[-kd:], 2)
     kdr = int(kdd_b, 2)
+    
     if (len(x) != kd + (2 * kdd) + 1):
         return "ERROR"
 
@@ -155,7 +149,6 @@ def decode_elias_delta(x: str):
         return "ERROR"
 
     return kr + 2 ** kd
-
 
 def decode_elias_gamma(x: str):
     """
@@ -185,7 +178,6 @@ def decode_elias_gamma(x: str):
         return "ERROR"
 
     return 2**kd + int(kr, 2)
-
 
 def main():
     FUNCTION_MAP = {
@@ -232,7 +224,6 @@ def main():
         print(algo(num))
 
     return
-
 
 if (__name__ == "__main__"):
     main()
