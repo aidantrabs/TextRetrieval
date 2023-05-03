@@ -25,11 +25,20 @@ VECTORIZER_OUTPUT_FILE_NAME = "vectorizer.joblib"
 CLASSIFIER_OUTPUT_FILE_NAME = "classifier.joblib"
 
 class ClassifierType(enum.Enum):
+    """
+    Description:
+        An enum to represent the different types of classifiers that can be used.
+
+    Attributes:
+        NAIVE_BAYES: The Naive Bayes classifier.
+        KNN: The K-Nearest Neighbors classifier.
+        SVM: The Support Vector Machine classifier.
+        DECISION_TREE: The Decision Tree classifier.
+    """
     NAIVE_BAYES = 1,
     KNN = 2,
     SVM = 3,
     DECISION_TREE = 4
-
 
 def arg_handler():
     """
@@ -50,8 +59,8 @@ def arg_handler():
     classifier.add_argument("--svm", action="store_true", help="Use the Support Vector Machine algorithm for training the classifier.")
     classifier.add_argument("--decisiontree", "-dt", dest="dt", action="store_true", help="Use the Decision Tree algorithm for training the classifier.")
     classifier.add_argument("--knn", action="store", nargs=1, type=int, help="Use the K-Nearest Neighbors algorithm for training the classifier.")
+    
     return parser.parse_args()
-
 
 def parse_args(args: object):
     """
@@ -80,7 +89,6 @@ def parse_args(args: object):
         print("Error! No dataset selected.")
         exit(1)
 
-
     if(args.naive):
         classifierType = ClassifierType.NAIVE_BAYES
 
@@ -100,7 +108,6 @@ def parse_args(args: object):
 
     return dataset, classifierType, data
 
-
 def process_text(text: str):
     """
     Description:
@@ -115,8 +122,8 @@ def process_text(text: str):
 
     stop_words = set(nltk.corpus.stopwords.words('english'))
     tokenizer = nltk.tokenize.RegexpTokenizer(r'\w+')
+    
     return text.apply(lambda x: ' '.join([word for word in tokenizer.tokenize(x.lower()) if word not in stop_words]))
-
 
 def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: Union[int, None]):
     """
@@ -155,8 +162,8 @@ def init_classifier(dataset_file_name: str, classifierType: ClassifierType, n: U
         classifier = sklearn.tree.DecisionTreeClassifier()
 
     classifier.fit(X, Y)
-    return vectorizer, classifier, X, Y
 
+    return vectorizer, classifier, X, Y
 
 def calculate_performance_metrics(Y, y_pred):
     """
@@ -179,7 +186,6 @@ def calculate_performance_metrics(Y, y_pred):
     f1 = sklearn.metrics.f1_score(Y, y_pred, average="macro")
 
     return accuracy, precision, recall, f1
-
 
 def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
     """
@@ -205,7 +211,6 @@ def calculate_cross_validation_performance_metrics(classifier, X, Y, kf):
 
     return accuracy, precision, recall, f1
 
-
 def print_metrics(title: str, dataset: str, classifierType: ClassifierType, accuracy: float, precision: float, recall: float, f1: float):
     """
     Description:
@@ -229,8 +234,8 @@ def print_metrics(title: str, dataset: str, classifierType: ClassifierType, accu
     print(f"F1: {f1:.5f}")
     print("==============================================")
     print()
-    return
 
+    return
 
 def save_confusion_matrix(Y, y_pred):
     """
@@ -248,8 +253,8 @@ def save_confusion_matrix(Y, y_pred):
     plt.xlabel("Predicted Label")
     plt.ylabel("Actual Label")
     plt.savefig(CONFUSION_MATRIX_FILE_NAME)
+    
     return
-
 
 def serialise_model(vectorizer, classifier):
     """
@@ -268,11 +273,13 @@ def serialise_model(vectorizer, classifier):
 
     return
 
-
 def main():
     """
     Description:
         The main function.
+
+    Returns:
+        None
     """
     nltk.download("stopwords")
     nltk.download("punkt")
@@ -286,12 +293,14 @@ def main():
 
     accuracy, recall, precision, f1 = calculate_performance_metrics(Y, y_pred)
     accuracy_c, recall_c, precision_c, f1_c = calculate_cross_validation_performance_metrics(classifier, X, Y, kf)
+    
     print_metrics("Performance Metrics", dataset, classifierType, accuracy, precision, recall, f1)
     print_metrics("Cross Validation Performance Metrics", dataset, classifierType, accuracy_c, precision_c, recall_c, f1_c)
+    
     save_confusion_matrix(Y, y_pred)
     serialise_model(vectorizer, classifier)
+    
     return
-
 
 if (__name__ == "__main__"):
     main()
