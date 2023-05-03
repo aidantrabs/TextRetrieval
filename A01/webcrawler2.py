@@ -22,7 +22,6 @@ def get_paginated_url(url: str):
 
     return
 
-
 def get_paginated_content(paginated_url: str):
     """
     Description:
@@ -46,7 +45,6 @@ def get_paginated_content(paginated_url: str):
         })
 
     return paginated_researcher_paper_dict
-
 
 def get_parsed_content(url: str):
     """
@@ -93,7 +91,6 @@ def get_parsed_content(url: str):
         researcher_keywords, researcher_imgURL, researcher_citations, \
         researcher_hindex, researcher_i10index, researcher_coauthor_dict, researcher_paper_dict
 
-
 def combine_paper_lists(researcher_paper_dict: list, paginated_researcher_paper_dict: list):
     """
     Description:
@@ -110,7 +107,6 @@ def combine_paper_lists(researcher_paper_dict: list, paginated_researcher_paper_
         researcher_paper_dict.append(paper)
 
     return researcher_paper_dict
-
 
 def write_json_data(content: str, url: str):
     """
@@ -143,7 +139,6 @@ def write_json_data(content: str, url: str):
 
     return
 
-
 def main():
     """
     Description:
@@ -174,7 +169,6 @@ def main():
         print("Error. Unable to retrieve this flaming heap of garbage.")
 
     return
-
 
 if (__name__ == "__main__"):
     main()
