@@ -13,7 +13,6 @@ HTML_TAGS_REGEX = r"<[^<]+?>"
 # Matches all non-binary characters.
 NON_ZERO_ONE_REGEX = r"[^01]+"
 
-
 def replace_html(text: str):
     """
     Description:
@@ -26,7 +25,6 @@ def replace_html(text: str):
     b = re.sub(HTML_TAGS_REGEX, "1", a)
     c = re.sub(NON_ZERO_ONE_REGEX, "", b)
     return c
-
 
 def optimise_webpage(bits: list):
     """
@@ -54,7 +52,6 @@ def optimise_webpage(bits: list):
 
     return i_prime, j_prime
 
-
 def generate_heatmap(bits: list):
     """
     Description:
@@ -79,7 +76,6 @@ def generate_heatmap(bits: list):
     mpl.show()
     return
 
-
 def get_optimised_content(content: str, i: int, j: int):
     """
     Description:
@@ -95,7 +91,6 @@ def get_optimised_content(content: str, i: int, j: int):
     """
     split_content = re.split(HTML_TAGS_REGEX, content)
     return " ".join(split_content[i:j])
-
 
 def main():
     """
@@ -134,7 +129,6 @@ def main():
         print("Error. Unable to retrieve this flaming heap of garbage.")
 
     return
-
 
 if (__name__ == "__main__"):
     main()
