@@ -26,7 +26,6 @@ def session_handler():
     session.headers.update(HEADERS)
     return session
 
-
 def get_content(url: str):
     """
     Description:
@@ -45,7 +44,6 @@ def get_content(url: str):
         return soup
 
     return
-
 
 def parse_url(url: str):
     """
@@ -70,7 +68,6 @@ def parse_url(url: str):
 
     return base_url, params
 
-
 def get_page(base_url: str, params: dict):
     """
     Description:
@@ -93,7 +90,6 @@ def get_page(base_url: str, params: dict):
     except:
         return None
 
-
 def write_raw_data(content: str, url: str):
     """
     Description:
@@ -110,8 +106,7 @@ def write_raw_data(content: str, url: str):
 
     return
 
-
-def hash_url(url):
+def hash_url(url: str):
     """
     Description:
         Returns the SHA256 hash of the given URL.
@@ -143,7 +138,6 @@ def print_giraffe():
           """)
     return
 
-
 def print_loading():
     """
     Description:
@@ -158,7 +152,6 @@ def print_loading():
         loading(i + 1, l, prefix='Progress:', suffix='Complete', length=l)
 
     return
-
 
 def loading(iter: int, total: int, prefix: str = '', suffix: str = '', decimals: int = 1, length: int = 100, fill: str = '>'):
     """
