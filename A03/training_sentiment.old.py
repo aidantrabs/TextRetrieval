@@ -1,35 +1,33 @@
+import nltk
+import pandas
+
 def tokenize_text(text: str):
-     """
-     Description:
-     Tokenizes the text.
+    """
+    Description:
+    Tokenizes the text.
 
-     Parameters:
-     text (str): The text to tokenize.
+    Parameters:
+    text (str): The text to tokenize.
 
-     Returns:
-     (List[str]): The list of tokens.
-     """
-     return nltk.word_tokenize(text)
+    Returns:
+    (list[str]): The list of tokens.
+    """
+    return nltk.word_tokenize(text)
 
+def remove_stopwords(tokens: list[str]):
+    """
+    Description:
+    Removes stopwords from the text.
 
-def remove_stopwords(tokens: List[str]):
-     """
-     Description:
-     Removes stopwords from the text.
+    Parameters:
+    tokens (List[str]): The list of tokens to remove stopwords from.
 
-     Parameters:
-     tokens (List[str]): The list of tokens to remove stopwords from.
-
-     Returns:
-     (List[str]): The list of tokens without stopwords.
-     """
-     stopwords = nltk.corpus.stopwords.words("english")
-     result = [word for word in tokens if word not in stopwords]
-     return result
-
-
-
-
+    Returns:
+    (List[str]): The list of tokens without stopwords.
+    """
+    stopwords = nltk.corpus.stopwords.words("english")
+    result = [word for word in tokens if word not in stopwords]
+    return result
 
 def process_dataset(dataset_file_name: str):
     """
@@ -54,8 +52,6 @@ def process_dataset(dataset_file_name: str):
     print(result)
 
     return
-
-
 
 def train_with_dataset(dataset_file_name: str, classType: ClassifierType):
     """
@@ -92,7 +88,6 @@ def train_with_dataset(dataset_file_name: str, classType: ClassifierType):
     # Define cross-validation technique
     kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
-
     # Print performance metrics
     y_pred = classifier.predict(X)
     accuracy = accuracy_score(Y, y_pred)
@@ -100,7 +95,6 @@ def train_with_dataset(dataset_file_name: str, classType: ClassifierType):
     precision = precision_score(Y, y_pred, average="macro")
     f1 = f1_score(Y, y_pred, average="macro")
     print("Performance of Classification:\n\tAccuracy: {:.3f}\n\tRecall: {:.3f}\n\tPrecision: {:.3f}\n\tF1-score: {:.3f}".format(accuracy, recall, precision, f1))
-
 
     # Evaluate performance with cross-validation
     cross_accuracy = cross_val_score(classifier, X, Y, cv=kf, scoring="accuracy")
@@ -126,17 +120,15 @@ def train_with_dataset(dataset_file_name: str, classType: ClassifierType):
     with open(vectName, "wb") as file:
         joblib.dump(vectorizer, file)
 
-
-        # for line in f:
-        #      print(line, end="")
-        #      print(line.strip().split(" "))
-        #      print(line.strip().split(" ")[-1])
-        #      break
+    # for line in f:
+    #      print(line, end="")
+    #      print(line.strip().split(" "))
+    #      print(line.strip().split(" ")[-1])
+    #      break
 
     return
 
-
-def classify_with(text: List[str], classifierType: ClassifierType):
+def classify_with(text: list[str], classifierType: ClassifierType):
     """
     Description:
         Classify the text.
