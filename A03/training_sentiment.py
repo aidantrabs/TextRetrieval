@@ -76,6 +76,7 @@ def parse_args(args: object):
         data: If KNN is chosen as the ClassifierType, this is the n value to use.
     """
     data = None
+    
     if(args.imdb):
         dataset = "imdb_labelled.txt"
 
