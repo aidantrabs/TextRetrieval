@@ -24,6 +24,7 @@ def replace_html(text: str):
     a = re.sub(HTML_CONTENT_REGEX, "0", text)
     b = re.sub(HTML_TAGS_REGEX, "1", a)
     c = re.sub(NON_ZERO_ONE_REGEX, "", b)
+    
     return c
 
 def optimise_webpage(bits: list):
@@ -62,6 +63,7 @@ def generate_heatmap(bits: list):
     """
     b = len(bits)
     heatmap = np.zeros((b, b))
+
     for i in range(b):
         for j in range(i, b):
             a = sum(bits[:i])
@@ -74,6 +76,7 @@ def generate_heatmap(bits: list):
 
     mpl.imshow(heatmap, cmap='hot', interpolation='nearest', origin='lower')
     mpl.show()
+
     return
 
 def get_optimised_content(content: str, i: int, j: int):
@@ -90,6 +93,7 @@ def get_optimised_content(content: str, i: int, j: int):
         str: The content of the document between the given indices.
     """
     split_content = re.split(HTML_TAGS_REGEX, content)
+
     return " ".join(split_content[i:j])
 
 def main():
@@ -115,6 +119,7 @@ def main():
     url = args.url
     raw_content = str(get_content(url))
     content = replace_html(raw_content)
+
     if (content):
         bits = [int(x) for x in content]
         i, j = optimise_webpage(bits)
@@ -124,7 +129,6 @@ def main():
         optimised_content = get_optimised_content(raw_content, i, j)
         write_raw_data(optimised_content, url)
         generate_heatmap(bits)
-
     else:
         print("Error. Unable to retrieve this flaming heap of garbage.")
 
